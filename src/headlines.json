@@ -1,14 +1,59 @@
 [
-  { "template": "home", "note": "Homepage." },
-  { "template": "about", "note": "About." },
-  { "template": "servicesPage", "directory": true, "note": "Services = MASTER DIRECTORY (rendered last; lists built pages by cluster)." },
-  { "template": "serviceSpokes", "note": "Service spoke pages under /services/<slug>/." },
-  { "template": "fleetPage", "note": "Fleet hub." },
-  { "template": "vehiclePages", "note": "5 vehicle pages (sedan/SUV/Sprinter van/mini bus/charter bus)." },
-  { "template": "contact", "note": "Contact (/contact/)." },
-  { "template": "becomePartner", "note": "Become a Landio Partner (/become-a-partner/)." },
-  { "template": "reservations", "note": "Reservations / Book Now." },
-  { "template": "legalPages", "note": "Privacy Policy + Terms of Service + Disclaimer + SMS + Cancellation." },
-  { "template": "thankyou", "note": "Quote-flow landing (noindex)." },
-  { "template": "notFound", "note": "404 (noindex)." }
+  {
+    "template": "home",
+    "note": "Homepage."
+  },
+  {
+    "template": "about",
+    "note": "About."
+  },
+  {
+    "template": "servicesPage",
+    "directory": true,
+    "note": "Services = MASTER DIRECTORY (rendered last; lists built pages by cluster)."
+  },
+  {
+    "template": "serviceSpokes",
+    "note": "Service spoke pages under /services/<slug>/."
+  },
+  {
+    "template": "areasHub",
+    "note": "Areas hub (/areas/)."
+  },
+  {
+    "template": "areaPages",
+    "note": "20 DC/MD/VA area pages."
+  },
+  {
+    "template": "fleetPage",
+    "note": "Fleet hub."
+  },
+  {
+    "template": "vehiclePages",
+    "note": "5 vehicle pages (sedan/SUV/Sprinter van/mini bus/charter bus)."
+  },
+  {
+    "template": "contact",
+    "note": "Contact (/contact/)."
+  },
+  {
+    "template": "becomePartner",
+    "note": "Become a Landio Partner (/become-a-partner/)."
+  },
+  {
+    "template": "reservations",
+    "note": "Reservations / Book Now."
+  },
+  {
+    "template": "legalPages",
+    "note": "Privacy Policy + Terms of Service + Disclaimer + SMS + Cancellation."
+  },
+  {
+    "template": "thankyou",
+    "note": "Quote-flow landing (noindex)."
+  },
+  {
+    "template": "notFound",
+    "note": "404 (noindex)."
+  }
 ]

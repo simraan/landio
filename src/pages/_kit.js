@@ -120,7 +120,7 @@ export function serviceNode({ path, name, serviceType, description, areaServed }
     url: abs(path),
     description,
     provider: { "@id": `${ORIGIN}/#business` },
-    areaServed: areaServed || { "@type": "AdministrativeArea", name: "Metro Atlanta", containedInPlace: { "@type": "State", name: "Georgia" } },
+    areaServed: areaServed || { "@type": "AdministrativeArea", name: "Washington, DC metropolitan area" },
   };
 }
 
@@ -142,12 +142,12 @@ export function collectionNode({ path, name, description, items }) {
 
 /* ---- Link cards generated from the page maps (used by "nearby"/related grids). */
 export const card = (path, title, text, icon = "pin", cta = "View page") => ({ href: path, requires: path, title, text, icon, cta });
-export const areaCard = (slug, text) => { const a = bySlug(AREAS, slug); return card(a.path, `${a.name} car service`, text || `Car service and ATL transfers in ${a.name}.`, "pin", "View area"); };
+export const areaCard = (slug, text) => { const a = bySlug(AREAS, slug); return card(a.path, `${a.name} car service`, text || `Car service and airport transfers in ${a.name}.`, "pin", "View area"); };
 export const venueCard = (slug, text) => { const v = bySlug(VENUES, slug); return card(v.path, `${v.name} car service`, text || `Drop-off and pickup plans for ${v.name}.`, "pin", "View venue"); };
 export const eventCard = (slug, text) => { const e = bySlug(EVENTS, slug); return card(e.path, `${e.name} transportation`, text || `Rides for ${e.name}.`, "calendar", "View event"); };
 export const fboCard = (slug, text) => { const f = bySlug(FBOS, slug); return card(f.path, `${f.code} private jet car service`, text || `Transfers at ${f.name} (${f.code}).`, "plane", "View airfield"); };
 export const routeCard = (slug, text) => { const r = bySlug(ROUTES, slug); return card(r.path, `${r.label} car service`, text || `Chauffeured long-distance trip to ${r.city}.`, "route", "View route"); };
-export const guideCard = (slug, text) => { const g = bySlug(GUIDES, slug); return card(g.path, g.title, text || "ATL airport guide.", "pin", "Read the guide"); };
+export const guideCard = (slug, text) => { const g = bySlug(GUIDES, slug); return card(g.path, g.title, text || "DC airport guide.", "pin", "Read the guide"); };
 export const hubCard = (key, text, icon = "grid") => card(HUBS[key].path, HUBS[key].name, text, icon, "Open hub");
 export const fleetCard = (key) => {
   const v = vehicle(key);

@@ -109,28 +109,29 @@ export const routePath = (slug) => `/routes/${slug}/`;
  * Virginia cities in the scale wave; empty here so the core build ships with no
  * unbuilt cluster links. neighbors = 3 nearby areas; fbo/routes = link targets.
  */
+const STATE_NAME = { dc: "District of Columbia", md: "Maryland", va: "Virginia" };
 export const AREAS = [
-  { slug: "washington-dc", name: "Washington, DC", pickup: "Washington, DC", region: "dc" },
-  { slug: "bethesda", name: "Bethesda", pickup: "Bethesda, MD", region: "md" },
-  { slug: "potomac", name: "Potomac", pickup: "Potomac, MD", region: "md" },
-  { slug: "rockville", name: "Rockville", pickup: "Rockville, MD", region: "md" },
-  { slug: "silver-spring", name: "Silver Spring", pickup: "Silver Spring, MD", region: "md" },
-  { slug: "germantown", name: "Germantown", pickup: "Germantown, MD", region: "md", base: true },
-  { slug: "gaithersburg", name: "Gaithersburg", pickup: "Gaithersburg, MD", region: "md" },
-  { slug: "chevy-chase", name: "Chevy Chase", pickup: "Chevy Chase, MD", region: "md" },
-  { slug: "national-harbor", name: "National Harbor", pickup: "National Harbor, MD", region: "md" },
-  { slug: "baltimore", name: "Baltimore", pickup: "Baltimore, MD", region: "md" },
-  { slug: "annapolis", name: "Annapolis", pickup: "Annapolis, MD", region: "md" },
-  { slug: "arlington", name: "Arlington", pickup: "Arlington, VA", region: "va" },
-  { slug: "alexandria", name: "Alexandria", pickup: "Alexandria, VA", region: "va" },
-  { slug: "mclean", name: "McLean", pickup: "McLean, VA", region: "va" },
-  { slug: "tysons", name: "Tysons", pickup: "Tysons, VA", region: "va" },
-  { slug: "fairfax", name: "Fairfax", pickup: "Fairfax, VA", region: "va" },
-  { slug: "reston", name: "Reston", pickup: "Reston, VA", region: "va" },
-  { slug: "ashburn", name: "Ashburn", pickup: "Ashburn, VA", region: "va" },
-  { slug: "sterling", name: "Sterling", pickup: "Sterling, VA", region: "va" },
-  { slug: "leesburg", name: "Leesburg", pickup: "Leesburg, VA", region: "va" },
-].map((a) => ({ ...a, path: areaPath(a.slug) }));
+  { slug: "washington-dc", name: "Washington, DC", pickup: "Washington, DC", region: "dc", airport: "DCA", neighbors: ["arlington", "bethesda", "silver-spring"] },
+  { slug: "bethesda", name: "Bethesda", pickup: "Bethesda, MD", region: "md", airport: "DCA", neighbors: ["chevy-chase", "potomac", "washington-dc"] },
+  { slug: "potomac", name: "Potomac", pickup: "Potomac, MD", region: "md", airport: "IAD", neighbors: ["bethesda", "rockville", "mclean"] },
+  { slug: "rockville", name: "Rockville", pickup: "Rockville, MD", region: "md", airport: "IAD", neighbors: ["potomac", "gaithersburg", "bethesda"] },
+  { slug: "silver-spring", name: "Silver Spring", pickup: "Silver Spring, MD", region: "md", airport: "DCA", neighbors: ["washington-dc", "chevy-chase", "bethesda"] },
+  { slug: "germantown", name: "Germantown", pickup: "Germantown, MD", region: "md", base: true, airport: "IAD", neighbors: ["gaithersburg", "rockville", "potomac"] },
+  { slug: "gaithersburg", name: "Gaithersburg", pickup: "Gaithersburg, MD", region: "md", airport: "IAD", neighbors: ["germantown", "rockville", "potomac"] },
+  { slug: "chevy-chase", name: "Chevy Chase", pickup: "Chevy Chase, MD", region: "md", airport: "DCA", neighbors: ["bethesda", "silver-spring", "washington-dc"] },
+  { slug: "national-harbor", name: "National Harbor", pickup: "National Harbor, MD", region: "md", airport: "DCA", neighbors: ["alexandria", "washington-dc", "arlington"] },
+  { slug: "baltimore", name: "Baltimore", pickup: "Baltimore, MD", region: "md", airport: "BWI", neighbors: ["annapolis", "washington-dc", "silver-spring"] },
+  { slug: "annapolis", name: "Annapolis", pickup: "Annapolis, MD", region: "md", airport: "BWI", neighbors: ["baltimore", "washington-dc", "national-harbor"] },
+  { slug: "arlington", name: "Arlington", pickup: "Arlington, VA", region: "va", airport: "DCA", neighbors: ["washington-dc", "alexandria", "mclean"] },
+  { slug: "alexandria", name: "Alexandria", pickup: "Alexandria, VA", region: "va", airport: "DCA", neighbors: ["arlington", "washington-dc", "national-harbor"] },
+  { slug: "mclean", name: "McLean", pickup: "McLean, VA", region: "va", airport: "IAD", neighbors: ["tysons", "arlington", "bethesda"] },
+  { slug: "tysons", name: "Tysons", pickup: "Tysons, VA", region: "va", airport: "IAD", neighbors: ["mclean", "reston", "fairfax"] },
+  { slug: "fairfax", name: "Fairfax", pickup: "Fairfax, VA", region: "va", airport: "IAD", neighbors: ["tysons", "reston", "arlington"] },
+  { slug: "reston", name: "Reston", pickup: "Reston, VA", region: "va", airport: "IAD", neighbors: ["tysons", "ashburn", "fairfax"] },
+  { slug: "ashburn", name: "Ashburn", pickup: "Ashburn, VA", region: "va", airport: "IAD", neighbors: ["sterling", "reston", "leesburg"] },
+  { slug: "sterling", name: "Sterling", pickup: "Sterling, VA", region: "va", airport: "IAD", neighbors: ["ashburn", "reston", "leesburg"] },
+  { slug: "leesburg", name: "Leesburg", pickup: "Leesburg, VA", region: "va", airport: "IAD", neighbors: ["ashburn", "sterling", "reston"] },
+].map((a) => ({ ...a, path: areaPath(a.slug), stateName: STATE_NAME[a.region], venues: [], routes: [], fbo: null }));
 
 /** Venues (SEO wave). Populated with DMV venues in the scale wave. */
 export const VENUES = [].map((v) => ({ ...v, path: `/services/${v.slug}-car-service/` }));

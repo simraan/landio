@@ -34,7 +34,7 @@ export function areasHub() {
     bodyClass: "page-areas-hub",
     cluster: "areas",
     hub: true,
-    card: { title: "Atlanta areas we serve", text: HUB.summary, icon: "pin" },
+    card: { title: "DC-metro areas we serve", text: HUB.summary, icon: "pin" },
     trail: [
       { name: "Home", path: "/" },
       { name: "Areas We Serve", path },
@@ -43,7 +43,7 @@ export function areasHub() {
     graph: [collectionNode({ path, name: HUB.h1, description: HUB.description, items })],
     sections: [
       ["hero", {
-        eyebrow: "Metro Atlanta · 24/7",
+        eyebrow: "DC Metro · 24/7",
         h1: HUB.h1,
         answerHtml: esc(HUB.answer),
         chips: HUB.chips,
@@ -66,7 +66,7 @@ export function areasHub() {
       ["links", {
         id: "areas-list",
         eyebrow: "Areas",
-        h2: "Car Service by Atlanta Area",
+        h2: "Car Service by DC-Metro Area",
         lede: "Pick your city or neighborhood for airport transfers and local chauffeur service.",
         items: AREAS.map((a) => ({
           href: a.path,
@@ -84,7 +84,7 @@ export function areasHub() {
         items: HUB.why,
       }],
 
-      ["faq", { heading: "Atlanta Areas FAQ", eyebrow: "Good to Know" }],
+      ["faq", { heading: "DC Metro Areas FAQ", eyebrow: "Good to Know" }],
 
       ["contact"],
     ],
@@ -97,7 +97,8 @@ function areaPage(a) {
   const path = a.path;
   const pickup = a.pickup;
   const name = a.name;
-  const description = `Car service in ${name} and ATL airport transfers — flight-tracked, 24/7, no surge pricing. Reserve with A-Town Limo or call ${PHONE.local}.`;
+  const ap = SITE.airports.find((x) => x.code === a.airport) || SITE.airports[0];
+  const description = `Car service in ${name} and ${ap.code} airport transfers — flight-tracked, 24/7, no surge pricing. Reserve with Landio Limo Services or call ${PHONE.local}.`;
 
   // Explore-nearby cards: neighbors + venues + fbo + long-distance routes, all
   // requires:-gated by the _kit card builders (built targets show, rest drop).
@@ -111,9 +112,9 @@ function areaPage(a) {
   return landingPage({
     path,
     title: `${name} Car Service`,
-    titleFull: `${name} Car Service | A-Town Limo`,
+    titleFull: `${name} Car Service | Landio Limo Services`,
     description,
-    summary: `Chauffeured car service in ${name} and Hartsfield-Jackson (ATL) airport transfers — ${c.context}`,
+    summary: `Chauffeured car service in ${name} and DC-area airport transfers — ${c.context}`,
     bodyClass: `page-area page-area-${a.slug}`,
     cluster: "areas",
     card: { title: `${name} car service`, text: (c.context.split(/[.—]/)[0] || "").trim() + ".", icon: "pin" },
@@ -130,18 +131,18 @@ function areaPage(a) {
         name: `${name} Car Service`,
         serviceType: "Car service",
         description,
-        areaServed: { "@type": "City", name, containedInPlace: { "@type": "State", name: "Georgia" } },
+        areaServed: { "@type": "City", name, containedInPlace: { "@type": "State", name: a.stateName } },
       }),
     ],
     sections: [
       ["hero", {
-        eyebrow: c.base ? "Our Home Base · Metro Atlanta" : "Metro Atlanta · 24/7",
+        eyebrow: c.base ? "Our Home Base · DC Metro" : "DC Metro · 24/7",
         h1: `${name} Car Service`,
-        answerHtml: esc(`A-Town Limo provides chauffeured car service in ${name} plus Hartsfield-Jackson (ATL) airport transfers, ${SITE.hours}. ${c.context}`),
+        answerHtml: esc(`Landio Limo Services provides chauffeured car service in ${name} plus Dulles (IAD), Reagan National (DCA), and BWI airport transfers, ${SITE.hours}. ${c.context}`),
         chips: [
-          { icon: "radar", text: "ATL transfers" },
+          { icon: "radar", text: `${ap.code} transfers` },
           { icon: "tag", text: "No surge pricing" },
-          { icon: c.base ? "shield" : "car", text: c.base ? "Based in Duluth" : "Door-to-door" },
+          { icon: c.base ? "shield" : "car", text: c.base ? "Based in Germantown" : "Door-to-door" },
         ],
         image: HERO_IMG,
         prefillPickup: pickup,
@@ -164,10 +165,10 @@ function areaPage(a) {
           {
             id: `atl-${a.slug}`,
             icon: "radar",
-            h2: `${name} to ATL Airport`,
-            act: { modal: { pickup, dropoff: "Hartsfield-Jackson Atlanta International Airport (ATL)" } },
+            h2: `${name} Airport Transfers`,
+            act: { modal: { pickup, dropoff: `${ap.name} (${ap.code})` } },
             cue: "Book an airport ride",
-            html: `<p>Your chauffeur runs the trip between ${name} and Hartsfield-Jackson (ATL) via ${c.highway}, with real-time flight tracking on arrivals, meet &amp; greet, and no charge for flight delays. Pickups move with your actual landing time, ${SITE.hours}.</p>`,
+            html: `<p>Your chauffeur runs the trip between ${name} and the DC-area airports — most often ${ap.name} (${ap.code}) via ${c.highway} — with real-time flight tracking on arrivals, meet &amp; greet, and no charge for flight delays. We also serve the other area airports. Pickups move with your actual landing time, ${SITE.hours}.</p>`,
           },
           {
             id: `local-${a.slug}`,
@@ -199,9 +200,9 @@ function areaPage(a) {
         eyebrow: "Plan Your Ride",
         h2: "Plan Your Ride",
         items: [
-          { href: HUBS.airport.path, icon: "plane", title: "Atlanta Airport Car Service", text: "The full ATL hub: terminals, routes, and booking.", cta: "Open hub" },
-          { href: HUBS.areas.path, icon: "pin", title: "All Atlanta areas", text: "Every city and neighborhood we serve.", cta: "View areas" },
-          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Executive Sedan, Executive SUV, and Sprinter Van.", cta: "View fleet" },
+          { href: "/services/airport-transfers/", icon: "plane", title: "DC Airport Car Service", text: "IAD, DCA & BWI transfers, flight-tracked.", cta: "Open service" },
+          { href: HUBS.areas.path, icon: "pin", title: "All DC-metro areas", text: "Every city we serve.", cta: "View areas" },
+          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Mini Bus, and Charter Bus.", cta: "View fleet" },
           { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your pickup online.", cta: "Reserve" },
         ],
       }],
@@ -215,8 +216,8 @@ function areaPage(a) {
 function areaFaqs(a, c) {
   return [
     {
-      q: `Do you provide car service to and from ATL airport in ${a.name}?`,
-      a: `Yes. A-Town Limo runs Hartsfield-Jackson (ATL) airport transfers to and from ${a.name} via ${c.highway}, ${SITE.hours}, with flight tracking on arrivals and no charge for flight delays.`,
+      q: `Do you provide car service to and from the airport in ${a.name}?`,
+      a: `Yes. Landio runs Dulles (IAD), Reagan National (DCA), and BWI airport transfers to and from ${a.name} via ${c.highway}, ${SITE.hours}, with flight tracking on arrivals and no charge for flight delays.`,
     },
     {
       q: `Where do you pick up in ${a.name}?`,
@@ -224,9 +225,9 @@ function areaFaqs(a, c) {
     },
     {
       q: `Which vehicle should I book for a ${a.name} trip?`,
-      a: `The Executive Sedan seats up to 4, the Executive SUV up to 6 with luggage, and the Sprinter van up to 14. Choose by group size first, then luggage. ${SITE.responsePromise}`,
+      a: `The Executive Sedan seats up to 3, the Luxury SUV up to 6 with luggage, and the Sprinter van up to 14 — with mini buses and charter buses for larger groups. Choose by group size first, then luggage. ${SITE.responsePromise}`,
     },
-    { q: "Is there surge pricing on busy days?", a: `No. ${PHONE.display} or the booking form gets you an upfront quote. A-Town Limo has no surge pricing — the price depends on distance, vehicle, duration, tolls, and stops.` },
+    { q: "Is there surge pricing on busy days?", a: `No. ${PHONE.display} or the booking form gets you an upfront quote. Landio has no surge pricing — the price depends on distance, vehicle, duration, tolls, and stops.` },
     { q: "What is your cancellation policy?", a: SITE.cancellation.full },
   ];
 }
