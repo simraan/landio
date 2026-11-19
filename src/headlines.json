@@ -25,6 +25,14 @@
     "note": "20 DC/MD/VA area pages."
   },
   {
+    "template": "fboHub",
+    "note": "Private jet & FBO hub."
+  },
+  {
+    "template": "fboPages",
+    "note": "7 FBO field pages."
+  },
+  {
     "template": "fleetPage",
     "note": "Fleet hub."
   },

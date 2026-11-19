@@ -140,7 +140,15 @@ export const VENUES = [].map((v) => ({ ...v, path: `/services/${v.slug}-car-serv
 export const EVENTS = [];
 
 /** Private-jet airfields / FBOs (SEO wave). areas = nearby area pages. */
-export const FBOS = [];
+export const FBOS = [
+  { slug: "signature-iad", code: "Signature IAD", name: "Signature Aviation at Dulles (IAD)", areas: ["reston", "ashburn", "tysons"] },
+  { slug: "signature-dca", code: "Signature DCA", name: "Signature Aviation at Reagan National (DCA)", areas: ["arlington", "washington-dc", "alexandria"] },
+  { slug: "signature-bwi", code: "Signature BWI", name: "Signature Aviation at BWI", areas: ["baltimore", "annapolis", "silver-spring"] },
+  { slug: "manassas", code: "HEF", name: "Manassas Regional Airport (HEF)", areas: ["fairfax", "tysons", "reston"] },
+  { slug: "leesburg-executive", code: "JYO", name: "Leesburg Executive Airport (JYO)", areas: ["leesburg", "ashburn", "sterling"] },
+  { slug: "montgomery-airpark", code: "GAI", name: "Montgomery County Airpark (GAI)", areas: ["gaithersburg", "germantown", "rockville"] },
+  { slug: "frederick", code: "FDK", name: "Frederick Municipal Airport (FDK)", areas: ["germantown", "gaithersburg", "rockville"] },
+].map((f) => ({ ...f, path: `/private-jet-fbo-transfers/${f.slug}/` }));
 
 /** DC airport + travel guides (SEO wave). */
 export const GUIDES = [];
@@ -469,7 +477,7 @@ export const SITE = {
   footerQuickLinks: [
     { label: "Airport Transfers", href: "/services/airport-transfers/" },
     { label: "Corporate & Executive Travel", href: "/services/corporate-executive/" },
-    { label: "Private Jet & FBO Transfers", href: "/services/fbo-private-jet/" },
+    { label: "Private Jet & FBO Transfers", href: "/private-jet-fbo-transfers/" },
     { label: "Diplomatic Transportation", href: "/services/diplomatic-transportation/" },
     { label: "Group Transfers", href: "/services/group-transfers/" },
     { label: "Our Fleet", href: "/fleet/" },

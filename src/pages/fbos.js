@@ -67,8 +67,8 @@ export function fboHub() {
       ["links", {
         id: "fbo-list",
         eyebrow: "Airfields",
-        h2: "Atlanta Private-Jet Airports We Serve",
-        lede: "Chauffeured transfers to and from the FBOs at Atlanta's private-aviation airports.",
+        h2: "DC-Area Private-Jet Airports We Serve",
+        lede: "Chauffeured transfers to and from the FBOs at the DC area's private-aviation airports.",
         items: builtFbos().map((f) => ({
           href: f.path,
           icon: "plane",
@@ -142,7 +142,7 @@ function fboPage(slug) {
         eyebrow: "The Essentials",
         h2: `${f.code}: The Essentials`,
         items: c.facts,
-        sourcesHtml: sources(...c.factsSources),
+        sourcesHtml: c.factsSources && c.factsSources.length ? sources(...c.factsSources) : "",
       }],
 
       ["intro", {
@@ -160,7 +160,7 @@ function fboPage(slug) {
 
       ["why", {
         id: `why-${slug}`,
-        eyebrow: "Why A-Town",
+        eyebrow: "Why Landio",
         h2: `A ${f.code} Transfer, Done Right`,
         items: c.why.map((w) => ({ ...w, act: { modal: { pickup: place } } })),
       }],
@@ -171,7 +171,7 @@ function fboPage(slug) {
         id: `nearby-${slug}`,
         eyebrow: "Nearby",
         h2: `Areas Near ${f.code}`,
-        lede: "Metro-Atlanta areas we drive to and from this airfield.",
+        lede: "DC-metro areas we drive to and from this airfield.",
         items: nearby,
       }],
 
@@ -180,9 +180,9 @@ function fboPage(slug) {
         eyebrow: "Plan Your Ride",
         h2: "Plan Your Ride",
         items: [
-          { href: HUBS.fbo.path, icon: "plane", title: "All private-jet airports", text: "Every FBO airfield we serve around Atlanta.", cta: "View airfields" },
-          { href: HUBS.airport.path, icon: "plane", title: "Atlanta Airport Car Service", text: "Commercial flights? See our ATL hub.", cta: "Open hub" },
-          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Executive Sedan, Executive SUV, and Sprinter Van.", cta: "View fleet" },
+          { href: HUBS.fbo.path, icon: "plane", title: "All private-jet airports", text: "Every FBO airfield we serve across the DC metro.", cta: "View airfields" },
+          { href: "/services/airport-transfers/", icon: "plane", title: "Commercial airport transfers", text: "Flying commercial? IAD, DCA & BWI transfers.", cta: "Open service" },
+          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Mini Bus, and Charter Bus.", cta: "View fleet" },
           { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your private-aviation transfer online.", cta: "Reserve" },
         ],
       }],

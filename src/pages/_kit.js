@@ -76,8 +76,13 @@ export const SRC = {
 
 /** FBO slug → booking-form place string (must match PLACES in partials.js). */
 export const FBO_PLACE = {
-  pdk: "PDK — DeKalb-Peachtree Airport (Private/FBO)",
-  fty: "FTY — Fulton County Airport (Private/FBO)",
+  "signature-iad": "Signature Aviation — Washington Dulles (IAD)",
+  "signature-dca": "Signature Aviation — Reagan National (DCA)",
+  "signature-bwi": "Signature Aviation — BWI",
+  manassas: "Manassas Regional Airport (HEF)",
+  "leesburg-executive": "Leesburg Executive Airport (JYO)",
+  "montgomery-airpark": "Montgomery County Airpark (GAI)",
+  frederick: "Frederick Municipal Airport (FDK)",
 };
 
 export const ext = (href, text) => `<a href="${esc(href)}" rel="noopener" target="_blank">${esc(text)}</a>`;

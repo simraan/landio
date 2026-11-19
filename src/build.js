@@ -36,6 +36,7 @@ import { contact } from "./pages/contact.js";
 import { becomePartner } from "./pages/become-a-partner.js";
 import { reservations } from "./pages/reservations.js";
 import { areasHub, areaPages } from "./pages/areas.js";
+import { fboHub, fboPages } from "./pages/fbos.js";
 import { venuesPage, venuePages } from "./pages/venues.js";
 import { eventsPage, eventPages } from "./pages/events.js";
 import { legalPages } from "./pages/legal.js";
@@ -91,6 +92,8 @@ const TEMPLATES = {
   reservations,
   areasHub,
   areaPages, // → one page per config AREAS entry
+  fboHub,
+  fboPages, // → 7 FBO field pages
   venuesPage,
   venuePages, // → 6 venue detail pages under /services/
   eventsPage,
