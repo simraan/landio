@@ -1,25 +1,17 @@
-# Dependencies
+# Dependencies (there are none at runtime, but tooling may install)
 node_modules/
 
 # Build output
 dist/
-build/
-.output/
-.vercel/
+
+# Local secrets — values NEVER committed (see .dev.vars.example for names)
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Cloudflare / Wrangler
 .wrangler/
 
-# Environment / secrets
-.env
-.env.*
-.dev.vars
-*.local
-
-# Logs
-*.log
-npm-debug.log*
-
-# OS / editor
+# OS / editor noise
 .DS_Store
-Thumbs.db
-.idea/
-.vscode/
+*.log

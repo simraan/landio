@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="A-Town Limo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E4CF93"/>
+      <stop offset="1" stop-color="#C6A664"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0A0A0A"/>
+  <rect x="4" y="4" width="56" height="56" rx="11" fill="none" stroke="url(#g)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M32 14 L48 50 H39.5 L36.3 42 H27.7 L24.5 50 H16 Z M29.9 35 H34.1 L32 29 Z" fill="url(#g)"/>
+</svg>

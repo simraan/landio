@@ -1,0 +1,23 @@
+# Cloudflare Pages project config for Aura Hamptons.
+# Web-standard Functions only — nodejs_compat is intentionally NOT set.
+name = "landio"
+compatibility_date = "2025-10-13"
+pages_build_output_dir = "dist"
+
+# For Git auto-deploy, set the build command to `npm run build` and the build
+# output directory to `dist` in the Cloudflare Pages dashboard (these also read
+# from pages_build_output_dir above).
+#
+# Required environment variables / secrets (add in Pages → Settings → Variables):
+#   RESEND_API_KEY              secret   — Resend API key for quote emails
+#   QUOTE_NOTIFY_FROM           plain    — from address (verified Resend domain)
+#   QUOTE_NOTIFY_TO             plain    — inbox that receives new leads
+#   GHL_PIT                     secret   — GoHighLevel Private Integration Token
+#   PUBLIC_GOOGLE_MAPS_API_KEY  plain    — Google Places autocomplete (booking form)
+#   DASHBOARD_PASSWORD          secret   — leads dashboard login
+#   SESSION_SECRET              secret   — dashboard session signing
+#   STRIPE_PUBLISHABLE_KEY      secret   — credit-card authorization page
+#   STRIPE_SECRET_KEY           secret   — credit-card authorization page
+#   NOINDEX                     plain    — set to "false" at launch to allow indexing
+#   SITE_URL                    plain    — canonical origin (e.g. https://aurahamptonslimo.com)
+#   GTM_ID                      plain    — optional Google Tag Manager container
