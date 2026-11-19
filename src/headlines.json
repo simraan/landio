@@ -49,6 +49,30 @@
     "note": "Intercity route pages."
   },
   {
+    "template": "venuesPage",
+    "note": "Venues hub (/venues/)."
+  },
+  {
+    "template": "venuePages",
+    "note": "Venue car-service pages."
+  },
+  {
+    "template": "eventsPage",
+    "note": "Events hub (/events/)."
+  },
+  {
+    "template": "eventPages",
+    "note": "Event transportation pages."
+  },
+  {
+    "template": "guidesHub",
+    "note": "DC guides hub (/dc-airport-guide/)."
+  },
+  {
+    "template": "guidePages",
+    "note": "DC travel guides."
+  },
+  {
     "template": "fleetPage",
     "note": "Fleet hub."
   },

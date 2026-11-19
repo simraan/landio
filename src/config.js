@@ -134,10 +134,26 @@ export const AREAS = [
 ].map((a) => ({ ...a, path: areaPath(a.slug), stateName: STATE_NAME[a.region], venues: [], routes: [], fbo: null }));
 
 /** Venues (SEO wave). Populated with DMV venues in the scale wave. */
-export const VENUES = [].map((v) => ({ ...v, path: `/services/${v.slug}-car-service/` }));
+export const VENUES = [
+  { slug: "capital-one-arena", name: "Capital One Arena", category: "Arenas & Stadiums" },
+  { slug: "nationals-park", name: "Nationals Park", category: "Arenas & Stadiums" },
+  { slug: "audi-field", name: "Audi Field", category: "Arenas & Stadiums" },
+  { slug: "northwest-stadium", name: "Northwest Stadium", category: "Arenas & Stadiums" },
+  { slug: "walter-washington-convention-center", name: "Walter E. Washington Convention Center", category: "Convention & Expo" },
+  { slug: "gaylord-national", name: "Gaylord National Resort", category: "Convention & Expo" },
+  { slug: "the-kennedy-center", name: "The Kennedy Center", category: "Performing Arts" },
+  { slug: "wolf-trap", name: "Wolf Trap", category: "Performing Arts" },
+  { slug: "mgm-national-harbor", name: "MGM National Harbor", category: "Entertainment & Resorts" },
+].map((v) => ({ ...v, path: `/services/${v.slug}-car-service/` }));
 
 /** Events (SEO wave). One evergreen URL per recurring event — no year in slugs. */
-export const EVENTS = [];
+export const EVENTS = [
+  { slug: "national-cherry-blossom-festival", name: "National Cherry Blossom Festival" },
+  { slug: "marine-corps-marathon", name: "Marine Corps Marathon" },
+  { slug: "july-4th-national-mall", name: "Independence Day on the National Mall" },
+  { slug: "capital-pride", name: "Capital Pride" },
+  { slug: "dc-jazz-festival", name: "DC Jazz Festival" },
+].map((e) => ({ ...e, path: `/events/${e.slug}/` }));
 
 /** Private-jet airfields / FBOs (SEO wave). areas = nearby area pages. */
 export const FBOS = [
@@ -151,7 +167,11 @@ export const FBOS = [
 ].map((f) => ({ ...f, path: `/private-jet-fbo-transfers/${f.slug}/` }));
 
 /** DC airport + travel guides (SEO wave). */
-export const GUIDES = [];
+export const GUIDES = [
+  { slug: "getting-to-from-dc-airports", name: "Getting To & From the DC Airports", title: "Getting To & From the DC Airports" },
+  { slug: "private-aviation-fbo-guide", name: "DC Private Aviation & FBO Guide", title: "DC Private Aviation & FBO Guide" },
+  { slug: "corporate-travel-dc", name: "Corporate Travel in the DC Metro", title: "Corporate Travel in the DC Metro" },
+].map((g) => ({ ...g, path: `/dc-airport-guide/${g.slug}/` }));
 
 /** Airport + city routes (SEO wave, the core booking engine). */
 export const ROUTES = [].map((r) => ({ ...r, path: routePath(r.slug), label: r.label || `${r.city}` }));

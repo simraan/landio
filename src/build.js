@@ -39,6 +39,7 @@ import { areasHub, areaPages } from "./pages/areas.js";
 import { fboHub, fboPages } from "./pages/fbos.js";
 import { airport } from "./pages/airport.js";
 import { routesHub, routePages } from "./pages/routes.js";
+import { guidesHub, guidePages } from "./pages/guides.js";
 import { terminalPages } from "./pages/terminals.js";
 import { venuesPage, venuePages } from "./pages/venues.js";
 import { eventsPage, eventPages } from "./pages/events.js";
@@ -104,7 +105,9 @@ const TEMPLATES = {
   venuesPage,
   venuePages, // → 6 venue detail pages under /services/
   eventsPage,
-  eventPages, // → 2 event detail pages under /events/
+  eventPages, // → event pages under /events/
+  guidesHub,
+  guidePages, // → DC travel guides
   legalPages, // → array of 2
   thankyou,
   notFound,
