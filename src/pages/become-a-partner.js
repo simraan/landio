@@ -1,5 +1,5 @@
 /**
- * Become an Aura Partner (/become-a-partner/). A standalone B2B page: premium
+ * Become an Landio Partner (/become-a-partner/). A standalone B2B page: premium
  * image hero, the three already-approved partner benefits, a neutral three-step
  * "How It Works", a dedicated partner enquiry form (its own field set —
  * company, contact, partner type, message — posted through the shared
@@ -107,7 +107,7 @@ function benefitsSection() {
         <div class="section-head">
           <span class="eyebrow">Why Partner With Us</span>
           <h2 id="benefits-title">A seamless extension of your service</h2>
-          <p class="text-secondary">Give your clients and guests luxury chauffeured transportation across the Hamptons and the New York City corridor, backed by professional chauffeurs and 24/7 booking support.</p>
+          <p class="text-secondary">Give your clients and guests luxury chauffeured transportation across Washington, DC, Maryland, and Northern Virginia, backed by professional chauffeurs and 24/7 booking support.</p>
         </div>
         <ul class="pp-benefits">${cards}
         </ul>
@@ -118,10 +118,10 @@ function benefitsSection() {
 /** Who can partner — audience cards (verified/neutral service descriptions). */
 function audiencesSection() {
   const audiences = [
-    ["route", "Travel advisors", "Add dependable Hamptons ground transportation to your clients' itineraries."],
+    ["route", "Travel advisors", "Add dependable DC-metro ground transportation to your clients' itineraries."],
     ["pin", "Hotel concierges", "Chauffeured car service your guests can arrange through you."],
     ["calendar", "Event planners", "Coordinated group and guest transportation for your events."],
-    ["users", "Wedding planners", "Guest shuttles and wedding-party transportation across the Hamptons."],
+    ["users", "Wedding planners", "Guest shuttles and wedding-party transportation across the DC metro."],
     ["shield", "Hospitality teams", "Professional chauffeured transfers for your guests, available 24/7."],
     ["briefcase", "Corporate travel", "Executive travel and flight-tracked airport transfers for your teams."],
   ];
@@ -142,8 +142,8 @@ function audiencesSection() {
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Who We Partner With</span>
-          <h2 id="audiences-title">Built for the people who move the Hamptons</h2>
-          <p class="text-secondary">From travel advisors and hotels to planners and corporate teams — one trusted transportation partner across the Hamptons and the New York City corridor.</p>
+          <h2 id="audiences-title">Built for the people who move the DC metro</h2>
+          <p class="text-secondary">From travel advisors and hotels to planners and corporate teams — one trusted transportation partner across Washington, DC, Maryland, and Northern Virginia.</p>
         </div>
         <ul class="pp-audiences">${cards}
         </ul>
@@ -151,12 +151,12 @@ function audiencesSection() {
     </section>`;
 }
 
-/** Why Aura Hamptons — a verified trust strip (facts sourced from config). */
+/** Why Landio Limo Services — a verified trust strip (facts sourced from config). */
 function whyAuraSection() {
   const points = [
-    ["shield", "Professional chauffeurs", "Vetted, courteous chauffeurs who know the Hamptons and the NYC corridor."],
+    ["shield", "Professional chauffeurs", "Vetted, courteous chauffeurs who know the DC metro and every area airport."],
     ["van", `${SITE.fleet.length} vehicle classes`, "From executive sedans to motor coaches — the right vehicle for any group."],
-    ["plane", "Flight-tracked airport transfers", "To and from JFK, LGA, EWR, ISP, FOK and HTO, timed to your arrival."],
+    ["plane", "Flight-tracked airport transfers", "To and from IAD, DCA and BWI, timed to your arrival."],
     ["clock", "Available 24/7", "Dedicated booking support, every day including holidays."],
   ];
   const cards = points
@@ -173,7 +173,7 @@ function whyAuraSection() {
     <section class="section section--alt" aria-labelledby="why-title">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Why Aura Hamptons</span>
+          <span class="eyebrow">Why Landio Limo Services</span>
           <h2 id="why-title">A partner your clients can count on</h2>
         </div>
         <ul class="pp-why">${cards}
@@ -216,7 +216,7 @@ function enquiryForm() {
         <div class="quote-card" data-quote-card>
           <div class="section-head section-head--left">
             <span class="eyebrow">Get Started</span>
-            <h2 id="enquiry-title">Partner With Aura Hamptons</h2>
+            <h2 id="enquiry-title">Partner With Landio Limo Services</h2>
             <p class="text-secondary">Tell us about your business and we'll be in touch. Prefer to talk? Call <a href="tel:${esc(SITE.phone.e164)}">${esc(SITE.phone.display)}</a>.</p>
           </div>
           ${partnerForm("partner")}
@@ -235,7 +235,7 @@ function partnerModal() {
         <div class="pp-modal__body">
           <div class="section-head section-head--left">
             <span class="eyebrow">Get Started</span>
-            <h2 id="pp-modal-title">Partner With Aura Hamptons</h2>
+            <h2 id="pp-modal-title">Partner With Landio Limo Services</h2>
             <p class="text-secondary">Tell us about your business and we'll be in touch. Prefer to talk? Call <a href="tel:${esc(SITE.phone.e164)}">${esc(SITE.phone.display)}</a>.</p>
           </div>
           ${partnerForm("partner-modal")}
@@ -253,15 +253,15 @@ export function becomePartner() {
     breadcrumb(trail),
     pageHero({
       eyebrow: "Partner Program",
-      h1: "Become an Aura Partner",
-      lede: "Partner with Aura Hamptons and give your clients and guests seamless luxury transportation across the Hamptons and the New York City corridor — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.",
+      h1: "Become an Landio Partner",
+      lede: "Partner with Landio Limo Services and give your clients and guests seamless luxury transportation across Washington, DC, Maryland, and Northern Virginia — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.",
       withForm: false,
       image: "/assets/img/hero/hamptons-hero",
       features: [
         { icon: "users", label: "Dedicated support" },
         { icon: "calendar", label: "24/7 booking support" },
         { icon: "shield", label: "Professional chauffeurs" },
-        { icon: "pin", label: "Hamptons & NYC corridor" },
+        { icon: "pin", label: "DC, Maryland & Virginia" },
       ],
     }),
     benefitsSection(),
@@ -276,19 +276,19 @@ export function becomePartner() {
 
   const origin = DEFAULT_SITE_URL.replace(/\/+$/, "");
   const description =
-    "Partner with Aura Hamptons — luxury chauffeured transportation across the Hamptons and NYC corridor for travel advisors, hotels, planners and corporate teams.";
+    "Partner with Landio Limo Services — luxury chauffeured transportation across Washington, DC, Maryland, and Northern Virginia for travel advisors, hotels, planners and corporate teams.";
 
   return {
     path: "/become-a-partner/",
     title: "Become a Partner",
-    titleFull: "Become an Aura Partner | Aura Hamptons",
+    titleFull: "Become an Landio Partner | Landio Limo Services",
     description,
     bodyClass: "page-partner",
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        name: "Become an Aura Partner",
+        name: "Become an Landio Partner",
         url: absoluteUrl(DEFAULT_SITE_URL, "/become-a-partner/"),
         description,
         about: { "@id": `${origin}/#business` },

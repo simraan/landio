@@ -161,7 +161,7 @@ export function fleetCards(vehicles) {
       (v) => `
         <li class="fleet-card card-surface">
           <div class="fleet-card__media">
-            ${fleetPicture(v, { alt: `${v.name} — Aura Hamptons` })}
+            ${fleetPicture(v, { alt: `${v.name} — Landio Limo Services` })}
           </div>
           <div class="fleet-card__body">
             <h3 class="fleet-card__name">${esc(v.name)}</h3>
@@ -211,7 +211,7 @@ export function fleetSection({ heading = "Luxury Vehicles for Every Occasion", e
     .map(
       (v) => `
         <li class="fleet-card card-surface">
-          <div class="fleet-card__media">${fleetPicture(v, { alt: `${v.name} — Aura Hamptons` })}<span class="fleet-card__badge">Executive Class</span></div>
+          <div class="fleet-card__media">${fleetPicture(v, { alt: `${v.name} — Landio Limo Services` })}<span class="fleet-card__badge">Executive Class</span></div>
           <div class="fleet-card__body">
             <h3 class="fleet-card__name">${esc(v.name)}</h3>
             ${v.desc ? `<p class="fleet-card__desc">${esc(v.desc)}</p>` : ""}
@@ -307,7 +307,7 @@ export function contactBar() {
   const items = [
     { icon: CB_ICON.phone, title: "Call Us", l1: SITE.phone.display, l2: "Available 24/7 for bookings", href: `tel:${SITE.phone.e164}` },
     { icon: CB_ICON.mail, title: "Email Us", l1: SITE.email, l2: SITE.responsePromise, href: `mailto:${SITE.email}` },
-    { icon: CB_ICON.pin, title: "Service Area", l1: "The Hamptons, East End & NYC corridor", l2: "Airports: JFK, LGA, EWR, ISP, FOK & HTO", modal: true },
+    { icon: CB_ICON.pin, title: "Service Area", l1: "Washington, DC, Maryland & Northern Virginia", l2: "Airports: IAD, DCA & BWI", modal: true },
     { icon: CB_ICON.clock, title: "Operating Hours", l1: "24 Hours / 7 Days a Week", l2: "Including holidays", modal: true },
   ];
   const cell = (it) => {
@@ -365,8 +365,8 @@ export function eventCta(opts = {}) {
   // Copy defaults to the sitewide "Event Transport" band; a premium service page
   // can pass its own eyebrow / heading / lede (raw HTML allowed).
   const eyebrow = opts.eyebrow || "Event Transport &middot; 24/7";
-  const headingHtml = opts.headingHtml || `Planning transportation for your<br class="event-cta__br"> <span class="gold">Hamptons wedding or event?</span>`;
-  const lede = opts.lede || "From weddings to private events, every trip is quoted on your exact route — professional chauffeurs across the Hamptons and NYC corridor, 24/7.";
+  const headingHtml = opts.headingHtml || `Planning transportation for your<br class="event-cta__br"> <span class="gold">corporate event or group trip?</span>`;
+  const lede = opts.lede || "From corporate programs to private events, every trip is quoted on your exact route — professional chauffeurs across Washington, DC, Maryland, and Northern Virginia, 24/7.";
   return `
     <section class="section event-cta" aria-labelledby="event-cta-title">
       <div class="container">
@@ -394,13 +394,13 @@ export function contactSection({ alt = true, variant = "default" } = {}) {
     { lead: ico("phone"), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
     { lead: ico("mail"), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
     { lead: ico("pin"), title: "Service Area", act: { modal: {} },
-      body: ["The Hamptons, East End & NYC corridor", "Airports: JFK, LGA, EWR, ISP, FOK & HTO"] },
+      body: ["Washington, DC, Maryland & Northern Virginia", "Airports: IAD, DCA & BWI"] },
     { lead: ico("clock"), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
   ] : [
     { lead: old(svgIcon("phone")), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
     { lead: old(svgIcon("email")), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
     { lead: old(svgIcon("pin")), title: "Our Office", act: { href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`, external: true, cue: "Get directions" },
-      body: [addr, "Serving the Hamptons & East End"] },
+      body: [addr, "Serving Washington, DC, Maryland & Virginia"] },
     { lead: old(svgIcon("alarm")), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
   ];
   return `
@@ -555,7 +555,7 @@ export function fleetPicker(o, { alt } = {}) {
       (v) => `
           <li class="lp-vcard card-surface" data-fleet-card data-pax="${v.seats}" data-bags="${v.bags ?? 0}" data-name="${esc(v.name)}">
             <div class="lp-vcard__media">
-              ${fleetPicture(v, { alt: `Aura Hamptons ${v.name} for Hamptons airport transfers` })}
+              ${fleetPicture(v, { alt: `Landio ${v.name} for DC-area airport transfers` })}
               <span class="lp-vcard__fit" aria-hidden="true">${icon("check", { size: 14 })}Best fit</span>
             </div>
             <div class="lp-vcard__body">

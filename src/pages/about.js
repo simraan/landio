@@ -23,11 +23,12 @@ const visionIcon = ic('<path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5
 const check = `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-11"/></svg>`;
 
 const VILLAGES = [
-  "Southampton", "East Hampton", "Montauk", "Sag Harbor", "Bridgehampton",
-  "Water Mill", "Amagansett", "Westhampton Beach", "Wainscott", "Sagaponack",
-  "Quogue", "Shelter Island", "Hampton Bays",
+  "Washington, DC", "Bethesda", "Rockville", "Silver Spring", "Germantown",
+  "Gaithersburg", "Chevy Chase", "National Harbor", "Annapolis", "Baltimore",
+  "Arlington", "Alexandria", "McLean", "Tysons", "Fairfax", "Reston",
+  "Ashburn", "Sterling", "Leesburg",
 ];
-const AIRPORTS = ["JFK", "LGA", "EWR", "ISP", "FOK", "HTO"];
+const AIRPORTS = ["IAD", "DCA", "BWI"];
 
 /** Image hero with a premium metallic frame + gold corner accent. */
 function hero() {
@@ -35,9 +36,9 @@ function hero() {
     <section class="hero hero--page hero--about" aria-labelledby="about-us-title">
       <div class="container about-hero__grid">
         <div class="about-hero__copy">
-          <p class="hero__eyebrow">About Aura Hamptons</p>
-          <h1 id="about-us-title">The Hamptons' Standard for <span class="gold">Chauffeured Luxury</span></h1>
-          <p class="about-hero__lede">Founded in Southampton by ${esc(SITE.director)}, Aura Hamptons has delivered premium chauffeured transportation across the Hamptons and the East End of Long Island for over two decades — comfort, elegance and reliability on every ride, from airport transfers to weddings, executive travel and group trips along the New York City corridor.</p>
+          <p class="hero__eyebrow">About Landio Limo Services</p>
+          <h1 id="about-us-title">The DC Metro's Standard for <span class="gold">Chauffeured Luxury</span></h1>
+          <p class="about-hero__lede">Landio Limo Services delivers premium chauffeured transportation across Washington, DC, Maryland, and Northern Virginia — comfort, elegance, and reliability on every ride, from airport transfers to corporate, diplomatic, private-aviation, and group travel.</p>
           <div class="about-hero__actions">
             <button type="button" class="btn btn-primary" data-open-quote>${btnIcon("calendar")}Reserve Your Ride</button>
             <a class="btn btn-ghost" href="tel:${esc(SITE.phone.e164)}">${btnIcon("phone")}Call ${esc(SITE.phone.display)}</a>
@@ -46,7 +47,7 @@ function hero() {
         <figure class="about-hero__media">
           <picture>
             <source type="image/webp" srcset="/assets/img/hero/hamptons-hero-640.webp 640w, /assets/img/hero/hamptons-hero-1024.webp 1024w" sizes="(min-width:960px) 46vw, 100vw">
-            <img src="/assets/img/hero/hamptons-hero-1024.jpg" srcset="/assets/img/hero/hamptons-hero-640.jpg 640w, /assets/img/hero/hamptons-hero-1024.jpg 1024w" sizes="(min-width:960px) 46vw, 100vw" alt="Aura Hamptons chauffeured car service across the Hamptons" width="1024" height="768" fetchpriority="high" decoding="async">
+            <img src="/assets/img/hero/hamptons-hero-1024.jpg" srcset="/assets/img/hero/hamptons-hero-640.jpg 640w, /assets/img/hero/hamptons-hero-1024.jpg 1024w" sizes="(min-width:960px) 46vw, 100vw" alt="Landio Limo Services chauffeured car service across the DC metro" width="1024" height="768" fetchpriority="high" decoding="async">
           </picture>
           <span class="about-hero__accent" aria-hidden="true"></span>
         </figure>
@@ -57,13 +58,13 @@ function hero() {
 /** Real-number trust strip (facts: tenure, fleet, airports, availability). */
 function statsStrip() {
   const stats = [
-    ["25+", "Years serving the Hamptons"],
+    ["DC · MD · VA", "Service area"],
     [String(SITE.fleet.length), "Luxury vehicle classes"],
     [String(AIRPORTS.length), "Airports covered"],
     ["24/7", "Availability, incl. holidays"],
   ];
   return `
-    <section class="section about-stats-section" aria-label="Aura Hamptons at a glance">
+    <section class="section about-stats-section" aria-label="Landio Limo Services at a glance">
       <div class="container">
         <ul class="about-stats">
           ${stats.map(([n, l]) => `
@@ -79,10 +80,10 @@ function statsStrip() {
 /** Our Story — narrative split with a framed image + a verified checklist. */
 function ourStory() {
   const highlights = [
-    "JFK, LGA, EWR, ISP, FOK &amp; HTO flight-tracked airport transfers",
+    "IAD, DCA &amp; BWI flight-tracked airport transfers",
     "Corporate meetings &amp; executive travel",
-    "Weddings, group transport &amp; special events",
-    "A six-class fleet, from executive sedans to motor coaches",
+    "Diplomatic, private-aviation &amp; group transport",
+    "A five-class fleet, from executive sedans to charter buses",
   ];
   return `
     <section class="section about-story" aria-labelledby="story-title">
@@ -90,14 +91,14 @@ function ourStory() {
         <figure class="about-split__media about-collage">
           <picture class="about-collage__pic">
             <source type="image/webp" srcset="/assets/img/fleet/executive-suv-640.webp 640w, /assets/img/fleet/executive-suv-1024.webp 1024w" sizes="(min-width:900px) 46vw, 100vw">
-            <img class="about-collage__main" src="/assets/img/fleet/executive-suv-1024.jpg" srcset="/assets/img/fleet/executive-suv-640.jpg 640w, /assets/img/fleet/executive-suv-1024.jpg 1024w" sizes="(min-width:900px) 46vw, 100vw" alt="Aura Hamptons Luxury SUV at a Hamptons estate" loading="lazy" decoding="async" width="1024" height="576">
+            <img class="about-collage__main" src="/assets/img/fleet/executive-suv-1024.jpg" srcset="/assets/img/fleet/executive-suv-640.jpg 640w, /assets/img/fleet/executive-suv-1024.jpg 1024w" sizes="(min-width:900px) 46vw, 100vw" alt="Landio Luxury SUV in the DC metro" loading="lazy" decoding="async" width="1024" height="576">
           </picture>
           <span class="about-collage__accent" aria-hidden="true"></span>
         </figure>
         <div class="about-split__content">
           <span class="eyebrow">Our Story</span>
-          <h2 id="story-title">A quarter-century of <span class="gold">effortless journeys</span></h2>
-          <p class="text-secondary">What began in Southampton has grown into the East End's trusted name in chauffeured transportation. For Aura Hamptons, a ride is more than a transfer — it's a personalized experience from the first call to the final destination, tailored to every occasion across the Hamptons and into New York City.</p>
+          <h2 id="story-title">Effortless journeys, <span class="gold">done right</span></h2>
+          <p class="text-secondary">Landio Limo Services is built to be the DC metro's trusted name in chauffeured transportation. For us, a ride is more than a transfer — it's a personalized experience from the first call to the final destination, tailored to every occasion across Washington, DC, Maryland, and Northern Virginia.</p>
           <ul class="about-checks">
             ${highlights.map((h) => `<li><span class="about-check">${check}</span>${h}</li>`).join("\n            ")}
           </ul>
@@ -113,8 +114,8 @@ function ourStory() {
 /** Mission & Vision — two premium cards, clickable to the quote popup. */
 function missionVision() {
   const cards = [
-    [missionIcon, "Our Mission", "To provide unparalleled luxury transportation across the Hamptons and the East End, ensuring every journey is seamless, safe, and memorable."],
-    [visionIcon, "Our Vision", "To be the Hamptons' most trusted chauffeured car service, known for excellence, reliability, and genuine hospitality."],
+    [missionIcon, "Our Mission", "To provide unparalleled luxury transportation across the DC metro, ensuring every journey is seamless, safe, and memorable."],
+    [visionIcon, "Our Vision", "To be the DC metro's most trusted chauffeured car service, known for excellence, reliability, and genuine hospitality."],
   ];
   return `
     <section class="section section--alt" aria-labelledby="mv-title">
@@ -142,10 +143,10 @@ function missionVision() {
 /** Why Choose Aura — clickable premium reasons grid (open the quote popup). */
 function whyChoose() {
   const reasons = [
-    ["userCheck", "Professional chauffeurs", "Vetted, courteous chauffeurs who know the Hamptons and the NYC corridor."],
-    ["plane", "Flight-tracked transfers", "We monitor your flight and time pickups to your real arrival — to and from six airports."],
-    ["van", `${SITE.fleet.length} vehicle classes`, "From executive sedans to motor coaches — the right vehicle for any group or occasion."],
-    ["pin", "Local Hamptons expertise", "Door-to-door knowledge of every village and venue across the East End."],
+    ["userCheck", "Professional chauffeurs", "Vetted, courteous chauffeurs who know the DC metro and every area airport."],
+    ["plane", "Flight-tracked transfers", "We monitor your flight and time pickups to your real arrival — to and from IAD, DCA, and BWI."],
+    ["van", `${SITE.fleet.length} vehicle classes`, "From executive sedans to charter buses — the right vehicle for any group or occasion."],
+    ["pin", "Local DC-metro expertise", "Door-to-door knowledge of DC, Maryland, and Northern Virginia."],
     ["clock", "Available 24/7", "Dedicated booking support every day of the year, including holidays."],
     ["shield", "Discreet &amp; reliable", "Immaculate vehicles, punctual service, and privacy on every ride."],
   ];
@@ -163,9 +164,9 @@ function whyChoose() {
     <section class="section" aria-labelledby="why-title">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Why Aura Hamptons</span>
+          <span class="eyebrow">Why Landio</span>
           <h2 id="why-title">The difference is in every detail</h2>
-          <p class="text-secondary">One trusted chauffeured partner across the Hamptons, the East End, and the New York City corridor — built on professionalism, precision, and genuine hospitality.</p>
+          <p class="text-secondary">One trusted chauffeured partner across Washington, DC, Maryland, and Northern Virginia — built on professionalism, precision, and genuine hospitality.</p>
         </div>
         <ul class="why-grid">${cards}
         </ul>
@@ -181,11 +182,11 @@ function serviceArea() {
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Where We Drive</span>
-          <h2 id="area-title">Serving the Hamptons &amp; East End</h2>
-          <p class="text-secondary">Chauffeured car service across every Hamptons village, with flight-tracked transfers to and from the region's six airports.</p>
+          <h2 id="area-title">Serving DC, Maryland &amp; Virginia</h2>
+          <p class="text-secondary">Chauffeured car service across the DC metro, with flight-tracked transfers to and from the region's three airports — IAD, DCA, and BWI.</p>
         </div>
         <div class="about-area__group">
-          <p class="about-area__label"><span class="about-area__ico" aria-hidden="true">${icon("pin", { size: 16 })}</span>Hamptons villages &amp; East End</p>
+          <p class="about-area__label"><span class="about-area__ico" aria-hidden="true">${icon("pin", { size: 16 })}</span>DC, Maryland &amp; Virginia</p>
           <ul class="area-pills">${VILLAGES.map(chip).join("")}</ul>
         </div>
         <div class="about-area__group">
@@ -205,7 +206,7 @@ export function about() {
     path: "/about-us/",
     title: "About",
     description:
-      "About Aura Hamptons — the Hamptons' chauffeured luxury car service, founded in Southampton. Professional chauffeurs, a six-class fleet, and 24/7 flight-tracked airport transfers across the East End and NYC corridor.",
+      "About Landio Limo Services — the DC metro's chauffeured luxury car service. Professional chauffeurs, a five-class fleet, and 24/7 flight-tracked airport transfers across Washington, DC, Maryland, and Northern Virginia.",
     bodyClass: "page-about",
     main: [
       breadcrumb(trail),

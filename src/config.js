@@ -1,20 +1,24 @@
 /**
- * Aura Hamptons — Single source of truth (SSOT).
+ * Landio Limo Services — Single source of truth (SSOT).
  *
  * NAP + brand facts live here ONCE and are reused across header, footer,
  * contact bar, JSON-LD, and every page. Do not hardcode any of these values
  * anywhere else in the codebase.
  *
- * Business: premium chauffeured ground transportation serving the Hamptons —
- * the East End of Long Island, NY — plus the New York City ↔ Hamptons corridor.
- * Fleet runs from Executive Sedan up to Motor Coach. Airports served: JFK, LGA,
- * EWR, ISP, FOK, HTO. Yacht charter is a live, separate brand line.
+ * Business: luxury chauffeured ground transportation serving the Washington, DC
+ * metro — DC, Maryland, and Northern Virginia — plus the DC ↔ Northeast corridor.
+ * Fleet runs from Executive Sedan up to Charter Bus. Airports served: IAD, DCA,
+ * BWI. Core lines: airport transfers, corporate/executive, private aviation
+ * (FBO), diplomatic transportation, and group transport.
+ *
+ * It is a rebrand of the Aura Hamptons / A-Town Limo codebase — same locked
+ * architecture, Landio (DC metro) data.
  *
  * ── CONFIRM BEFORE LAUNCH (do not invent — A2P/legal sensitive) ──────────────
- *  • SITE.legalName — the registered entity on the client's Terms of Service.
- *    Placeholder below is the operating brand name; confirm the LLC/Inc on file.
- *  • SITE.smsNumber — the registered A2P 10DLC sending number. Placeholder is
- *    the main line; confirm the actual 10DLC number before the SMS opt-in ships.
+ *  • SITE.legalName — registered entity on the Terms of Service.
+ *  • SITE.smsNumber — the registered A2P 10DLC sending number.
+ *  • Fleet capacities in CAPACITY — confirm the client's real seat/bag counts.
+ *  • SITE.director / effective dates — from the final legal pages.
  */
 
 /**
@@ -22,20 +26,19 @@
  * hardcoded into pages. The value below is only the default used when SITE_URL
  * is unset locally.
  */
-export const DEFAULT_SITE_URL = "https://aurahamptonslimo.com";
+export const DEFAULT_SITE_URL = "https://www.landiolimoservices.com";
 
 /**
- * Fleet capacities (from the live Aura Hamptons site) — the ONE place to change
- * passenger/bag counts. Every page, FAQ, dropdown, and schema reads these.
- * `paxMin` is only set when a range should be shown; `bags: null` hides the
- * luggage count (group vehicles quote luggage on request).
+ * Fleet capacities — the ONE place to change passenger/bag counts. Every page,
+ * FAQ, dropdown, and schema reads these. `paxMin` is only set when a range
+ * should be shown; `bags: null` hides the luggage count (group vehicles quote
+ * luggage on request). CONFIRM real counts with the client before launch.
  */
 export const CAPACITY = {
   sedan: { paxMin: null, paxMax: 3, bags: 3 },
   suv: { paxMin: null, paxMax: 6, bags: 6 },
-  sprinterjet: { paxMin: null, paxMax: 9, bags: null },
   sprinter: { paxMin: null, paxMax: 14, bags: 14 },
-  minibus: { paxMin: null, paxMax: 40, bags: null },
+  minibus: { paxMin: null, paxMax: 24, bags: null },
   coach: { paxMin: null, paxMax: 56, bags: null },
 };
 
@@ -45,35 +48,35 @@ export const CAPACITY = {
  * display = human form, e164 = tel: links + schema.
  */
 export const PHONE = {
-  display: "+1 (934) 732-4556",
-  local: "(934) 732-4556", // national format, for tight copy like meta descriptions
-  e164: "+19347324556",
+  display: "+1 (240) 595-7025",
+  local: "(240) 595-7025", // national format, for tight copy like meta descriptions
+  e164: "+12405957025",
 };
 
 /** The airport-hub URL — one value for every inbound link, nav, and redirect. */
-export const ATL_HUB_PATH = "/hamptons-airport-car-service/";
+export const ATL_HUB_PATH = "/dc-airport-car-service/";
 
 /** Pickup string used to prefill the quote form for airport bookings. */
-export const PRIMARY_AIRPORT_PICKUP = "John F. Kennedy International Airport (JFK)";
+export const PRIMARY_AIRPORT_PICKUP = "Washington Dulles International Airport (IAD)";
 
 /**
  * Primary airport pickups (prefill for the two headline airport boxes) + their
- * future pages. The full six-airport cluster is built in the SEO wave.
+ * future pages. The full three-airport cluster is built in the SEO wave.
  */
 export const ATL_TERMINALS = {
   domestic: {
-    pickup: "John F. Kennedy International Airport (JFK)",
-    page: "/hamptons-airport-car-service/jfk/",
+    pickup: "Washington Dulles International Airport (IAD)",
+    page: "/dc-airport-car-service/iad/",
   },
   international: {
-    pickup: "LaGuardia Airport (LGA)",
-    page: "/hamptons-airport-car-service/lga/",
+    pickup: "Ronald Reagan Washington National Airport (DCA)",
+    page: "/dc-airport-car-service/dca/",
   },
 };
 
 /**
  * Airport meeting points. Generic, client-confirmable wording — no terminal
- * side is named until the client confirms it (see docs/OPEN-QUESTIONS.md).
+ * side is named until the client confirms it.
  */
 export const DOMESTIC_MEETING_POINT = "on the arrivals level, curbside or with a meet & greet inside the terminal";
 export const INTERNATIONAL_MEETING_POINT = "inside the arrivals hall at the meet & greet point, or curbside on the arrivals level";
@@ -82,17 +85,18 @@ export const INTERNATIONAL_MEETING_POINT = "inside the arrivals hall at the meet
  * PAGE MAPS — the link graph. Every internal link between clusters (nav, hubs,
  * "nearby" cards, related pages, /services/ directory, redirects) is GENERATED
  * from these maps. Page copy and sourced facts live in src/content/*.js keyed
- * by the same slugs. (Cluster pages are built in the programmatic-SEO wave; the
- * core site reads identity/fleet/services/nav/footer only.)
+ * by the same slugs. The programmatic-SEO cluster arrays (AREAS, FBOS, ROUTES,
+ * VENUES, EVENTS, GUIDES) are populated in the SEO scale wave; the core site
+ * reads identity/fleet/services/nav/footer only.
  * ======================================================================== */
 export const HUBS = {
-  airport: { path: ATL_HUB_PATH, name: "Hamptons Airport Car Service" },
-  guides: { path: "/hamptons-travel-guide/", name: "Hamptons Travel Guide" },
+  airport: { path: ATL_HUB_PATH, name: "DC Airport Car Service" },
+  guides: { path: "/dc-airport-guide/", name: "DC Airport Guide" },
   areas: { path: "/areas/", name: "Areas We Serve" },
   venues: { path: "/venues/", name: "Venues" },
   events: { path: "/events/", name: "Events" },
   fbo: { path: "/private-jet-fbo-transfers/", name: "Private Jet & FBO Transfers" },
-  routes: { path: "/routes/", name: "NYC ↔ Hamptons Routes" },
+  routes: { path: "/routes/", name: "Airport & City Routes" },
   services: { path: "/services/", name: "All Services & Destinations" },
   fleet: { path: "/fleet/", name: "Our Fleet" },
 };
@@ -101,67 +105,47 @@ export const areaPath = (slug) => `/areas/${slug}-car-service/`;
 export const routePath = (slug) => `/routes/${slug}/`;
 
 /**
- * Hamptons villages & hamlets (SEO wave). neighbors = 3 nearby areas;
- * venues/routes/fbo = link targets. Seeded now; pages built in the wave.
+ * DC-metro service areas (SEO wave). Populated with DC / Maryland / Northern
+ * Virginia cities in the scale wave; empty here so the core build ships with no
+ * unbuilt cluster links. neighbors = 3 nearby areas; fbo/routes = link targets.
  */
 export const AREAS = [
-  { slug: "southampton", name: "Southampton", pickup: "Southampton, NY", base: true, neighbors: ["water-mill", "bridgehampton", "hampton-bays"], venues: ["shinnecock-hills", "national-golf-links"], fbo: "fok", routes: ["nyc-to-southampton"] },
-  { slug: "east-hampton", name: "East Hampton", pickup: "East Hampton, NY", neighbors: ["amagansett", "wainscott", "sag-harbor"], venues: ["maidstone-club"], fbo: "hto", routes: ["nyc-to-east-hampton"] },
-  { slug: "montauk", name: "Montauk", pickup: "Montauk, NY", neighbors: ["amagansett", "east-hampton", "sag-harbor"], venues: ["montauk-yacht-club"], fbo: "hto", routes: ["nyc-to-montauk"] },
-  { slug: "sag-harbor", name: "Sag Harbor", pickup: "Sag Harbor, NY", neighbors: ["bridgehampton", "east-hampton", "shelter-island"], venues: ["wolffer-estate"], fbo: "hto", routes: ["nyc-to-sag-harbor"] },
-  { slug: "bridgehampton", name: "Bridgehampton", pickup: "Bridgehampton, NY", neighbors: ["water-mill", "sag-harbor", "wainscott"], venues: ["bridgehampton-polo"], fbo: "hto", routes: ["nyc-to-bridgehampton"] },
-  { slug: "water-mill", name: "Water Mill", pickup: "Water Mill, NY", neighbors: ["southampton", "bridgehampton", "sagaponack"], venues: ["wolffer-estate"], fbo: "fok", routes: ["nyc-to-southampton"] },
-  { slug: "amagansett", name: "Amagansett", pickup: "Amagansett, NY", neighbors: ["east-hampton", "montauk", "wainscott"], venues: ["maidstone-club"], fbo: "hto", routes: ["nyc-to-east-hampton"] },
-  { slug: "westhampton-beach", name: "Westhampton Beach", pickup: "Westhampton Beach, NY", neighbors: ["quogue", "hampton-bays", "southampton"], venues: [], fbo: "fok", routes: ["nyc-to-southampton"] },
-  { slug: "wainscott", name: "Wainscott", pickup: "Wainscott, NY", neighbors: ["east-hampton", "bridgehampton", "sagaponack"], venues: [], fbo: "hto", routes: ["nyc-to-east-hampton"] },
-  { slug: "sagaponack", name: "Sagaponack", pickup: "Sagaponack, NY", neighbors: ["bridgehampton", "water-mill", "wainscott"], venues: [], fbo: "hto", routes: ["nyc-to-bridgehampton"] },
-  { slug: "quogue", name: "Quogue", pickup: "Quogue, NY", neighbors: ["westhampton-beach", "hampton-bays", "southampton"], venues: [], fbo: "fok", routes: ["nyc-to-southampton"] },
-  { slug: "shelter-island", name: "Shelter Island", pickup: "Shelter Island, NY", neighbors: ["sag-harbor", "greenport", "east-hampton"], venues: [], fbo: "hto", routes: ["nyc-to-sag-harbor"] },
-  { slug: "hampton-bays", name: "Hampton Bays", pickup: "Hampton Bays, NY", neighbors: ["southampton", "westhampton-beach", "quogue"], venues: [], fbo: "fok", routes: ["nyc-to-southampton"] },
+  { slug: "washington-dc", name: "Washington, DC", pickup: "Washington, DC", region: "dc" },
+  { slug: "bethesda", name: "Bethesda", pickup: "Bethesda, MD", region: "md" },
+  { slug: "potomac", name: "Potomac", pickup: "Potomac, MD", region: "md" },
+  { slug: "rockville", name: "Rockville", pickup: "Rockville, MD", region: "md" },
+  { slug: "silver-spring", name: "Silver Spring", pickup: "Silver Spring, MD", region: "md" },
+  { slug: "germantown", name: "Germantown", pickup: "Germantown, MD", region: "md", base: true },
+  { slug: "gaithersburg", name: "Gaithersburg", pickup: "Gaithersburg, MD", region: "md" },
+  { slug: "chevy-chase", name: "Chevy Chase", pickup: "Chevy Chase, MD", region: "md" },
+  { slug: "national-harbor", name: "National Harbor", pickup: "National Harbor, MD", region: "md" },
+  { slug: "baltimore", name: "Baltimore", pickup: "Baltimore, MD", region: "md" },
+  { slug: "annapolis", name: "Annapolis", pickup: "Annapolis, MD", region: "md" },
+  { slug: "arlington", name: "Arlington", pickup: "Arlington, VA", region: "va" },
+  { slug: "alexandria", name: "Alexandria", pickup: "Alexandria, VA", region: "va" },
+  { slug: "mclean", name: "McLean", pickup: "McLean, VA", region: "va" },
+  { slug: "tysons", name: "Tysons", pickup: "Tysons, VA", region: "va" },
+  { slug: "fairfax", name: "Fairfax", pickup: "Fairfax, VA", region: "va" },
+  { slug: "reston", name: "Reston", pickup: "Reston, VA", region: "va" },
+  { slug: "ashburn", name: "Ashburn", pickup: "Ashburn, VA", region: "va" },
+  { slug: "sterling", name: "Sterling", pickup: "Sterling, VA", region: "va" },
+  { slug: "leesburg", name: "Leesburg", pickup: "Leesburg, VA", region: "va" },
 ].map((a) => ({ ...a, path: areaPath(a.slug) }));
 
-/** Venues (SEO wave). area = the area page it sits in / next to. */
-export const VENUES = [
-  { slug: "shinnecock-hills", name: "Shinnecock Hills Golf Club", area: "southampton", events: [], top: 1 },
-  { slug: "national-golf-links", name: "National Golf Links of America", area: "southampton", events: [], top: 2 },
-  { slug: "maidstone-club", name: "The Maidstone Club", area: "east-hampton", events: [], top: 3 },
-  { slug: "wolffer-estate", name: "Wölffer Estate Vineyard", area: "sagaponack", events: [], top: 4 },
-  { slug: "bridgehampton-polo", name: "Bridgehampton Polo Club", area: "bridgehampton", events: [], top: 5 },
-  { slug: "montauk-yacht-club", name: "Montauk Yacht Club", area: "montauk", events: [], top: 6 },
-].map((v) => ({ ...v, path: `/services/${v.slug}-car-service/` }));
+/** Venues (SEO wave). Populated with DMV venues in the scale wave. */
+export const VENUES = [].map((v) => ({ ...v, path: `/services/${v.slug}-car-service/` }));
 
 /** Events (SEO wave). One evergreen URL per recurring event — no year in slugs. */
-// `venue` holds a config VENUES slug ONLY when the event is genuinely held at
-// that venue page. The Hampton Classic is at its own Show Grounds (NOT the
-// Bridgehampton Polo Club — the official FAQ states there is no polo), and HIFF
-// is a multi-venue festival across the East End (NOT the Maidstone Club), so
-// both are `venue: null` and their factual venues live in src/pages/events.js.
-export const EVENTS = [
-  { slug: "hampton-classic", name: "Hampton Classic Horse Show", path: "/events/hampton-classic-transportation/", venue: null },
-  { slug: "hamptons-film-festival", name: "Hamptons International Film Festival", path: "/events/hamptons-film-festival-transportation/", venue: null },
-];
+export const EVENTS = [];
 
-/** Private-jet airfields (SEO wave). areas = 3 nearby area pages. */
-export const FBOS = [
-  { slug: "hto", code: "HTO", name: "East Hampton Airport", path: "/private-jet-fbo-transfers/hto-east-hampton/", areas: ["east-hampton", "amagansett", "sag-harbor"] },
-  { slug: "fok", code: "FOK", name: "Francis S. Gabreski Airport", path: "/private-jet-fbo-transfers/fok-gabreski/", areas: ["southampton", "westhampton-beach", "hampton-bays"] },
-];
+/** Private-jet airfields / FBOs (SEO wave). areas = nearby area pages. */
+export const FBOS = [];
 
-/** Hamptons travel guides (SEO wave). */
-export const GUIDES = [
-  { slug: "getting-to-the-hamptons", title: "Getting to the Hamptons from NYC", path: "/hamptons-travel-guide/getting-to-the-hamptons/", terminal: "domestic" },
-  { slug: "hamptons-season-guide", title: "The Hamptons Season — When to Visit", path: "/hamptons-travel-guide/hamptons-season-guide/", terminal: "international" },
-];
+/** DC airport + travel guides (SEO wave). */
+export const GUIDES = [];
 
-/** NYC ↔ Hamptons corridor + inter-Hamptons routes (the core booking engine). */
-export const ROUTES = [
-  { slug: "nyc-to-southampton", city: "Southampton", state: "NY", oldSlug: "nyc-to-southampton", label: "NYC to Southampton" },
-  { slug: "nyc-to-east-hampton", city: "East Hampton", state: "NY", oldSlug: "nyc-to-east-hampton", label: "NYC to East Hampton" },
-  { slug: "nyc-to-montauk", city: "Montauk", state: "NY", oldSlug: "nyc-to-montauk", label: "NYC to Montauk" },
-  { slug: "nyc-to-sag-harbor", city: "Sag Harbor", state: "NY", oldSlug: "nyc-to-sag-harbor", label: "NYC to Sag Harbor" },
-  { slug: "nyc-to-bridgehampton", city: "Bridgehampton", state: "NY", oldSlug: "nyc-to-bridgehampton", label: "NYC to Bridgehampton" },
-  { slug: "jfk-to-the-hamptons", city: "the Hamptons", state: "NY", oldSlug: "jfk-to-the-hamptons", label: "JFK to the Hamptons" },
-].map((r) => ({ ...r, path: routePath(r.slug), label: r.label || `${r.city}` }));
+/** Airport + city routes (SEO wave, the core booking engine). */
+export const ROUTES = [].map((r) => ({ ...r, path: routePath(r.slug), label: r.label || `${r.city}` }));
 
 /** Lookup by slug (throws on a typo so a broken link map fails the build). */
 export function bySlug(list, slug) {
@@ -208,24 +192,25 @@ export const CANCELLATION = {
 
 export const SITE = {
   // --- Identity -----------------------------------------------------------
-  company: "Aura Hamptons", // brand display name (not category-locked)
-  companyShort: "Aura Hamptons",
-  // CONFIRM: registered entity on the live Terms of Service. Placeholder = brand.
-  legalName: "Aura Car & Limo Service",
+  company: "Landio Limo Services", // brand display name
+  companyShort: "Landio",
+  // CONFIRM: registered entity on the live Terms of Service.
+  legalName: "Landio Limo Services LLC",
 
   description:
-    "Premium chauffeured car & limo service across the Hamptons and the East " +
-    "End of Long Island — JFK, LGA, EWR, ISP, FOK & HTO airport transfers, the " +
-    "NYC-to-Hamptons corridor, executive and corporate travel, group transport, " +
-    "private jet/FBO transfers, and hourly chauffeur service. Available 24/7.",
+    "Luxury chauffeured car & limo service across the Washington, DC metro — " +
+    "DC, Maryland, and Northern Virginia. IAD, DCA & BWI airport transfers, " +
+    "corporate and executive travel, private jet/FBO transfers, diplomatic " +
+    "transportation, and group transport in Sprinter vans, mini buses, and " +
+    "charter buses. Available 24/7.",
 
   // --- NAP ----------------------------------------------------------------
   address: {
-    street: "53 Hill St",
-    city: "Southampton",
-    region: "NY",
-    regionName: "New York",
-    postalCode: "11968",
+    street: "12410 Milestone Center Dr, Ste 600",
+    city: "Germantown",
+    region: "MD",
+    regionName: "Maryland",
+    postalCode: "20876",
     country: "US",
     countryName: "USA",
   },
@@ -233,17 +218,16 @@ export const SITE = {
   // Main phone — see PHONE above (the one value to swap for call tracking).
   phone: PHONE,
 
-  // CONFIRM: registered A2P 10DLC SMS number. Placeholder = main line. Must be
-  // the real 10DLC sending number before the SMS opt-in ships.
-  smsNumber: "(934) 732-4556",
+  // CONFIRM: registered A2P 10DLC SMS number. Using the main line for now.
+  smsNumber: "(240) 595-7025",
 
   // CONFIRM: effective dates once the Terms/Privacy pages are finalized.
-  termsEffectiveDate: "January 1, 2026",
-  privacyEffectiveDate: "January 1, 2026",
-  // CONFIRM: the live About page credits founder "Max" (est. 2000).
-  director: "Max",
+  termsEffectiveDate: "November 1, 2026",
+  privacyEffectiveDate: "November 1, 2026",
+  // CONFIRM: the About page founder/director credit.
+  director: null,
 
-  email: "info@aurahamptonslimo.com",
+  email: "info@landiolimo.com",
 
   // --- Operations ---------------------------------------------------------
   hours: "24/7, including holidays",
@@ -253,30 +237,25 @@ export const SITE = {
   chauffeurDetailsBeforePickup: true,
   chauffeurDetailsLine: "You'll receive your chauffeur's details before pickup",
 
-  serviceArea: ["The Hamptons", "East End of Long Island", "New York City"],
-  serviceAreaCodes: ["NY"],
+  serviceArea: ["Washington, DC", "Maryland", "Northern Virginia"],
+  serviceAreaCodes: ["DC", "MD", "VA"],
 
-  // IATA codes + names. The six airports Aura Hamptons serves.
+  // IATA codes + names. The three airports Landio serves.
   airports: [
-    { code: "JFK", name: "John F. Kennedy International Airport" },
-    { code: "LGA", name: "LaGuardia Airport" },
-    { code: "EWR", name: "Newark Liberty International Airport" },
-    { code: "ISP", name: "Long Island MacArthur Airport" },
-    { code: "FOK", name: "Francis S. Gabreski Airport" },
-    { code: "HTO", name: "East Hampton Airport" },
+    { code: "IAD", name: "Washington Dulles International Airport" },
+    { code: "DCA", name: "Ronald Reagan Washington National Airport" },
+    { code: "BWI", name: "Baltimore/Washington International Thurgood Marshall Airport" },
   ],
 
   // --- Voice --------------------------------------------------------------
   taglines: [
-    "The Hamptons' Premier Luxury Transportation.",
-    "Luxury, Comfort & Elegance In Every Ride.",
+    "The DC Metro's Premier Luxury Transportation.",
+    "Luxury, Comfort & Discretion In Every Ride.",
   ],
 
-  // --- Fleet (verbatim seat/bag counts from the live Aura Hamptons site) ---
+  // --- Fleet (CONFIRM seat/bag counts with the client) --------------------
   // Single source for the vehicle dropdown AND the fleet pages.
   // Capacities come from CAPACITY above — edit them there, not here.
-  // NOTE: the Sprinter Jet uses its own interior photo (sprinter-jet-*);
-  // each vehicle class points at its own image base below.
   fleet: [
     {
       key: "sedan",
@@ -300,19 +279,7 @@ export const SITE = {
       image: "/assets/img/fleet/executive-suv-1024.jpg",
       imageBase: "/assets/img/fleet/executive-suv",
       amenities: ["Wi-Fi", "Leather seats", "Climate control", "USB charging"],
-      desc: `Spacious black SUV transportation for airport transfers, family travel, and VIP service throughout the Hamptons — seats ${paxLabel(CAPACITY.suv)} with room for luggage.`,
-    },
-    {
-      key: "sprinterjet",
-      name: "Sprinter Jet",
-      slug: "sprinter-jet",
-      seats: CAPACITY.sprinterjet.paxMax,
-      pax: paxLabel(CAPACITY.sprinterjet),
-      bags: CAPACITY.sprinterjet.bags,
-      image: "/assets/img/fleet/sprinter-jet-1024.jpg",
-      imageBase: "/assets/img/fleet/sprinter-jet",
-      amenities: ["Wi-Fi", "Executive seating", "Climate control"],
-      desc: `Luxury Sprinter for executive groups, airport pickups, and private events — ${paxLabel(CAPACITY.sprinterjet)} in premium comfort.`,
+      desc: `Spacious black SUV transportation for airport transfers, executive travel, and VIP service across the DC metro — seats ${paxLabel(CAPACITY.suv)} with room for luggage.`,
     },
     {
       key: "sprinter",
@@ -324,7 +291,7 @@ export const SITE = {
       image: "/assets/img/fleet/sprinter-van-1024.jpg",
       imageBase: "/assets/img/fleet/sprinter-van",
       amenities: ["Wi-Fi", "Executive seating", "Climate control"],
-      desc: `Luxury Sprinter van for groups, airport pickups, events, and private transfers — ${paxLabel(CAPACITY.sprinter)} with generous luggage capacity and executive comfort.`,
+      desc: `Luxury Sprinter van for groups, airport pickups, corporate roadshows, and private transfers — ${paxLabel(CAPACITY.sprinter)} with generous luggage capacity and executive comfort.`,
     },
     {
       key: "minibus",
@@ -336,19 +303,19 @@ export const SITE = {
       image: "/assets/img/fleet/mini-bus-1024.jpg",
       imageBase: "/assets/img/fleet/mini-bus",
       amenities: ["Climate control", "Comfortable seating", "Luggage bays"],
-      desc: `Comfortable group transportation for corporate outings, wedding guests, and private events throughout the Hamptons and Long Island — ${paxLabel(CAPACITY.minibus)}.`,
+      desc: `Comfortable group transportation for corporate outings, conference shuttles, and private events across the DC metro and beyond — ${paxLabel(CAPACITY.minibus)}.`,
     },
     {
       key: "coach",
-      name: "Motor Coach",
-      slug: "motor-coach",
+      name: "Charter Bus",
+      slug: "charter-bus",
       seats: CAPACITY.coach.paxMax,
       pax: paxLabel(CAPACITY.coach),
       bags: CAPACITY.coach.bags,
       image: "/assets/img/fleet/motor-coach-1024.jpg",
       imageBase: "/assets/img/fleet/motor-coach",
       amenities: ["Climate control", "Reclining seats", "Overhead storage"],
-      desc: `Premium motor coach for larger parties needing reliable, comfortable, professionally managed travel — ${paxLabel(CAPACITY.coach)}.`,
+      desc: `Premium charter bus for larger parties needing reliable, comfortable, professionally managed travel — ${paxLabel(CAPACITY.coach)}.`,
     },
   ],
 
@@ -359,12 +326,42 @@ export const SITE = {
     {
       title: "Airport Transfers",
       slug: "airport-transfers",
-      // Phase 1: a normal /services/ spoke. Phase 2 introduces the dedicated
-      // airport hub (ATL_HUB_PATH) with a 301 from here.
       url: "/services/airport-transfers/",
       icon: "airplane",
       blurb:
-        "Reliable transfers to and from JFK, LaGuardia, Newark, Islip, Gabreski, and East Hampton Airport. We track your flight in real time so your pickup stays punctual, even if your flight is delayed.",
+        "Reliable transfers to and from Dulles (IAD), Reagan National (DCA), and Baltimore/Washington (BWI). We track your flight in real time so your pickup stays punctual, even if your flight is delayed.",
+    },
+    {
+      title: "Corporate & Executive Travel",
+      slug: "corporate-executive",
+      url: "/services/corporate-executive/",
+      icon: "briefcase",
+      blurb:
+        "Discreet, professional chauffeur transportation for executives, business travelers, and VIP guests across the DC metro and the Northeast corridor.",
+    },
+    {
+      title: "Private Jet & FBO Transfers",
+      slug: "fbo-private-jet",
+      url: "/services/fbo-private-jet/",
+      icon: "airplane",
+      blurb:
+        "Premium transfers to and from the region's private-aviation terminals and FBOs — Signature at IAD, DCA, and BWI, plus Manassas, Leesburg Executive, Montgomery County Airpark, and Frederick. Seamless coordination with your flight crew.",
+    },
+    {
+      title: "Diplomatic Transportation",
+      slug: "diplomatic-transportation",
+      url: "/services/diplomatic-transportation/",
+      icon: "shield",
+      blurb:
+        "Discreet, protocol-aware chauffeur service for embassies, missions, delegations, and visiting dignitaries across Washington, DC — professional, punctual, and confidential.",
+    },
+    {
+      title: "Group Transfers",
+      slug: "group-transfers",
+      url: "/services/group-transfers/",
+      icon: "van",
+      blurb:
+        `Luxury group transportation for corporate groups, conference shuttles, wedding guests, and private events — Sprinter vans, mini buses, and charter buses up to ${CAPACITY.coach.paxMax} passengers.`,
     },
     {
       title: "Meet & Greet Service",
@@ -375,38 +372,12 @@ export const SITE = {
         "Your chauffeur meets you inside the arrivals area with a personalized name sign, assists with luggage, and escorts you to your vehicle.",
     },
     {
-      title: "Corporate & Executive Travel",
-      slug: "corporate-executive",
-      url: "/services/corporate-executive/",
-      icon: "briefcase",
-      blurb:
-        "Discreet, professional chauffeur transportation for executives, business travelers, and VIP guests across the Hamptons and into New York City.",
-    },
-    {
-      title: "Group Transfers",
-      slug: "group-transfers",
-      url: "/services/group-transfers/",
-      icon: "van",
-      blurb:
-        `Luxury group transportation for families, wedding guests, corporate travelers, and private events — Sprinter vans, mini buses, and motor coaches up to ${CAPACITY.coach.paxMax} passengers.`,
-    },
-    {
-      title: "Private Jet & FBO Transfers",
-      slug: "fbo-private-jet",
-      // Phase 1: a normal /services/ spoke. Phase 2 introduces the FBO hub
-      // (HUBS.fbo.path) with per-airfield pages and a 301 from here.
-      url: "/services/fbo-private-jet/",
-      icon: "airplane",
-      blurb:
-        "Premium transfers to and from Hamptons-area private aviation terminals and FBOs, including East Hampton (HTO) and Gabreski (FOK). Seamless coordination with your flight crew.",
-    },
-    {
       title: "Hourly Chauffeur Service",
       slug: "hourly-chauffeur",
       url: "/services/hourly-chauffeur/",
       icon: "calendar",
       blurb:
-        "Flexible transportation for dinners, meetings, shopping, wine tours, events, and full-day Hamptons travel. Your dedicated chauffeur waits wherever the day takes you.",
+        "Flexible transportation for meetings, roadshows, dinners, events, and full-day DC travel. Your dedicated chauffeur waits wherever the day takes you.",
     },
   ],
 
@@ -420,12 +391,12 @@ export const SITE = {
 
   cancellation: CANCELLATION,
 
-  // --- Why Aura (value props) ---------------------------------------------
+  // --- Why Landio (value props) -------------------------------------------
   valueProps: [
     {
       title: "Real-time flight tracking",
       body:
-        "We monitor inbound flights into JFK, LaGuardia, Newark, Islip, Gabreski, and East Hampton and adjust your pickup to the actual landing time — early or delayed, your chauffeur is there.",
+        "We monitor inbound flights into Dulles (IAD), Reagan National (DCA), and BWI and adjust your pickup to the actual landing time — early or delayed, your chauffeur is there.",
     },
     {
       title: "Meet & greet service",
@@ -443,9 +414,9 @@ export const SITE = {
         "A live dispatch team around the clock, every day of the year, holidays included. We respond within one hour.",
     },
     {
-      title: "Full Hamptons & NYC coverage",
+      title: "Full DC, Maryland & Virginia coverage",
       body:
-        "One standard of service across the Hamptons, the East End, and the New York City corridor — door to door, every time.",
+        "One standard of service across Washington, DC, Maryland, and Northern Virginia — door to door, every time.",
     },
   ],
 
@@ -453,23 +424,23 @@ export const SITE = {
   faqs: [
     {
       q: "Do you track flights for airport pickups?",
-      a: "Yes. We track all flights into JFK, LaGuardia, Newark, Islip, Gabreski, and East Hampton in real time. If your flight is delayed or arrives early, we automatically adjust your pickup time at no extra charge. Your chauffeur will be there when you land.",
+      a: "Yes. We track all flights into Dulles (IAD), Reagan National (DCA), and Baltimore/Washington (BWI) in real time. If your flight is delayed or arrives early, we automatically adjust your pickup time at no extra charge. Your chauffeur will be there when you land.",
     },
     {
-      q: "How much is a car service from JFK to the Hamptons?",
+      q: "How much is a car service from Dulles to Washington, DC?",
       a: `Rates vary based on vehicle type and your exact destination. Use our booking form or call us at ${PHONE.display} for an instant quote.`,
     },
     {
-      q: "Do you provide service from JFK and LaGuardia to the Hamptons?",
-      a: "Yes. We specialize in the New York City–to–Hamptons corridor, with direct transfers from JFK, LaGuardia, Newark, and Manhattan to Southampton, East Hampton, Montauk, Sag Harbor, Bridgehampton, and the surrounding villages.",
+      q: "Do you provide service to and from IAD, DCA, and BWI?",
+      a: "Yes. We specialize in airport transfers across all three DC-area airports — Dulles, Reagan National, and BWI — to and from Washington, DC, Maryland, and Northern Virginia.",
     },
     {
       q: "What if my flight is delayed?",
       a: "No problem. We monitor all arrivals and automatically adjust pickup times for delays, with no additional charge for the delay itself. Your chauffeur will be waiting when you arrive.",
     },
     {
-      q: "Can I book a Sprinter van or mini bus for group transportation?",
-      a: "Absolutely. Our fleet includes Sprinter vans, mini buses, and motor coaches for weddings, corporate groups, and private events throughout the Hamptons and Long Island. Choose your vehicle in the booking form or call us for a group quote.",
+      q: "Can I book a Sprinter van, mini bus, or charter bus for group transportation?",
+      a: "Absolutely. Our fleet includes Sprinter vans, mini buses, and charter buses for corporate groups, conferences, weddings, and private events across the DC metro. Choose your vehicle in the booking form or call us for a group quote.",
     },
     {
       q: "What is your cancellation policy?",
@@ -484,7 +455,6 @@ export const SITE = {
   nav: [
     { label: "Services", href: "/services/", children: "services" },
     { label: "Fleet", href: "/fleet/" },
-    { label: "Aura Yacht", href: "/yacht/" },
     { label: "Areas", href: "/areas/", children: "areas" },
     { label: "Venues", href: "/venues/", children: "venues" },
     { label: "Events", href: "/events/", children: "events" },
@@ -496,14 +466,13 @@ export const SITE = {
 
   // Footer = hubs + core pages only.
   footerQuickLinks: [
-    { label: "Hamptons Airport Car Service", href: ATL_HUB_PATH },
-    { label: "NYC ↔ Hamptons Routes", href: "/routes/" },
-    { label: "Private Jet & FBO Transfers", href: "/private-jet-fbo-transfers/" },
-    { label: "Areas We Serve", href: "/areas/" },
-    { label: "Venues", href: "/venues/" },
-    { label: "Events", href: "/events/" },
+    { label: "Airport Transfers", href: "/services/airport-transfers/" },
+    { label: "Corporate & Executive Travel", href: "/services/corporate-executive/" },
+    { label: "Private Jet & FBO Transfers", href: "/services/fbo-private-jet/" },
+    { label: "Diplomatic Transportation", href: "/services/diplomatic-transportation/" },
+    { label: "Group Transfers", href: "/services/group-transfers/" },
     { label: "Our Fleet", href: "/fleet/" },
-    { label: "All Services & Destinations", href: "/services/" },
+    { label: "All Services", href: "/services/" },
   ],
   footerCompany: [
     { label: "Home", href: "/" },
@@ -521,7 +490,7 @@ export const SITE = {
   ],
 
   // --- Social / sameAs (fill in as profiles are confirmed) ---------------
-  sameAs: ["https://www.instagram.com/ridewithaura_"],
+  sameAs: [],
 };
 
 /**
@@ -554,10 +523,11 @@ function postalAddress() {
  */
 export function businessJsonLd(siteUrl) {
   const origin = (siteUrl || DEFAULT_SITE_URL).replace(/\/+$/, "");
-  // areaServed = the Hamptons / East End plus the airports we serve.
+  // areaServed = the DC metro (DC / MD / VA) plus the airports we serve.
   const areaServed = [
-    { "@type": "Place", name: "The Hamptons", containedInPlace: { "@type": "AdministrativeArea", name: "New York" } },
-    { "@type": "City", name: "New York City", containedInPlace: { "@type": "AdministrativeArea", name: "New York" } },
+    { "@type": "City", name: "Washington, DC" },
+    { "@type": "AdministrativeArea", name: "Maryland" },
+    { "@type": "AdministrativeArea", name: "Northern Virginia" },
     ...SITE.airports.map((a) => ({
       "@type": "Airport",
       name: a.name,
@@ -602,7 +572,7 @@ export function businessJsonLd(siteUrl) {
 
 /**
  * Service JSON-LD for a single service/spoke or route page. Ties the service
- * to the business as provider and to the Hamptons as the service area.
+ * to the business as provider and to the DC metro as the service area.
  */
 export function serviceJsonLd(siteUrl, { name, path, description }) {
   const origin = (siteUrl || DEFAULT_SITE_URL).replace(/\/+$/, "");
@@ -613,7 +583,7 @@ export function serviceJsonLd(siteUrl, { name, path, description }) {
     serviceType: name,
     url: `${origin}${path}`,
     provider: { "@type": "LimousineService", "@id": `${origin}/#business`, name: SITE.company },
-    areaServed: { "@type": "Place", name: "The Hamptons", containedInPlace: { "@type": "AdministrativeArea", name: "New York" } },
+    areaServed: { "@type": "City", name: "Washington, DC" },
     ...(description ? { description } : {}),
   };
 }

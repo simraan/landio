@@ -44,7 +44,7 @@ export const HERO_IMG = {
   widths: [640, 1024, 1500],
   width: 1500,
   height: 844,
-  alt: "Aura Hamptons chauffeured car at a Hamptons estate",
+  alt: "Landio chauffeured car in the DC metro",
 };
 
 /** Sources used across pages: key → [url, label]. Every fact cites one. */

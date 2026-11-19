@@ -1,14 +1,16 @@
-# CLAUDE.md — Aura Hamptons
+# CLAUDE.md — Landio Limo Services
 
 > **Read `CONTEXT.md` first.** It is the project brief, current status, roadmap,
 > env vars, and how designers/developers request changes. THIS file holds the
 > locked technical architecture and the hard content rules.
 
-Guidance for anyone (human or AI) picking up this codebase. Aura Hamptons is a
-premium chauffeured car & limo service for the Hamptons / East End of Long
-Island, NY, plus the New York City ↔ Hamptons corridor. The site is a
-zero-dependency static build on Cloudflare Pages. It is a rebrand of the A-Town
-Limo codebase — same locked architecture, Hamptons data.
+Guidance for anyone (human or AI) picking up this codebase. Landio Limo Services
+is a luxury chauffeured car & limo service for the Washington, DC metro — DC,
+Maryland, and Northern Virginia — plus the DC ↔ Northeast corridor. The site is
+a zero-dependency static build on Cloudflare Pages. It is a rebrand of the Aura
+Hamptons / A-Town Limo codebase — same locked architecture, Landio (DC metro)
+data. Phase 1 (core) is live; the programmatic-SEO scale wave (areas, airports,
+FBOs, routes, venues, events, guides) is pending.
 
 ## Architecture (locked)
 
@@ -44,22 +46,27 @@ page (an indexable page nothing links to).
 
 ## Hard rules (localization guardrails)
 
-- **Airports = JFK, LGA, EWR, ISP, FOK, HTO.** Never reference ATL or any
-  Atlanta/Georgia airport. Primary corridor demand is **NYC ↔ Hamptons**, which
-  is bigger than airport-only.
-- **Service area = the Hamptons / East End of Long Island + the NYC corridor.**
-  24/7 incl. holidays. Villages: Southampton, East Hampton, Montauk, Sag Harbor,
-  Bridgehampton, Water Mill, Amagansett, Westhampton Beach, Wainscott,
-  Sagaponack, Quogue, Shelter Island, Hampton Bays.
-- **Fleet = six classes:** Executive Sedan, Luxury SUV, Sprinter Jet (9 pax),
-  Sprinter Van (14 pax), Mini Bus, Motor Coach. Mini Bus and Motor Coach ARE
-  advertised here (unlike A-Town). Capacities live only in `CAPACITY` in
-  `config.js`; page copy reads them.
-- **Yacht is a live, separate line** (Aura Hamptons Yacht Charter). Brand site
-  content as **"Aura Hamptons"** (not "Aura Hamptons Limo") so it isn't
-  category-locked.
-- **NAP:** brand "Aura Hamptons", 53 Hill St, Southampton, NY 11968, USA ·
-  `+1 (934) 732-4556` (the `PHONE` const — one value) · `info@aurahamptonslimo.com`.
+- **Airports = IAD, DCA, BWI.** Washington Dulles (IAD), Reagan National (DCA),
+  and Baltimore/Washington (BWI). Never reference NY/Atlanta airports (JFK, LGA,
+  EWR, ISP, FOK, HTO, ATL). Plus FBOs: Signature (IAD/DCA/BWI), Manassas,
+  Leesburg Executive, Montgomery County Airpark, Frederick.
+- **Service area = Washington, DC, Maryland, and Northern Virginia.** 24/7 incl.
+  holidays. MD: Bethesda, Potomac, Rockville, Silver Spring, Germantown,
+  Gaithersburg, Chevy Chase, National Harbor, Baltimore, Annapolis. VA:
+  Arlington, Alexandria, McLean, Tysons, Fairfax, Reston, Ashburn, Sterling,
+  Leesburg. Base: Germantown, MD.
+- **Fleet = five classes:** Executive Sedan, Luxury SUV, Sprinter Van (14 pax),
+  Mini Bus, Charter Bus. (Sprinter Jet dropped; Motor Coach renamed Charter
+  Bus.) Capacities live only in `CAPACITY` in `config.js` and are placeholders —
+  CONFIRM real seat/bag counts with the client.
+- **No yacht line.** Core lines: airport transfers, corporate/executive, private
+  aviation (FBO), diplomatic transportation, group transport, meet & greet,
+  hourly chauffeur.
+- **NAP:** brand "Landio Limo Services" (legal: Landio Limo Services LLC),
+  12410 Milestone Center Dr, Ste 600, Germantown, MD 20876, USA ·
+  `+1 (240) 595-7025` (the `PHONE` const — one value) · `info@landiolimo.com`.
+  Note: website domain is landiolimoservices.com; contact email is on
+  landiolimo.com.
 - **Copy:** no "guarantee" claims (use "punctual" / "flight-tracked"), no stat
   counters without real numbers, no vehicle model names.
 

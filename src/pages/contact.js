@@ -13,8 +13,8 @@ import { esc } from "../templates/partials.js";
 function messageForm() {
   const a = SITE.address;
   // Verified Google Business Profile embed for Aura Hamptons — the marker is
-  // pinned on the registered office at 53 Hill St, Southampton, NY 11968.
-  const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2552.986473033907!2d-72.39735542396555!3d40.8839052713681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e89541f4e765a7%3A0x19a6429b5ba8d85!2sAura%20Hamptons!5e0!3m2!1sen!2sin!4v1794313267043!5m2!1sen!2sin";
+  // pinned on the registered office at 12410 Milestone Center Dr, Germantown, MD 20876.
+  const mapSrc = "https://www.google.com/maps?q=12410%20Milestone%20Center%20Dr%20Suite%20600,%20Germantown,%20MD%2020876&output=embed";
   return `
     <section class="section" aria-labelledby="message-title">
       <div class="container">
@@ -69,7 +69,7 @@ export function contact() {
     breadcrumb(trail),
     pageHero({
       eyebrow: "Get In Touch",
-      h1: "Contact Aura Hamptons",
+      h1: "Contact Landio Limo Services",
       lede: "Questions or ready to book? Reach us 24/7 by phone, email, or the form below.",
       withForm: false,
       image: "/assets/img/hero/hamptons-hero",
@@ -86,7 +86,7 @@ export function contact() {
 
   const origin = DEFAULT_SITE_URL.replace(/\/+$/, "");
   const description =
-    `Contact Aura Hamptons for Hamptons luxury car service and airport transfers. Call ${SITE.phone.display} or email ${SITE.email} — available 24/7.`;
+    `Contact Landio Limo Services for DC-metro luxury car service and airport transfers. Call ${SITE.phone.display} or email ${SITE.email} — available 24/7.`;
 
   return {
     path: "/contact/",
@@ -97,7 +97,7 @@ export function contact() {
       {
         "@context": "https://schema.org",
         "@type": "ContactPage",
-        name: "Contact Aura Hamptons",
+        name: "Contact Landio Limo Services",
         url: absoluteUrl(DEFAULT_SITE_URL, "/contact/"),
         description,
         mainEntity: { "@id": `${origin}/#business` },

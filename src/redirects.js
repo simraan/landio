@@ -10,16 +10,17 @@
  * Emitted to dist/_redirects and dist/_headers by build.js.
  */
 
-/** Canonical host rules (www → apex). Cloudflare Pages `_redirects` syntax. */
+/**
+ * Cloudflare Pages `_redirects`. www is the canonical host Pages serves (the
+ * Squarespace CNAME points www → <project>.pages.dev, and the apex forwards to
+ * www at Squarespace), so NO www↔apex rule is emitted here — a www→apex rule
+ * would loop against the Squarespace apex→www forward. Only slug-parity rules.
+ */
 export function renderRedirectsFile(builtPaths = new Set()) {
   void builtPaths;
   return [
-    "# Aura Hamptons redirects (Cloudflare Pages).",
-    "# Canonicalize the www host to the apex domain.",
-    "https://www.aurahamptonslimo.com/*  https://aurahamptonslimo.com/:splat  301!",
-    "http://www.aurahamptonslimo.com/*   https://aurahamptonslimo.com/:splat   301!",
-    "",
-    "# Slug parity with the live site.",
+    "# Landio Limo Services redirects (Cloudflare Pages).",
+    "# Slug parity.",
     "/about       /about-us/  301",
     "/about/      /about-us/  301",
     "/contact-us  /contact/   301",
@@ -35,7 +36,7 @@ export function renderRedirectsFile(builtPaths = new Set()) {
  */
 export function renderHeadersFile() {
   return [
-    "# Aura Hamptons headers (Cloudflare Pages).",
+    "# Landio Limo Services headers (Cloudflare Pages).",
     "/*",
     "  X-Content-Type-Options: nosniff",
     "  X-Frame-Options: SAMEORIGIN",

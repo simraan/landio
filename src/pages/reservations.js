@@ -48,10 +48,10 @@ function afterBooking() {
 const RES_FAQS = [
   { q: "How do I book a ride?", a: "Fill in the booking form with your pickup, drop-off, date, time, vehicle, and contact details, and we'll confirm your reservation. You can also call or email us anytime." },
   { q: "How far in advance should I book?", a: "We recommend booking as early as possible, especially in peak season. For airport transfers, share your flight details and we'll track your flight." },
-  { q: "Can I request a specific vehicle?", a: "Yes. Choose your vehicle class in the booking form — Executive Sedan, Luxury SUV, Sprinter Jet, Sprinter Van, Mini Bus, or Motor Coach — and we'll confirm availability." },
+  { q: "Can I request a specific vehicle?", a: "Yes. Choose your vehicle class in the booking form — Executive Sedan, Luxury SUV, Sprinter Van, Mini Bus, or Charter Bus — and we'll confirm availability." },
   { q: "Do you track flights for airport pickups?", a: "Yes. Share your airline and flight number and your pickup adjusts to your actual arrival, with no charge for delays." },
   { q: "Can I change or cancel my reservation?", a: `Yes. Contact us at ${SITE.phone.display} or ${SITE.email} and we'll adjust your booking. Please review our Cancellation Policy for timing.` },
-  { q: "How will I receive confirmation?", a: `We respond to every reservation request — typically within the hour — by phone or email to confirm the details. Aura Hamptons operates ${SITE.hours}.` },
+  { q: "How will I receive confirmation?", a: `We respond to every reservation request — typically within the hour — by phone or email to confirm the details. Landio Limo Services operates ${SITE.hours}.` },
 ];
 
 export function reservations() {
@@ -64,7 +64,7 @@ export function reservations() {
     pageHero({
       eyebrow: "Reservation",
       h1: "Book Your Ride",
-      lede: "Reserve your Aura Hamptons chauffeured ride in minutes — airport transfers, executive travel, weddings, group transport, and hourly charters across the Hamptons and the New York City corridor.",
+      lede: "Reserve your Landio Limo Services chauffeured ride in minutes — airport transfers, executive travel, corporate, diplomatic, and group transport across Washington, DC, Maryland, and Northern Virginia.",
       withForm: true,
       image: "/assets/img/hero/hamptons-hero",
       features: [
@@ -77,7 +77,7 @@ export function reservations() {
     threeStepsSection({ alt: false }),
     afterBooking(),
     fleetSection({ variant: "home", heading: "Choose Your Vehicle", eyebrow: "Our Fleet" }),
-    faqAccordion({ faqs: RES_FAQS, lede: "Answers to common questions about booking your Aura Hamptons ride." }),
+    faqAccordion({ faqs: RES_FAQS, lede: "Answers to common questions about booking your Landio Limo Services ride." }),
     contactSection(),
   ].join("\n");
 
@@ -86,9 +86,9 @@ export function reservations() {
   return {
     path: "/reservations/",
     title: "Reservations",
-    titleFull: "Reservations & Booking | Aura Hamptons",
+    titleFull: "Reservations & Booking | Landio Limo Services",
     description:
-      "Book your Aura Hamptons ride — airport transfers, executive travel, weddings, group transport, and hourly chauffeur across the Hamptons and NYC corridor. Instant quote, 24/7.",
+      "Book your Landio Limo Services ride — airport transfers, executive travel, corporate, diplomatic, and group transport across the DC metro. Instant quote, 24/7.",
     bodyClass: "page-reservations page-group-transfers",
     jsonLd: [
       { ...breadcrumbJsonLd(DEFAULT_SITE_URL, trail), "@id": `${origin}/reservations/#breadcrumb` },

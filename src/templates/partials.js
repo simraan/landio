@@ -127,7 +127,7 @@ export function topbar() {
   return `
   <div class="topbar">
     <div class="container topbar__inner">
-      <span class="topbar__left"><span class="topbar__dot" aria-hidden="true"></span>24/7 Chauffeured Service &middot; The Hamptons &amp; NYC Corridor</span>
+      <span class="topbar__left"><span class="topbar__dot" aria-hidden="true"></span>24/7 Chauffeured Service &middot; Washington, DC, Maryland &amp; Virginia</span>
       <span class="topbar__right">
         <a href="tel:${esc(SITE.phone.e164)}">${phoneSvg}${esc(SITE.phone.display)}</a>
         <a href="mailto:${esc(SITE.email)}"><svg class="btn-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${esc(SITE.email)}</a>
@@ -166,28 +166,29 @@ export function quoteForm(id, { heading = "Instant Quote", location = "hero", pr
   // Pickup/drop-off autocomplete: the airports we serve + Hamptons / NYC
   // corridor places. Native <datalist>, zero dependencies.
   const PLACES = [
-    "John F. Kennedy International Airport (JFK)",
-    "LaGuardia Airport (LGA)",
-    "Newark Liberty International Airport (EWR)",
-    "Long Island MacArthur Airport (ISP)",
-    "Francis S. Gabreski Airport (FOK)",
-    "East Hampton Airport (HTO)",
-    "Southampton, NY",
-    "East Hampton, NY",
-    "Montauk, NY",
-    "Sag Harbor, NY",
-    "Bridgehampton, NY",
-    "Water Mill, NY",
-    "Amagansett, NY",
-    "Westhampton Beach, NY",
-    "Wainscott, NY",
-    "Quogue, NY",
-    "Shelter Island, NY",
-    "Hampton Bays, NY",
-    "Manhattan, New York, NY",
-    "Brooklyn, New York, NY",
-    "Shinnecock Hills Golf Club, Southampton, NY",
-    "Wölffer Estate Vineyard, Sagaponack, NY",
+    "Washington Dulles International Airport (IAD)",
+    "Ronald Reagan Washington National Airport (DCA)",
+    "Baltimore/Washington International Airport (BWI)",
+    "Washington, DC",
+    "Bethesda, MD",
+    "Rockville, MD",
+    "Silver Spring, MD",
+    "Germantown, MD",
+    "Gaithersburg, MD",
+    "Potomac, MD",
+    "Chevy Chase, MD",
+    "National Harbor, MD",
+    "Annapolis, MD",
+    "Baltimore, MD",
+    "Arlington, VA",
+    "Alexandria, VA",
+    "McLean, VA",
+    "Tysons, VA",
+    "Fairfax, VA",
+    "Reston, VA",
+    "Ashburn, VA",
+    "Sterling, VA",
+    "Leesburg, VA",
   ];
   const placesOptions = PLACES.map((p) => `<option value="${esc(p)}"></option>`).join("");
   const swapBtn = `<button type="button" class="qf-swap" data-qf-swap aria-label="Swap pickup and drop-off"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16M7 4 4 7M7 4l3 3M17 20V4M17 20l-3-3M17 20l3-3"/></svg></button>`;
@@ -356,7 +357,7 @@ export function preFooterCta(opts) {
   const o = opts || {};
   const eyebrow = o.eyebrow || "Reserve Your Ride";
   const heading = o.heading ? esc(o.heading) : "Ready to Experience <em>Effortless Luxury Travel?</em>";
-  const lede = o.sub ? esc(o.sub) : "From airport transfers to weddings, corporate travel, and nights out, Aura Hamptons delivers timeless service and seamless journeys across the Hamptons and the New York City corridor. Available 24/7 with professional chauffeurs.";
+  const lede = o.sub ? esc(o.sub) : "From airport transfers to corporate, diplomatic, and group travel, Landio delivers timeless service and seamless journeys across Washington, DC, Maryland, and Northern Virginia. Available 24/7 with professional chauffeurs.";
   const emailBtn = o.email ? `
           <a class="btn btn-ghost" href="mailto:${esc(SITE.email)}">${btnIcon("envelope")}Email Us</a>` : "";
   return `
@@ -422,7 +423,7 @@ export function footer(year) {
 
   // Google Maps business listing (genuine embed — light roadmap view) + real
   // "Open in Maps" (listing CID) and "Directions" (destination coords) links.
-  const MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2552.986473033907!2d-72.39735542396555!3d40.8839052713681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e89541f4e765a7%3A0x19a6429b5ba8d85!2sAura%20Hamptons!5e0!3m2!1sen!2sin!4v1794313267043!5m2!1sen!2sin";
+  const MAP_EMBED = "https://www.google.com/maps?q=12410%20Milestone%20Center%20Dr%20Suite%20600,%20Germantown,%20MD%2020876&output=embed";
   const MAP_OPEN = "https://www.google.com/maps?cid=115514870756707717";
   const MAP_DIR = "https://www.google.com/maps/dir/?api=1&amp;destination=40.8839052713681,-72.39735542396555";
 
@@ -432,7 +433,7 @@ export function footer(year) {
       <div class="site-footer__grid">
         <div class="site-footer__brand">
           <img class="site-footer__logo" src="${LOGO_FOOTER}" alt="${esc(SITE.company)}" width="185" height="74" loading="lazy" style="width:185px;height:74px;max-width:none">
-          <p class="site-footer__about">Aura Hamptons delivers chauffeured luxury travel across the Hamptons and the New York City corridor — JFK, LGA, EWR, ISP, FOK &amp; HTO airport transfers, corporate travel, weddings, group transport, and event logistics, backed by professional chauffeurs and a meticulously maintained fleet, available 24/7.</p>
+          <p class="site-footer__about">Landio delivers chauffeured luxury travel across Washington, DC, Maryland, and Northern Virginia — IAD, DCA &amp; BWI airport transfers, corporate and executive travel, private aviation, diplomatic transportation, and group logistics, backed by professional chauffeurs and a meticulously maintained fleet, available 24/7.</p>
           ${social}
         </div>
         <div>
@@ -455,9 +456,9 @@ export function footer(year) {
             <li>${cIcon("mail")}<a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></li>
           </ul>
           <div class="site-footer__map">
-            <iframe src="${MAP_EMBED}" title="Aura Hamptons on Google Maps — 53 Hill St, Southampton, NY" width="340" height="180" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="${MAP_EMBED}" title="Landio Limo Services on Google Maps — 12410 Milestone Center Dr, Germantown, MD" width="340" height="180" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
-          <p class="site-footer__maplabel"><span class="site-footer__maplabel-pin" aria-hidden="true">${icon("pin", { size: 14 })}</span>Aura Hamptons &middot; 53 Hill St, Southampton, NY 11968</p>
+          <p class="site-footer__maplabel"><span class="site-footer__maplabel-pin" aria-hidden="true">${icon("pin", { size: 14 })}</span>Landio Limo Services &middot; 12410 Milestone Center Dr, Ste 600, Germantown, MD 20876</p>
           <div class="site-footer__maplinks">
             <a href="${MAP_OPEN}" target="_blank" rel="noopener">${icon("pin", { size: 15 })}Open in Maps</a>
             <a href="${MAP_DIR}" target="_blank" rel="noopener">${navSvg}Directions</a>
@@ -466,7 +467,7 @@ export function footer(year) {
       </div>
 
       <div class="site-footer__legal">
-        <span>&copy;${year} ${esc(SITE.company)}<span class="site-footer__sep">·</span>Serving the Hamptons &amp; the NYC Corridor</span>
+        <span>&copy;${year} ${esc(SITE.company)}<span class="site-footer__sep">·</span>Serving Washington, DC, Maryland &amp; Virginia</span>
         ${legalLinks ? `<span class="site-footer__legal-links">${legalLinks}</span>` : ""}
       </div>
     </div>

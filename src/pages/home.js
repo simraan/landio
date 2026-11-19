@@ -44,9 +44,9 @@ function hero() {
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="container hero__grid">
         <div>
-          <p class="hero__eyebrow">The Hamptons' Premier Luxury Transportation</p>
-          <h1>Experience Luxury Car &amp; Limo Service <span class="gold">in the Hamptons</span></h1>
-          <p class="hero__sub">Aura Hamptons provides professional chauffeur service, <a href="/services/airport-transfers/">airport transportation</a>, black car service, and executive travel throughout Southampton, East Hampton, Montauk, Sag Harbor, Bridgehampton, and surrounding areas.</p>
+          <p class="hero__eyebrow">The DC Metro's Premier Luxury Transportation</p>
+          <h1>Experience Luxury Car &amp; Limo Service <span class="gold">in the DC Metro</span></h1>
+          <p class="hero__sub">Landio Limo Services provides professional chauffeur service, <a href="/services/airport-transfers/">airport transportation</a>, black car service, and executive travel throughout Washington, DC, Maryland, and Northern Virginia.</p>
           <div class="hero__actions">
             <button type="button" class="btn btn-primary" data-open-quote>${btnIcon("calendar")}Book Now</button>
             <a class="btn btn-ghost" href="tel:${esc(SITE.phone.e164)}">${btnIcon("call")}Call Now ${esc(SITE.phone.display)}</a>
@@ -71,7 +71,7 @@ function fleet() {
         <div class="section-head">
           <span class="eyebrow">Our Premium Fleet</span>
           <h2 id="fleet-title">Luxury Vehicles for Every Occasion</h2>
-          <p class="text-secondary">From the Executive Sedan and Luxury SUV to Sprinter Vans, Mini Buses, and Motor Coaches — the right vehicle for airport transfers, corporate travel, weddings, and group trips across the Hamptons.</p>
+          <p class="text-secondary">From the Executive Sedan and Luxury SUV to Sprinter Vans, Mini Buses, and Charter Buses — the right vehicle for airport transfers, corporate travel, diplomatic service, and group trips across the DC metro.</p>
         </div>
         <ul class="fleet-grid">${cards}</ul>
       </div>
@@ -89,7 +89,7 @@ function services() {
         <div class="section-head">
           <span class="eyebrow">What We Offer</span>
           <h2 id="move-title">Transportation Services</h2>
-          <p class="text-secondary">From airport transfers to corporate travel, weddings, and group transport — one standard of chauffeured service across the Hamptons and the New York City corridor.</p>
+          <p class="text-secondary">From airport transfers to corporate, diplomatic, and group transportation — one standard of chauffeured service across Washington, DC, Maryland, and Northern Virginia.</p>
         </div>
         <ul class="feature-grid">${cards}</ul>
       </div>
@@ -115,32 +115,39 @@ function marquee() {
 }
 
 function routes() {
-  // Popular NYC ↔ Hamptons corridor trips — tap a chip to prefill the quote popup.
+  // Popular DC-metro airport + corridor trips — tap a chip to prefill the quote popup.
   const ROUTES = [
-    "NYC ⇄ Southampton", "NYC ⇄ East Hampton", "NYC ⇄ Montauk", "NYC ⇄ Sag Harbor",
-    "NYC ⇄ Bridgehampton", "JFK ⇄ Southampton", "LGA ⇄ East Hampton", "EWR ⇄ Montauk",
-    "Manhattan ⇄ Westhampton Beach", "Brooklyn ⇄ Water Mill",
+    "IAD ⇄ Washington, DC", "DCA ⇄ Washington, DC", "BWI ⇄ Washington, DC",
+    "IAD ⇄ Bethesda", "IAD ⇄ Tysons", "DCA ⇄ Arlington",
+    "Washington, DC ⇄ Baltimore", "Washington, DC ⇄ New York City",
+    "Washington, DC ⇄ Philadelphia", "IAD ⇄ Leesburg",
   ];
-  const AIRPORT = {
-    NYC: "Manhattan, New York, NY",
-    JFK: "John F. Kennedy International Airport (JFK)",
-    LGA: "LaGuardia Airport (LGA)",
-    EWR: "Newark Liberty International Airport (EWR)",
-    Manhattan: "Manhattan, New York, NY",
-    Brooklyn: "Brooklyn, New York, NY",
+  const PLACE = {
+    IAD: "Washington Dulles International Airport (IAD)",
+    DCA: "Ronald Reagan Washington National Airport (DCA)",
+    BWI: "Baltimore/Washington International Airport (BWI)",
+    "Washington, DC": "Washington, DC",
+    Bethesda: "Bethesda, MD",
+    Tysons: "Tysons, VA",
+    Arlington: "Arlington, VA",
+    Baltimore: "Baltimore, MD",
+    Leesburg: "Leesburg, VA",
+    "New York City": "New York City",
+    Philadelphia: "Philadelphia, PA",
   };
   const chips = ROUTES.map((r) => {
     const [from, to] = r.split(" ⇄ ");
-    const f = AIRPORT[from] || from;
-    return `<button type="button" class="route-chip" data-open-quote data-route-from="${esc(f)}" data-route-to="${esc(`${to}, NY`)}" aria-label="Book ${esc(r)}">${esc(r)}<span class="route-chip__go" aria-hidden="true">&rarr;</span></button>`;
+    const f = PLACE[from] || from;
+    const t = PLACE[to] || to;
+    return `<button type="button" class="route-chip" data-open-quote data-route-from="${esc(f)}" data-route-to="${esc(t)}" aria-label="Book ${esc(r)}">${esc(r)}<span class="route-chip__go" aria-hidden="true">&rarr;</span></button>`;
   }).join("");
   return `
     <section class="section" aria-labelledby="routes-title">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Popular Routes</span>
-          <h2 id="routes-title">Popular NYC &amp; Hamptons Routes</h2>
-          <p class="text-secondary">Our most-requested trips along the New York City to Hamptons corridor. Tap one to prefill your quote.</p>
+          <h2 id="routes-title">Popular Airport &amp; City Routes</h2>
+          <p class="text-secondary">Our most-requested trips across the DC metro and up the Northeast corridor. Tap one to prefill your quote.</p>
         </div>
         <div class="route-grid">${chips}</div>
       </div>
@@ -157,7 +164,7 @@ function whatIncludes() {
     ['<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>', "clock", "Punctual Pickups", "We plan around your schedule and your flight.", { modal: {} }],
     ['<path d="M10.5 13.5 3 12l-.5-2 8 1 4-7 2 .5-2.5 7 6 1.5v2l-6-1-2 6-1.5-.5z"/>', "plane", "Flight Tracking", "Live arrival monitoring at every airport we serve, for early or delayed flights.", { modal: {} }],
     ['<circle cx="12" cy="8" r="3"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/>', "chauffeur", "Meet & Greet", "Chauffeur inside the terminal with a name sign.", { href: "/services/meet-and-greet/" }],
-    ['<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/>', "shield", "Professional Chauffeurs", "Vetted, courteous, and know the Hamptons and the NYC corridor.", { modal: {} }],
+    ['<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/>', "shield", "Professional Chauffeurs", "Vetted, courteous, and know the DC metro and every area airport.", { modal: {} }],
   ];
   const featCards = feats
     .map(([p, name, t, d, act]) =>
@@ -201,7 +208,7 @@ function whatIncludes() {
     <section class="section includes-section" aria-labelledby="includes-title">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">The Aura Hamptons Standard</span>
+          <span class="eyebrow">The Landio Standard</span>
           <h2 id="includes-title">What Every Ride Includes</h2>
           <p class="text-secondary">The details that make every ride feel effortless.</p>
         </div>
@@ -233,12 +240,12 @@ function airportServed() {
         <div class="section-head">
           <span class="eyebrow">Where We Fly In &amp; Out</span>
           <h2 id="airport-home-title">Airports We Serve</h2>
-          <p class="text-secondary">Six airports connect the Hamptons to the world — each with real-time flight tracking and curbside or meet &amp; greet pickup. Tap any airport to book a transfer.</p>
+          <p class="text-secondary">Three airports connect the DC metro to the world — Dulles (IAD), Reagan National (DCA), and BWI — each with real-time flight tracking and curbside or meet &amp; greet pickup. Tap any airport to book a transfer.</p>
         </div>
         <ul class="airports-grid">
           ${tiles}
         </ul>
-        <div style="text-align:center;margin-top:1.75rem"><a class="btn btn-ghost" href="/services/airport-transfers/">${btnIcon("airplane")}Hamptons Airport Car Service</a></div>
+        <div style="text-align:center;margin-top:1.75rem"><a class="btn btn-ghost" href="/services/airport-transfers/">${btnIcon("airplane")}DC Airport Car Service</a></div>
       </div>
     </section>`;
 }
@@ -252,14 +259,14 @@ function areasServed() {
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Service Area</span>
-          <h2 id="areas-title">Villages We Serve Across the Hamptons</h2>
+          <h2 id="areas-title">Areas We Serve Across the DC Metro</h2>
         </div>
         <ul class="areas-grid">
-          ${AREAS.map((a) => cbox({ cls: "area-chip", tag: "li", titleTag: "span", lead: PIN, title: a.name, act: { modal: { dropoff: `${a.name}, NY` } }, cue: "Book a ride" })).join("\n          ")}
+          ${AREAS.map((a) => cbox({ cls: "area-chip", tag: "li", titleTag: "span", lead: PIN, title: a.name, act: { modal: { dropoff: a.pickup } }, cue: "Book a ride" })).join("\n          ")}
         </ul>
-        <p class="text-secondary" style="text-align:center;max-width:70ch;margin:1.75rem auto 0">From airport runs to pickups across the East End and direct transfers along the New York City corridor, your chauffeur delivers the same premium, punctual service.</p>
+        <p class="text-secondary" style="text-align:center;max-width:70ch;margin:1.75rem auto 0">From airport runs to pickups across Maryland and Northern Virginia and direct transfers up the Northeast corridor, your chauffeur delivers the same premium, punctual service.</p>
         <div style="text-align:center;margin-top:1.5rem">
-          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=The+Hamptons+Long+Island+New+York" target="_blank" rel="noopener"><svg class="btn-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-10A6.5 6.5 0 0 1 18.5 11c0 4.5-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.3"/></svg>View Service Area Map</a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Washington+DC+metropolitan+area" target="_blank" rel="noopener"><svg class="btn-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-10A6.5 6.5 0 0 1 18.5 11c0 4.5-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.3"/></svg>View Service Area Map</a>
         </div>
       </div>
     </section>`;
@@ -278,12 +285,12 @@ function excellence() {
         <figure class="excellence__media">
           <span class="excellence__accent" aria-hidden="true"></span>
           <span class="excellence__accent excellence__accent--br" aria-hidden="true"></span>
-          ${fleetPicture(SITE.fleet.find((v) => v.key === "sedan"), { alt: "Aura Hamptons Executive Sedan — luxury black chauffeured car", sizes: "(min-width: 900px) 48vw, 92vw", width: 1024, height: 576 })}
+          ${fleetPicture(SITE.fleet.find((v) => v.key === "sedan"), { alt: "Landio Executive Sedan — luxury black chauffeured car", sizes: "(min-width: 900px) 48vw, 92vw", width: 1024, height: 576 })}
         </figure>
         <div class="excellence__content">
           <p class="eyebrow">Step Into Excellence</p>
           <h2 id="exc-title">Chauffeured Service Tailored <br>To Your Every Need</h2>
-          <p class="text-secondary">At Aura Hamptons, we go beyond transportation—we create unforgettable travel experiences. From immaculate interiors to attentive hospitality, every ride is designed to leave a lasting impression. Whether it's a wedding, a corporate event, or a night out on the East End, we deliver more than just a destination.</p>
+          <p class="text-secondary">At Landio Limo Services, we go beyond transportation—we create unforgettable travel experiences. From immaculate interiors to attentive hospitality, every ride is designed to leave a lasting impression. Whether it's an airport transfer, a corporate program, or a diplomatic engagement, we deliver more than just a destination.</p>
           <ul class="excellence__list">
             ${points.map((p) => `<li><span class="excellence__check">${check}</span>${esc(p)}</li>`).join("\n            ")}
           </ul>
@@ -319,15 +326,15 @@ function partner() {
           <div class="partner__media">
             <picture>
               <source type="image/webp" srcset="${IMG}-640.webp 640w, ${IMG}-1024.webp 1024w, ${IMG}-1500.webp 1500w" sizes="(min-width: 900px) 46vw, 92vw">
-              <img src="${IMG}-1024.jpg" srcset="${IMG}-640.jpg 640w, ${IMG}-1024.jpg 1024w, ${IMG}-1500.jpg 1500w" sizes="(min-width: 900px) 46vw, 92vw" alt="Aura Hamptons chauffeured sedan at a Hamptons estate" width="1500" height="844" loading="lazy" decoding="async">
+              <img src="${IMG}-1024.jpg" srcset="${IMG}-640.jpg 640w, ${IMG}-1024.jpg 1024w, ${IMG}-1500.jpg 1500w" sizes="(min-width: 900px) 46vw, 92vw" alt="Landio chauffeured sedan in the DC metro" width="1500" height="844" loading="lazy" decoding="async">
             </picture>
-            <span class="partner__badge">${sparkle} Aura Partner Network</span>
+            <span class="partner__badge">${sparkle} Landio Partner Network</span>
             <div class="partner__chips">${chips.map((c) => `<span>${esc(c)}</span>`).join("")}</div>
           </div>
           <div class="partner__content">
             <p class="eyebrow">Partner Program</p>
-            <h2 id="partner-title">Become an <span class="gold">Aura Partner</span></h2>
-            <p class="partner__lede">Partner with Aura Hamptons and give your clients and guests seamless luxury transportation across the Hamptons and the New York City corridor — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.</p>
+            <h2 id="partner-title">Become a <span class="gold">Landio Partner</span></h2>
+            <p class="partner__lede">Partner with Landio Limo Services and give your clients and guests seamless luxury transportation across Washington, DC, Maryland, and Northern Virginia — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.</p>
             <ul class="partner__benefits">
               ${benefits.map(([ic, t, d]) => `<li><span class="partner__benefit-ico" aria-hidden="true">${ic}</span><span class="partner__benefit-t">${esc(t)}</span><span class="partner__benefit-d">${esc(d)}</span></li>`).join("\n              ")}
             </ul>
@@ -346,9 +353,9 @@ function partner() {
 export function home() {
   return {
     path: "/",
-    titleFull: "Aura Hamptons – Luxury Car & Limo Service | Hamptons & NYC Transfers",
+    titleFull: "Landio Limo Services – Luxury Car & Limo Service | DC, Maryland & Virginia",
     description:
-      "Aura Hamptons — premium chauffeured car & limo service across the Hamptons and East End of Long Island. JFK, LGA, EWR, ISP, FOK & HTO airport transfers, NYC corridor, group transport, and hourly chauffeur, 24/7.",
+      "Landio Limo Services — luxury chauffeured car & limo service across Washington, DC, Maryland, and Northern Virginia. IAD, DCA & BWI airport transfers, corporate, diplomatic, private aviation, and group transport, 24/7.",
     bodyClass: "page-home",
     jsonLd: [faqJsonLd(SITE.faqs)],
     main: [

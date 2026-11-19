@@ -34,7 +34,7 @@ function fleetShowcase() {
           <a class="flh-card__media" href="/fleet/${esc(v.slug)}/" tabindex="-1" aria-hidden="true">
             <picture>
               <source type="image/webp" srcset="${v.imageBase}-640.webp 640w, ${v.imageBase}-1024.webp 1024w" sizes="(min-width:900px) 33vw, 90vw">
-              <img src="${v.imageBase}-1024.jpg" srcset="${v.imageBase}-640.jpg 640w, ${v.imageBase}-1024.jpg 1024w" sizes="(min-width:900px) 33vw, 90vw" alt="${esc(v.name)} — Aura Hamptons" loading="lazy" decoding="async" width="1024" height="576">
+              <img src="${v.imageBase}-1024.jpg" srcset="${v.imageBase}-640.jpg 640w, ${v.imageBase}-1024.jpg 1024w" sizes="(min-width:900px) 33vw, 90vw" alt="${esc(v.name)} — Landio Limo Services" loading="lazy" decoding="async" width="1024" height="576">
             </picture>
             <span class="flh-card__badge"><span class="flh-card__badge-ico" aria-hidden="true">${icon("users", { size: 13 })}</span>${esc(paxBadge(cap))}</span>
           </a>
@@ -59,8 +59,8 @@ function fleetShowcase() {
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Choose Your Ride</span>
-          <h2 id="choose-title">Six Vehicle Classes, One Standard</h2>
-          <p class="text-secondary">From the Executive Sedan to the Motor Coach — every class is hand-picked, immaculately maintained, and chauffeur-driven across the Hamptons and the New York City corridor.</p>
+          <h2 id="choose-title">Five Vehicle Classes, One Standard</h2>
+          <p class="text-secondary">From the Executive Sedan to the Charter Bus — every class is hand-picked, immaculately maintained, and chauffeur-driven across Washington, DC, Maryland, and Northern Virginia.</p>
         </div>
         <ul class="flh-grid">${cards}
         </ul>
@@ -94,7 +94,7 @@ function standardsStrip() {
     <section class="section section--alt" aria-labelledby="std-title">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">The Aura Standard</span>
+          <span class="eyebrow">The Landio Standard</span>
           <h2 id="std-title">Every ride, impeccably appointed</h2>
           <p class="text-secondary">Whichever class you choose, the details are the same — comfort, connectivity, and care from the first call to the final destination.</p>
         </div>
@@ -110,7 +110,7 @@ export function fleetPage() {
     path: "/fleet/",
     title: "Fleet",
     description:
-      `The Aura Hamptons fleet — Executive Sedan (${paxLabel(CAPACITY.sedan)}), Luxury SUV (${paxLabel(CAPACITY.suv)}), Sprinter Jet (${paxLabel(CAPACITY.sprinterjet)}), Sprinter Van (${paxLabel(CAPACITY.sprinter)}), Mini Bus (${paxLabel(CAPACITY.minibus)}), and Motor Coach (${paxLabel(CAPACITY.coach)}). Chauffeured luxury across the Hamptons.`,
+      `The Landio fleet — Executive Sedan (${paxLabel(CAPACITY.sedan)}), Luxury SUV (${paxLabel(CAPACITY.suv)}), Sprinter Van (${paxLabel(CAPACITY.sprinter)}), Mini Bus (${paxLabel(CAPACITY.minibus)}), and Charter Bus (${paxLabel(CAPACITY.coach)}). Chauffeured luxury across the DC metro.`,
     bodyClass: "page-fleet",
     cluster: "fleet",
     hub: true,
@@ -122,9 +122,9 @@ export function fleetPage() {
         h1: "Our Fleet",
         withForm: false,
         image: "/assets/img/hero/hamptons-hero",
-        ledeHtml: `Six immaculate vehicle classes — the right choice for <a href="/services/airport-transfers/">airport transfers</a>, executive travel, weddings, and group trips across the Hamptons and the NYC corridor.`,
+        ledeHtml: `Five immaculate vehicle classes — the right choice for <a href="/services/airport-transfers/">airport transfers</a>, executive travel, diplomatic service, and group trips across Washington, DC, Maryland, and Northern Virginia.`,
         features: [
-          { icon: "car", label: "6 vehicle classes" },
+          { icon: "car", label: "5 vehicle classes" },
           { icon: "users", label: "Up to 56 passengers" },
           { icon: "plane", label: "Flight-tracked transfers" },
           { icon: "clock", label: "Available 24/7" },

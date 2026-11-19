@@ -135,8 +135,8 @@ const TERMS = [
   p("By accessing this Website or booking our services, you agree to be bound by these Terms."),
 
   h2("1. Company Information"),
-  raw(`<p>${esc(SITE.legalName)}<br>Director: ${esc(SITE.director)}<br>${esc(A.street)}<br>${esc(A.city)}, ${esc(A.region)} ${esc(A.postalCode)}, ${esc(A.countryName)}<br>Phone: ${esc(SITE.phone.display)}<br>Website: ${siteLink}</p>`),
-  p("We provide professional chauffeured transportation services including Executive Sedans, Luxury SUVs, Sprinter Vans, Mini Buses, and Motor Coaches."),
+  raw(`<p>${esc(SITE.legalName)}<br>${esc(A.street)}<br>${esc(A.city)}, ${esc(A.region)} ${esc(A.postalCode)}, ${esc(A.countryName)}<br>Phone: ${esc(SITE.phone.display)}<br>Website: ${siteLink}</p>`),
+  p("We provide professional chauffeured transportation services including Executive Sedans, Luxury SUVs, Sprinter Vans, Mini Buses, and Charter Buses."),
 
   h2("2. Eligibility"),
   p("By using our website and services, you confirm that:"),
@@ -216,8 +216,8 @@ const TERMS = [
   raw('<p><a href="/privacy-policy/">Privacy Policy</a></p>'),
 
   h2("12. Governing Law"),
-  p("These Terms are governed by the laws of the State of New York, United States, without regard to conflict of law principles."),
-  p("Any disputes shall be resolved in courts located in New York."),
+  p("These Terms are governed by the laws of the State of Maryland, United States, without regard to conflict of law principles."),
+  p("Any disputes shall be resolved in courts located in Maryland."),
 
   h2("13. Changes to These Terms"),
   p("We may update these Terms of Service at any time. Changes will be posted on this page with a revised effective date."),
@@ -230,7 +230,7 @@ const phoneLine = `<p><strong>Phone:</strong> ${esc(SITE.phone.display)}</p>`;
 
 const PRIVACY = [
   raw(`<p><strong>Effective Date: ${esc(SITE.privacyEffectiveDate)}</strong></p>`),
-  raw(`<p>${esc(SITE.legalName)} (“Company,” “we,” “our,” or “us”) operates ${siteLink} (the “Website”) and provides chauffeured transportation services in and around the Hamptons and the East End of Long Island, New York.</p>`),
+  raw(`<p>${esc(SITE.legalName)} (“Company,” “we,” “our,” or “us”) operates ${siteLink} (the “Website”) and provides chauffeured transportation services across the Washington, DC metropolitan area, including Washington, DC, Maryland, and Northern Virginia.</p>`),
   p("This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Website, use our services, or communicate with us via phone, SMS, email, or online forms."),
   p("By using our Website or services, you agree to the terms of this Privacy Policy."),
 
@@ -400,7 +400,7 @@ function cancellationPolicyPage() {
         <div class="section-head">
           <span class="eyebrow">Reservations</span>
           <h1 id="cp-title">Cancellation Policy</h1>
-          <p class="text-secondary">We understand that plans can change. At Aura Hamptons, we aim to make the reservation and cancellation process as straightforward as possible. Please review our cancellation terms below.</p>
+          <p class="text-secondary">We understand that plans can change. At Landio Limo Services, we aim to make the reservation and cancellation process as straightforward as possible. Please review our cancellation terms below.</p>
         </div>
       </div>
     </section>

@@ -35,7 +35,6 @@ import { vehiclePages } from "./pages/vehicles.js";
 import { contact } from "./pages/contact.js";
 import { becomePartner } from "./pages/become-a-partner.js";
 import { reservations } from "./pages/reservations.js";
-import { yacht } from "./pages/yacht.js";
 import { venuesPage, venuePages } from "./pages/venues.js";
 import { eventsPage, eventPages } from "./pages/events.js";
 import { legalPages } from "./pages/legal.js";
@@ -89,7 +88,6 @@ const TEMPLATES = {
   contact,
   becomePartner,
   reservations,
-  yacht,
   venuesPage,
   venuePages, // → 6 venue detail pages under /services/
   eventsPage,
