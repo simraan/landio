@@ -37,6 +37,8 @@ import { becomePartner } from "./pages/become-a-partner.js";
 import { reservations } from "./pages/reservations.js";
 import { areasHub, areaPages } from "./pages/areas.js";
 import { fboHub, fboPages } from "./pages/fbos.js";
+import { airport } from "./pages/airport.js";
+import { terminalPages } from "./pages/terminals.js";
 import { venuesPage, venuePages } from "./pages/venues.js";
 import { eventsPage, eventPages } from "./pages/events.js";
 import { legalPages } from "./pages/legal.js";
@@ -94,6 +96,8 @@ const TEMPLATES = {
   areaPages, // → one page per config AREAS entry
   fboHub,
   fboPages, // → 7 FBO field pages
+  airport, // → DC airport hub
+  terminalPages, // → IAD/DCA/BWI airport pages
   venuesPage,
   venuePages, // → 6 venue detail pages under /services/
   eventsPage,

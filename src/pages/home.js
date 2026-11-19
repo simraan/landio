@@ -245,7 +245,7 @@ function airportServed() {
         <ul class="airports-grid">
           ${tiles}
         </ul>
-        <div style="text-align:center;margin-top:1.75rem"><a class="btn btn-ghost" href="/services/airport-transfers/">${btnIcon("airplane")}DC Airport Car Service</a></div>
+        <div style="text-align:center;margin-top:1.75rem"><a class="btn btn-ghost" href="/dc-airport-car-service/">${btnIcon("airplane")}DC Airport Car Service</a></div>
       </div>
     </section>`;
 }

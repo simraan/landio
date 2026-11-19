@@ -33,6 +33,14 @@
     "note": "7 FBO field pages."
   },
   {
+    "template": "airport",
+    "note": "DC airport hub (/dc-airport-car-service/)."
+  },
+  {
+    "template": "terminalPages",
+    "note": "IAD/DCA/BWI airport pages."
+  },
+  {
     "template": "fleetPage",
     "note": "Fleet hub."
   },
