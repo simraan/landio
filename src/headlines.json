@@ -41,6 +41,14 @@
     "note": "IAD/DCA/BWI airport pages."
   },
   {
+    "template": "routesHub",
+    "note": "Intercity routes hub (/routes/)."
+  },
+  {
+    "template": "routePages",
+    "note": "Intercity route pages."
+  },
+  {
     "template": "fleetPage",
     "note": "Fleet hub."
   },
