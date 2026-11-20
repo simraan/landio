@@ -151,6 +151,12 @@ const FLEET_AMENITY_ICON = {
   "USB charging": fleetIco('<path d="M12 20V6M9 9l3-3 3 3M8 13h8"/>'),
   "Luggage bays": FLEET_BAG,
   "Overhead storage": fleetIco('<path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 7v8l8 4 8-4V7"/>'),
+  // Stretch Limo amenities — feature-specific line icons (same 20px, 1.6 stroke
+  // style as the rest) so they match every other fleet category, not a check.
+  "LED lounge lighting": fleetIco('<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 2a7 7 0 0 0-4 12.6c.6.5 1 1.3 1 2.4h6c0-1.1.4-1.9 1-2.4A7 7 0 0 0 12 2Z"/>'),
+  "Premium sound system": fleetIco('<path d="M4 9v6h3l5 4V5L7 9H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 6a8 8 0 0 1 0 12"/>'),
+  "Privacy glass": fleetIco('<path d="M3 3l18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.6 5.3A9 9 0 0 1 12 5c5 0 9 5 9 7a11.4 11.4 0 0 1-2 2.6"/><path d="M6.1 6.2C4 7.6 3 10 3 12c0 2 4 7 9 7 .8 0 1.6-.1 2.3-.3"/>'),
+  "Refreshment console": fleetIco('<path d="M5 4h14l-7 8z"/><path d="M12 12v6"/><path d="M8.5 20h7"/>'),
 };
 const FLEET_CHECK = fleetIco('<path d="M5 12l5 5 9-11"/>');
 const fleetAmenityIcon = (name) => FLEET_AMENITY_ICON[name] || FLEET_CHECK;
@@ -390,8 +396,11 @@ export function contactSection({ alt = true, variant = "default" } = {}) {
   const tel = { href: `tel:${SITE.phone.e164}`, cue: "Call now" };
   const mail = { href: `mailto:${SITE.email}`, cue: "Email us" };
   // "landing" = landing-template variant (inline icons; Call · Email · Service Area · Hours).
+  // All contact cards (both variants) use the same inline, gold (currentColor)
+  // icons so colours stay consistent site-wide. The default variant previously
+  // used /assets .svg <img> files stroked in a stale gold (#c6a664), which read
+  // as a different colour from the landing cards' brand-gold icons.
   const ico = (n) => `<span class="contact-card__icon"><span class="lp-contact__ico">${icon(n)}</span></span>`;
-  const old = (el) => `<span class="contact-card__icon">${el}</span>`;
   const cards = variant === "landing" ? [
     { lead: ico("phone"), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
     { lead: ico("mail"), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
@@ -399,11 +408,11 @@ export function contactSection({ alt = true, variant = "default" } = {}) {
       body: ["Washington, DC, Maryland & Northern Virginia", "Airports: IAD, DCA & BWI"] },
     { lead: ico("clock"), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
   ] : [
-    { lead: old(svgIcon("phone")), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
-    { lead: old(svgIcon("email")), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
-    { lead: old(svgIcon("pin")), title: "Our Office", act: { href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`, external: true, cue: "Get directions" },
+    { lead: ico("phone"), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
+    { lead: ico("mail"), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
+    { lead: ico("pin"), title: "Our Office", act: { href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`, external: true, cue: "Get directions" },
       body: [addr, "Serving Washington, DC, Maryland & Virginia"] },
-    { lead: old(svgIcon("alarm")), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
+    { lead: ico("clock"), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
   ];
   return `
     <section class="section ${alt ? "section--alt" : ""}" aria-labelledby="contact-title">

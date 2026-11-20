@@ -59,7 +59,7 @@ function fleetShowcase() {
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Choose Your Ride</span>
-          <h2 id="choose-title">Five Vehicle Classes, One Standard</h2>
+          <h2 id="choose-title">Six Vehicle Classes, One Exceptional Standard</h2>
           <p class="text-secondary">From the Executive Sedan to the Charter Bus — every class is hand-picked, immaculately maintained, and chauffeur-driven across Washington, DC, Maryland, and Northern Virginia.</p>
         </div>
         <ul class="flh-grid">${cards}

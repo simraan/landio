@@ -2317,10 +2317,16 @@ svg {
 }
 .cta-band__card h2 em {
   font-style: normal;
-  background: linear-gradient(180deg, #f7d06b, var(--gold));
+  color: var(--gold); /* fallback when background-clip:text is unsupported */
+  /* Match the premium logo-palette gold gradient used on hero headings so the
+     accent reads as a consistent rich gold (not a pale cream-to-gold wash). */
+  background: linear-gradient(118deg, #fbd145 0%, #e8bc4a 42%, #dea62e 72%, #f7d06b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .cta-band__card h2 em { color: var(--gold); -webkit-text-fill-color: var(--gold); }
 }
 .cta-band__lede {
   margin: 0 auto;
@@ -4775,31 +4781,25 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
    keyboard-focus affordance is kept; the number-circle ripple + its own hover
    styling live on .steps-node__num and are untouched.
    ========================================================================== */
-/* Premium rounded step cards (homepage): give each step a self-contained,
-   softly-rounded card surface with a quiet gold border and a subtle lift on
-   hover/focus. Scoped to .page-home so landing-page .steps-* stay untouched. */
-.page-home .steps-node.cbox {
-  background: var(--bg-2);
-  border: 1px solid var(--border-gold);
-  border-radius: clamp(18px, 2.2vw, 26px);
-  padding: clamp(1.7rem, 3vw, 2.4rem) clamp(1.1rem, 2vw, 1.6rem) clamp(1.5rem, 2.5vw, 2rem);
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+.page-home .steps-node.cbox:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+  background-color: transparent; /* hover background stays identical to the normal state */
 }
-.page-home .steps-node.cbox:hover,
-.page-home .steps-node.cbox:has(.cbox__action:focus-visible) {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: var(--card-shadow-hover);
-  background-color: var(--bg-2);
-}
-/* Rounder, more premium number badge on the homepage. */
+/* Circular step-number badges (the one deliberate change kept from the polish
+   pass; the rest of the Three Steps layout is the original borderless design).
+   The ripple rings are made circular too so the halo matches the round badge. */
 .page-home .steps-node__num { border-radius: var(--radius-pill); }
+.page-home .steps-node__num::before,
+.page-home .steps-node__num::after { border-radius: var(--radius-pill); }
 
-/* Cards are self-contained now, so drop the connecting timeline wire on the
-   homepage (its alignment assumed the old borderless layout). */
+/* Timeline alignment: the shared rule puts the 2px connecting line at top:32px,
+   but the number circles' vertical centers sit at 53px below the timeline top
+   (node padding-top 1.25rem + half of the 64px circle). Re-center the line on
+   the circles (homepage only; the mobile stacked layout has no line). */
 @media (min-width: 760px) {
-  .page-home .steps-timeline::before { display: none; }
+  .page-home .steps-timeline::before { top: 52px; }
 }
 
 /* ==========================================================================
