@@ -6354,8 +6354,29 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
    ============================================================ */
 .ig-section { position: relative; }
 
-/* centered heading */
+/* owner introduction */
+.ig-intro { display: grid; gap: clamp(22px, 4vw, 48px); align-items: center; margin-bottom: clamp(36px, 5vw, 64px); }
+@media (min-width: 880px) { .ig-intro { grid-template-columns: 0.82fr 1.18fr; } }
+.ig-intro__media { position: relative; }
+.ig-owner { display: block; width: 100%; max-width: 420px; margin-inline: auto; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); border: 1px solid var(--border-gold); overflow: hidden; box-shadow: var(--card-shadow); }
+.ig-owner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-intro__content .eyebrow { color: var(--gold); }
+.ig-intro__content h2 { margin: 10px 0 14px; }
+.ig-lede { font-size: 1.06rem; color: var(--text-1) !important; }
+.ig-intro__content p { color: var(--text-2); margin-bottom: 14px; }
+.ig-sign { color: var(--gold); font-weight: var(--fw-semibold); font-style: italic; margin-bottom: 4px !important; }
+.ig-trust { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px 24px; }
+@media (min-width: 560px) { .ig-trust { grid-template-columns: 1fr 1fr; } }
+.ig-trust li { display: flex; align-items: center; gap: 10px; color: var(--text-1); font-size: 0.95rem; }
+.ig-trust__ico { display: inline-flex; color: var(--gold); flex: 0 0 auto; }
+.ig-trust__ico svg { width: 20px; height: 20px; }
+
+/* centered @handle + heading */
 .ig-gallery__head--center { text-align: center; max-width: 62ch; margin: 0 auto clamp(22px, 3vw, 32px); }
+.ig-handle { color: var(--gold); display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 6px; }
+.ig-handle a { color: inherit; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.ig-handle a:hover { color: var(--gold-hover); }
+.ig-handle svg { width: 16px; height: 16px; }
 .ig-gallery__title { margin: 0 0 8px; }
 .ig-gallery__head--center .text-secondary { margin: 0 auto; }
 

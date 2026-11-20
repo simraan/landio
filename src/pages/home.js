@@ -351,15 +351,17 @@ function partner() {
 }
 
 /**
- * Instagram feed — a continuous, smooth auto-scrolling marquee of real
- * @landiolimoservices photos under a centered heading. Placed immediately after
- * the fleet section. Pure-CSS marquee: slides are rendered twice for a seamless
- * loop, it pauses on hover/focus, and is static under prefers-reduced-motion.
+ * Trust & Instagram section — owner introduction (with the owner's photo) and
+ * customer-experience trust points, then a continuous, smooth auto-scrolling
+ * marquee of real @landiolimoservices photos under a centered @handle + heading.
+ * Placed immediately after the fleet section. Pure-CSS marquee: slides render
+ * twice for a seamless loop, pauses on hover/focus, static under
+ * prefers-reduced-motion.
  *
  * To change the feed, edit GALLERY. Each entry is a real photo:
  *   { img: "/assets/img/instagram/<base>", alt: "…", href: "<post URL>" }
- * (`img` is the base path; -NN.webp/-NN.jpg are added. Set `href` to the exact
- *  post URL when available so a tap opens that post.)
+ * (`img` is the base path; .webp/.jpg are added. Set `href` to the exact post
+ *  URL when available so a tap opens that post.)
  */
 function instagramGallery() {
   const IG_URL = "https://www.instagram.com/landiolimoservices/";
@@ -372,6 +374,9 @@ function instagramGallery() {
     { img: "/assets/img/instagram/ig-3", alt: "Landio Limo Services luxury SUV", href: IG_URL },
     { img: "/assets/img/instagram/ig-4", alt: "Landio Limo Services luxury sedan and SUV", href: IG_URL },
     { img: "/assets/img/instagram/ig-5", alt: "Landio Limo Services at the Chauffeur Driven / NLA show", href: IG_URL },
+    { img: "/assets/img/instagram/ig-6", alt: "Landio Limo Services luxury van interior with LED lighting", href: IG_URL },
+    { img: "/assets/img/instagram/ig-7", alt: "Landio Limo Services luxury van interiors", href: IG_URL },
+    { img: "/assets/img/instagram/ig-8", alt: "Landio Limo Services luxury SUV", href: IG_URL },
   ];
 
   const slide = (g, dup) => `
@@ -388,12 +393,39 @@ function instagramGallery() {
   // Rendered twice so the -50% marquee loop is seamless.
   const slides = GALLERY.map((g) => slide(g, false)).join("") + GALLERY.map((g) => slide(g, true)).join("");
 
+  const trust = [
+    [I.plane, "Flight-tracked airport transfers to IAD, DCA &amp; BWI"],
+    [I.chauffeur, "Professional, carefully vetted chauffeurs"],
+    [I.car, "A meticulously maintained luxury fleet"],
+    [I.clock, "24/7 dispatch, every day of the year"],
+  ];
+
   return `
     <section class="section ig-section" aria-labelledby="ig-title">
       <div class="container">
+        <div class="ig-intro">
+          <div class="ig-intro__media">
+            <picture class="ig-owner">
+              <source type="image/webp" srcset="/assets/img/instagram/owner.webp">
+              <img src="/assets/img/instagram/owner.jpg" alt="The owner of Landio Limo Services" width="560" height="700" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="ig-intro__content">
+            <span class="eyebrow">A Personal Standard</span>
+            <h2 id="ig-title">Luxury Travel, <span class="gold">Treated Personally</span></h2>
+            <p class="ig-lede">At Landio Limo Services, luxury is personal. We built this company on one standard — treat every passenger like the most important client of the day. From a quiet Executive Sedan to the airport to a Stretch Limo for a night to remember, every detail is handled by a professional chauffeur who knows the DC metro inside and out.</p>
+            <p>Across Washington, DC, Maryland, and Northern Virginia, clients return because the experience stays consistent: a meticulously maintained fleet, flight-tracked airport pickups, and a dispatch team on call around the clock. It is chauffeured travel that feels effortless — punctual, discreet, and genuinely premium.</p>
+            <p class="ig-sign">— The Landio Limo Services Team</p>
+            <ul class="ig-trust">
+              ${trust.map(([ic, t]) => `<li><span class="ig-trust__ico" aria-hidden="true">${ic}</span><span>${t}</span></li>`).join("\n              ")}
+            </ul>
+          </div>
+        </div>
+
         <div class="ig-gallery">
           <div class="ig-gallery__head ig-gallery__head--center">
-            <h2 id="ig-title" class="ig-gallery__title">Follow the Journey</h2>
+            <span class="eyebrow ig-handle"><a href="${IG_URL}" target="_blank" rel="noopener">${igGlyph} @landiolimoservices</a></span>
+            <h3 class="ig-gallery__title">Follow the Journey</h3>
             <p class="text-secondary">Moments from the road across the DC metro — the fleet, airport runs, weddings, and nights out.</p>
           </div>
           <div class="ig-slider">
