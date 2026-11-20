@@ -381,13 +381,13 @@ function instagramGallery() {
 
   const slide = (g, dup) => `
             <li class="ig-slide"${dup ? ' aria-hidden="true"' : ""}>
-              <a class="ig-slide__link" href="${esc(g.href)}" target="_blank" rel="noopener"${dup ? ' tabindex="-1"' : ""} aria-label="${esc(g.alt)} — Instagram (@landiolimoservices)">
+              <div class="ig-slide__link">
                 <picture>
                   <source type="image/webp" srcset="${g.img}.webp">
                   <img class="ig-slide__img" src="${g.img}.jpg" alt="${dup ? "" : esc(g.alt)}" loading="lazy" decoding="async" width="500" height="625">
                 </picture>
                 <span class="ig-slide__tag" aria-hidden="true">${igGlyph}</span>
-              </a>
+              </div>
             </li>`;
 
   // Rendered twice so the -50% marquee loop is seamless.
