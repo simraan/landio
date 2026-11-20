@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Aura Hamptons — dark body sections with a light header and gold
-   accents. Design tokens: gold #C6A664, hover #D8BE84, Inter.
+   Landio Limo Services — dark body sections with a light header and gold
+   accents. Design tokens: gold #E8BC4A, hover #FBD145, Inter.
    ========================================================================== */
 
 /* --- Self-hosted Inter (latin), the only font declared and loaded --------- */
@@ -2317,7 +2317,7 @@ svg {
 }
 .cta-band__card h2 em {
   font-style: normal;
-  background: linear-gradient(180deg, #f1e3bd, var(--gold));
+  background: linear-gradient(180deg, #f7d06b, var(--gold));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -4600,7 +4600,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .nav-sub:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .dropdown__group {
   padding: 0.7rem 1rem 0.25rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gold-dark, #8a6d2f);
+  text-transform: uppercase; color: var(--gold-dark, #9e6b22);
 }
 .dropdown a[aria-current="page"] { color: var(--gold); }
 @media (min-width: 992px) {
@@ -5013,7 +5013,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
   position: relative; z-index: 1; margin-bottom: 0.5rem;
   font-size: clamp(2rem, 1.3rem + 1vw, 2.4rem); font-weight: 800; line-height: 1; letter-spacing: 0.02em;
   color: var(--gold); /* fallback when background-clip:text is unsupported */
-  background: linear-gradient(180deg, #efe0bb, var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  background: linear-gradient(180deg, #f7d06b, var(--gold)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
 :is(.page-home, .page-group-transfers) .airport-tile__name {
   /* static (not relative) so the whole-card click overlay is anchored to the tile,
@@ -5230,7 +5230,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 @media (max-width: 480px) { .page-home .excellence__list { grid-template-columns: 1fr; } }
 .page-home .excellence__check {
   width: 26px; height: 26px;
-  background: radial-gradient(120% 120% at 30% 20%, #efe0bb, var(--gold));
+  background: radial-gradient(120% 120% at 30% 20%, #f7d06b, var(--gold));
   box-shadow: 0 0 14px -4px rgba(var(--gold-rgb), 0.6);
 }
 
@@ -5279,7 +5279,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 :is(.page-home, .page-group-transfers, .page-contact, .page-partner, .page-about, .page-service-spoke, .page-fleet) .contactbar__ico {
   flex: none; width: 48px; height: 48px; margin-top: 7px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
-  background: radial-gradient(130% 130% at 30% 18%, #efe0bb, var(--gold)); color: var(--on-gold);
+  background: radial-gradient(130% 130% at 30% 18%, #f7d06b, var(--gold)); color: var(--on-gold);
   box-shadow: 0 0 16px -4px rgba(var(--gold-rgb), 0.6); transition: transform 0.25s var(--ease);
 }
 :is(.page-home, .page-group-transfers, .page-contact, .page-partner, .page-about, .page-service-spoke, .page-fleet) .contactbar__item:hover .contactbar__ico { transform: translateY(-2px); }

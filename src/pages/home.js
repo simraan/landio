@@ -235,7 +235,7 @@ function airportServed() {
     .join("\n          ");
   return `
     <section class="section section--alt airports-section" aria-labelledby="airport-home-title">
-      <svg class="airport-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="aura-plane-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e3bd"/><stop offset="1" stop-color="#c6a664"/></linearGradient></defs></svg>
+      <svg class="airport-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs><linearGradient id="aura-plane-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbd145"/><stop offset="1" stop-color="#dc9f29"/></linearGradient></defs></svg>
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Where We Fly In &amp; Out</span>
