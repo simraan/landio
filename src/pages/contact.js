@@ -72,7 +72,7 @@ export function contact() {
       h1: "Contact Landio Limo Services",
       lede: "Questions or ready to book? Reach us 24/7 by phone, email, or the form below.",
       withForm: false,
-      image: "/assets/img/hero/hamptons-hero",
+      image: "/assets/img/hero/dc-hero",
       features: [
         { icon: "clock", label: "Available 24/7" },
         { icon: "message", label: "We respond within 1 hour" },

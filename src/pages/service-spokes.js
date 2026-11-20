@@ -45,7 +45,7 @@ function intro(data) {
 
 // Shared image hero for the standard spokes (brand-consistent); the framed
 // image inside each intro split is per-service for variety.
-const SPOKE_HERO = "/assets/img/hero/hamptons-hero";
+const SPOKE_HERO = "/assets/img/hero/dc-hero";
 const SPOKE_FEATURES = [
   { icon: "userCheck", label: "Professional chauffeurs" },
   { icon: "plane", label: "Flight-tracked transfers" },
@@ -322,7 +322,7 @@ export function groupDetail(data) {
         <figure class="gt-split__media">
           <span class="gt-split__accent" aria-hidden="true"></span>
           <span class="gt-split__accent gt-split__accent--br" aria-hidden="true"></span>
-          ${splitPicture(data.detailImage || "/assets/img/hero/hamptons-hero", data.detailImageAlt || "Landio Limo Services chauffeured vehicle in the Washington, DC metro", { width: 1500, height: 844 })}
+          ${splitPicture(data.detailImage || "/assets/img/hero/dc-hero", data.detailImageAlt || "Landio Limo Services chauffeured vehicle in the Washington, DC metro", { width: 1500, height: 844 })}
         </figure>
       </div>
     </section>`;

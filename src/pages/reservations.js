@@ -66,7 +66,7 @@ export function reservations() {
       h1: "Book Your Ride",
       lede: "Reserve your Landio Limo Services chauffeured ride in minutes — airport transfers, executive travel, corporate, diplomatic, and group transport across Washington, DC, Maryland, and Northern Virginia.",
       withForm: true,
-      image: "/assets/img/hero/hamptons-hero",
+      image: "/assets/img/hero/dc-hero",
       features: [
         { icon: "clock", label: "Available 24/7" },
         { icon: "plane", label: "Flight-tracked airport transfers" },

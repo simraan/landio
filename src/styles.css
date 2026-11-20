@@ -4640,7 +4640,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .lp-prose strong { color: var(--text); }
 
 /* ==========================================================================
-   Homepage hero — photographic backdrop (hamptons-hero) + dark/gold overlay.
+   Homepage hero — photographic backdrop (dc-hero) + dark/gold overlay.
    Layout, copy, quote form, and CTAs are unchanged; this adds the premium photo
    treatment and tightens spacing/hierarchy. Dark/gold identity preserved.
    ========================================================================== */

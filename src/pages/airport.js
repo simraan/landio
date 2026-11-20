@@ -114,7 +114,7 @@ export function airport() {
           { icon: "tag", text: "No surge pricing" },
         ],
         image: {
-          base: "/assets/img/hero/hamptons-hero",
+          base: "/assets/img/hero/dc-hero",
           widths: [640, 1024, 1500],
           width: 1500,
           height: 844,

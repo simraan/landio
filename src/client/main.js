@@ -49,23 +49,6 @@ document.documentElement.classList.add("js");
   document.querySelectorAll(".hero--page form input[list]").forEach((i) => i.removeAttribute("list"));
 })();
 
-/* ---- Yacht page: a yacht/experience card pre-selects the charter enquiry
-   form (the links also scroll to it via #charter-enquiry). Scoped to /yacht/. ---- */
-(function yachtPrefill() {
-  if (!document.body.classList.contains("page-yacht")) return;
-  const form = document.getElementById("yacht-enquiry");
-  if (!form) return;
-  const set = (name, val) => {
-    const el = form.querySelector(`[name="${name}"]`);
-    if (!el || !val) return;
-    const opt = [...el.options].find((o) => o.value === val);
-    if (opt) { el.value = val; el.dispatchEvent(new Event("change", { bubbles: true })); }
-  };
-  document.querySelectorAll("[data-prefill-yacht]").forEach((el) =>
-    el.addEventListener("click", () => set("yacht", el.getAttribute("data-prefill-yacht"))));
-  document.querySelectorAll("[data-prefill-occasion]").forEach((el) =>
-    el.addEventListener("click", () => set("occasion", el.getAttribute("data-prefill-occasion"))));
-})();
 
 /* ---- Mobile nav ---- */
 (function nav() {

@@ -46,8 +46,8 @@ function hero() {
         </div>
         <figure class="about-hero__media">
           <picture>
-            <source type="image/webp" srcset="/assets/img/hero/hamptons-hero-640.webp 640w, /assets/img/hero/hamptons-hero-1024.webp 1024w" sizes="(min-width:960px) 46vw, 100vw">
-            <img src="/assets/img/hero/hamptons-hero-1024.jpg" srcset="/assets/img/hero/hamptons-hero-640.jpg 640w, /assets/img/hero/hamptons-hero-1024.jpg 1024w" sizes="(min-width:960px) 46vw, 100vw" alt="Landio Limo Services chauffeured car service across the DC metro" width="1024" height="768" fetchpriority="high" decoding="async">
+            <source type="image/webp" srcset="/assets/img/hero/dc-hero-640.webp 640w, /assets/img/hero/dc-hero-1024.webp 1024w" sizes="(min-width:960px) 46vw, 100vw">
+            <img src="/assets/img/hero/dc-hero-1024.jpg" srcset="/assets/img/hero/dc-hero-640.jpg 640w, /assets/img/hero/dc-hero-1024.jpg 1024w" sizes="(min-width:960px) 46vw, 100vw" alt="Landio Limo Services chauffeured car service across the DC metro" width="1024" height="768" fetchpriority="high" decoding="async">
           </picture>
           <span class="about-hero__accent" aria-hidden="true"></span>
         </figure>

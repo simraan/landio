@@ -14,7 +14,7 @@ import { cbox } from "./_sections.js";
 import { icon } from "../templates/icons.js";
 
 const PATH = "/services/";
-const HERO_IMAGE = "/assets/img/hero/hamptons-hero";
+const HERO_IMAGE = "/assets/img/hero/dc-hero";
 
 /** Per-service presentation: image + short, specific description. Titles/URLs
  *  come from `config.js` (single source of truth) so they never drift. */

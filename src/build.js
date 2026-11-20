@@ -29,7 +29,6 @@ import { home } from "./pages/home.js";
 import { about } from "./pages/about.js";
 import { servicesPage } from "./pages/services.js";
 import { serviceSpokes } from "./pages/service-spokes.js";
-import { routeSpokes } from "./pages/route-spokes.js";
 import { fleetPage } from "./pages/fleet.js";
 import { vehiclePages } from "./pages/vehicles.js";
 import { contact } from "./pages/contact.js";
@@ -88,7 +87,6 @@ const TEMPLATES = {
   about,
   servicesPage,
   serviceSpokes, // → array of 6 service spokes
-  routeSpokes, // → array of airport→destination route pages under /services/
   fleetPage,
   vehiclePages, // → array of 6 vehicle pages
   contact,

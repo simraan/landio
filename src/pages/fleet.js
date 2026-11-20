@@ -121,7 +121,7 @@ export function fleetPage() {
         eyebrow: "Our Premium Fleet",
         h1: "Our Fleet",
         withForm: false,
-        image: "/assets/img/hero/hamptons-hero",
+        image: "/assets/img/hero/dc-hero",
         ledeHtml: `Five immaculate vehicle classes — the right choice for <a href="/services/airport-transfers/">airport transfers</a>, executive travel, diplomatic service, and group trips across Washington, DC, Maryland, and Northern Virginia.`,
         features: [
           { icon: "car", label: "5 vehicle classes" },

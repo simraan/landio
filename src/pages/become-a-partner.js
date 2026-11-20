@@ -256,7 +256,7 @@ export function becomePartner() {
       h1: "Become an Landio Partner",
       lede: "Partner with Landio Limo Services and give your clients and guests seamless luxury transportation across Washington, DC, Maryland, and Northern Virginia — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.",
       withForm: false,
-      image: "/assets/img/hero/hamptons-hero",
+      image: "/assets/img/hero/dc-hero",
       features: [
         { icon: "users", label: "Dedicated support" },
         { icon: "calendar", label: "24/7 booking support" },
