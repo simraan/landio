@@ -100,7 +100,7 @@ function render(data) {
     description: data.description,
     bodyClass: "page-vehicle",
     cluster: "fleet",
-    card: { title: v.name, text: `${v.pax}${v.bags ? `, ${v.bags} bags` : ""}.`, icon: v.key === "sedan" || v.key === "suv" ? "car" : "van" },
+    card: { title: v.name, text: `${v.pax}${v.bags ? `, ${v.bags} bags` : ""}.`, icon: v.key === "sedan" || v.key === "suv" || v.key === "stretch" ? "car" : "van" },
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -193,6 +193,29 @@ const VEHICLES = [
       { q: "How many passengers fit in the Sprinter Van?", a: `The Sprinter Van comfortably seats ${paxLabel(CAPACITY.sprinter)} with room for luggage.` },
       { q: "Is the Sprinter Van available for airport transfers?", a: "Yes. It's ideal for group transfers to and from Dulles (IAD), Reagan National (DCA), and BWI, with real-time flight tracking." },
       { q: `Can you move a group larger than ${CAPACITY.sprinter.paxMax}?`, a: "Yes — our Mini Bus and Charter Bus carry larger parties, or we can coordinate multiple Sprinter Van trips around your schedule." },
+    ],
+  },
+  {
+    slug: "stretch-limo",
+    hubAnchor: "DC airport car service",
+    url: "/fleet/stretch-limo/",
+    title: "Stretch Limo",
+    short: "Stretch Limo",
+    eyebrow: "Special Occasions",
+    h1: "Stretch Limo Service in the DC Metro",
+    lede: `A classic stretch limousine for ${paxLabel(CAPACITY.stretch)} — the standout choice for weddings, proms, and milestone celebrations.`,
+    description:
+      `Landio Stretch Limo — lounge-style seating for ${paxLabel(CAPACITY.stretch)}, ideal for DC-area weddings, proms, anniversaries, and VIP nights out with LED ambiance and a premium sound system.`,
+    body: `Our Stretch Limo turns the ride into part of the occasion, seating ${paxLabel(CAPACITY.stretch)} in a lounge-style cabin with LED ambient lighting, privacy glass, and a premium sound system. It's the signature choice for weddings, proms, anniversaries, bachelor and bachelorette nights, and VIP evenings out across Washington, DC, Maryland, and Northern Virginia — arriving in style with a professional chauffeur at the wheel.`,
+    bestFor: [
+      { t: "Weddings", d: "A classic grand entrance and comfortable transport for the couple and wedding party." },
+      { t: "Proms & milestones", d: "Birthdays, anniversaries, quinceañeras, and celebrations that call for an occasion vehicle." },
+      { t: "VIP nights out", d: "Dinners, concerts, and evenings across the DC metro in lounge-style comfort." },
+    ],
+    faqs: [
+      { q: "How many passengers fit in the Stretch Limo?", a: `The Stretch Limo offers lounge-style seating for ${paxLabel(CAPACITY.stretch)}; share your group size and we'll confirm the right fit.` },
+      { q: "What occasions is the Stretch Limo best for?", a: "Weddings, proms, anniversaries, bachelor and bachelorette parties, and VIP nights out are the most popular, though it's available for any special occasion across the DC metro." },
+      { q: "Can I book the Stretch Limo by the hour?", a: "Yes. The Stretch Limo is available for hourly charters as well as point-to-point celebration transport, always with a professional chauffeur." },
     ],
   },
   {

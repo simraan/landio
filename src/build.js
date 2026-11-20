@@ -90,7 +90,7 @@ const TEMPLATES = {
   serviceSpokes, // → array of 6 service spokes
   routeSpokes, // → array of airport→destination route pages under /services/
   fleetPage,
-  vehiclePages, // → array of 5 vehicle pages
+  vehiclePages, // → array of 6 vehicle pages
   contact,
   becomePartner,
   reservations,

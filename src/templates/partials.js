@@ -213,7 +213,7 @@ export function quoteForm(id, { heading = "Instant Quote", location = "hero", pr
   const hoursList = `<ul class="cf-list" role="listbox">${["2", "3", "4", "5", "6", "7", "8", "9", "10", "10+"].map((h) => `<li role="option"><button type="button" class="cf-opt" data-value="${h} hours">${h} hours</button></li>`).join("")}</ul>`;
   const ccList = `<ul class="cf-list" role="listbox">${[["+1", "US +1"], ["+91", "IN +91"], ["+1", "CA +1"], ["+44", "GB +44"], ["+61", "AU +61"], ["+971", "AE +971"], ["+49", "DE +49"], ["+33", "FR +33"], ["+52", "MX +52"], ["+55", "BR +55"]].map(([v, l]) => `<li role="option"><button type="button" class="cf-opt" data-value="${v}" data-label="${l}">${l}</button></li>`).join("")}</ul>`;
 
-  // Step 2 — vehicle selection cards. SSOT: SITE.fleet (5 vehicle classes).
+  // Step 2 — vehicle selection cards. SSOT: SITE.fleet (6 vehicle classes).
   const vIco = `<svg class="qf-vcard__ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`;
   const vcards = SITE.fleet
     .map((v) => `

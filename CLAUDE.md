@@ -55,10 +55,11 @@ page (an indexable page nothing links to).
   Gaithersburg, Chevy Chase, National Harbor, Baltimore, Annapolis. VA:
   Arlington, Alexandria, McLean, Tysons, Fairfax, Reston, Ashburn, Sterling,
   Leesburg. Base: Germantown, MD.
-- **Fleet = five classes:** Executive Sedan, Luxury SUV, Sprinter Van (14 pax),
-  Mini Bus, Charter Bus. (Sprinter Jet dropped; Motor Coach renamed Charter
-  Bus.) Capacities live only in `CAPACITY` in `config.js` and are placeholders —
-  CONFIRM real seat/bag counts with the client.
+- **Fleet = six classes:** Executive Sedan, Luxury SUV, Sprinter Van (14 pax),
+  Stretch Limo, Mini Bus, Charter Bus. (Sprinter Jet dropped; Motor Coach
+  renamed Charter Bus; Stretch Limo added as card 4.) Capacities live only in
+  `CAPACITY` in `config.js` and are placeholders — CONFIRM real seat/bag counts
+  with the client.
 - **No yacht line.** Core lines: airport transfers, corporate/executive, private
   aviation (FBO), diplomatic transportation, group transport, meet & greet,
   hourly chauffeur.

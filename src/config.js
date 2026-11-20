@@ -38,6 +38,7 @@ export const CAPACITY = {
   sedan: { paxMin: null, paxMax: 3, bags: 3 },
   suv: { paxMin: null, paxMax: 6, bags: 6 },
   sprinter: { paxMin: null, paxMax: 14, bags: 14 },
+  stretch: { paxMin: null, paxMax: 8, bags: null },
   minibus: { paxMin: null, paxMax: 24, bags: null },
   coach: { paxMin: null, paxMax: 56, bags: null },
 };
@@ -321,6 +322,18 @@ export const SITE = {
       imageBase: "/assets/img/fleet/sprinter-van",
       amenities: ["Wi-Fi", "Executive seating", "Climate control"],
       desc: `Luxury Sprinter van for groups, airport pickups, corporate roadshows, and private transfers — ${paxLabel(CAPACITY.sprinter)} with generous luggage capacity and executive comfort.`,
+    },
+    {
+      key: "stretch",
+      name: "Stretch Limo",
+      slug: "stretch-limo",
+      seats: CAPACITY.stretch.paxMax,
+      pax: paxLabel(CAPACITY.stretch),
+      bags: CAPACITY.stretch.bags,
+      image: "/assets/img/fleet/stretch-limo-1024.jpg",
+      imageBase: "/assets/img/fleet/stretch-limo",
+      amenities: ["LED lounge lighting", "Premium sound system", "Privacy glass", "Refreshment console"],
+      desc: `Classic stretch limousine for weddings, proms, milestone celebrations, and VIP nights out across the DC metro — lounge-style seating for ${paxLabel(CAPACITY.stretch)}, with LED ambiance and a premium sound system.`,
     },
     {
       key: "minibus",
