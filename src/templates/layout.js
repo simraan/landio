@@ -8,7 +8,7 @@
 import { SITE, absoluteUrl, businessJsonLd } from "../config.js";
 import { esc, header, footer, floatingCta, preFooterCta, scrollTop, quoteModal } from "./partials.js";
 
-const OG_IMAGE = "/assets/img/brand/atown-og.png";
+const OG_IMAGE = "/assets/img/brand/landio-og.jpg";
 
 export function renderPage(page, assets) {
   const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId } = assets;
