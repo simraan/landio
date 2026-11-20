@@ -34,7 +34,7 @@ const I = {
 };
 
 function hero() {
-  const HERO_IMG = "/assets/img/hero/hamptons-hero";
+  const HERO_IMG = "/assets/img/hero/dc-limo-hero";
   return `
     <section class="hero hero--home">
       <picture class="hero__bg" aria-hidden="true">
