@@ -6347,3 +6347,100 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
   .page-home .partner__media::before, .page-home .partner__media img { transition: none; }
   .page-home .partner__media:hover img { transform: none; }
 }
+
+/* ============================================================
+   Trust & Instagram gallery (homepage, immediately after fleet)
+   Dark/gold system tokens only; fully scoped under .ig-*.
+   ============================================================ */
+.ig-section { position: relative; }
+.ig-intro {
+  display: grid;
+  gap: clamp(22px, 4vw, 48px);
+  align-items: center;
+  margin-bottom: clamp(34px, 5vw, 60px);
+}
+@media (min-width: 880px) { .ig-intro { grid-template-columns: 0.82fr 1.18fr; } }
+.ig-intro__media { position: relative; }
+.ig-owner {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; aspect-ratio: 4 / 5; max-height: 460px; margin-inline: auto; width: 100%;
+  border-radius: var(--radius-lg); border: 1px solid var(--border-gold);
+  background:
+    radial-gradient(130% 80% at 50% 0%, rgba(var(--gold-rgb), 0.14), transparent 62%),
+    linear-gradient(160deg, var(--bg-2), var(--black-primary));
+  color: var(--gold); box-shadow: var(--card-shadow);
+}
+.ig-owner__ph svg { width: 56px; height: 56px; opacity: 0.85; }
+.ig-owner__note { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+.ig-intro__content .eyebrow { color: var(--gold); }
+.ig-intro__content h2 { margin: 10px 0 14px; }
+.ig-lede { font-size: 1.06rem; color: var(--text-1) !important; }
+.ig-intro__content p { color: var(--text-2); margin-bottom: 14px; }
+.ig-sign { color: var(--gold); font-weight: var(--fw-semibold); font-style: italic; margin-bottom: 4px !important; }
+.ig-trust { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px 24px; }
+@media (min-width: 560px) { .ig-trust { grid-template-columns: 1fr 1fr; } }
+.ig-trust li { display: flex; align-items: center; gap: 10px; color: var(--text-1); font-size: 0.95rem; }
+.ig-trust__ico { display: inline-flex; color: var(--gold); flex: 0 0 auto; }
+.ig-trust__ico svg { width: 20px; height: 20px; }
+
+/* gallery header */
+.ig-gallery__head { display: flex; flex-wrap: wrap; gap: 18px 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 22px; }
+.ig-gallery__intro { max-width: 48ch; }
+.ig-handle { color: var(--gold); display: inline-flex; align-items: center; gap: 8px; }
+.ig-handle svg { width: 16px; height: 16px; }
+.ig-gallery__title { margin: 10px 0 6px; }
+.ig-follow { align-self: center; }
+.ig-follow svg { width: 18px; height: 18px; margin-right: 2px; }
+
+/* slider */
+.ig-slider { position: relative; }
+.ig-track {
+  list-style: none; margin: 0; padding: 4px; display: flex; gap: clamp(12px, 1.6vw, 18px);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.ig-track::-webkit-scrollbar { display: none; }
+.ig-slide { flex: 0 0 76%; scroll-snap-align: start; }
+@media (min-width: 560px) { .ig-slide { flex-basis: 44%; } }
+@media (min-width: 880px) { .ig-slide { flex-basis: 30.5%; } }
+@media (min-width: 1140px) { .ig-slide { flex-basis: 23%; } }
+.ig-slide__link {
+  position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden;
+  border-radius: var(--radius-lg); border: 1px solid var(--border-gold);
+  background: linear-gradient(160deg, var(--bg-2), var(--black-primary));
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.ig-slide__link:hover, .ig-slide__link:focus-visible {
+  transform: translateY(-5px); border-color: var(--gold); outline: none;
+  box-shadow: 0 26px 60px -22px rgba(0,0,0,0.75), 0 0 0 1px var(--gold-glow);
+}
+.ig-slide__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-slide__ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; text-align: center; padding: 16px;
+  background: radial-gradient(130% 90% at 50% 0%, rgba(var(--gold-rgb), 0.12), transparent 64%); }
+.ig-slide__glyph svg { width: 40px; height: 40px; color: var(--gold); opacity: 0.9; }
+.ig-slide__phlabel { color: var(--text-1); font-weight: var(--fw-semibold); font-size: 0.95rem; }
+.ig-slide__phnote { color: var(--text-muted); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.ig-slide__tag { position: absolute; top: 10px; right: 10px; display: inline-flex; color: #fff; opacity: 0.9; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6)); }
+.ig-slide__tag svg { width: 18px; height: 18px; }
+.ig-slide__ph ~ .ig-slide__tag { display: none; }
+
+.ig-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--black-card); color: var(--gold); border: 1px solid var(--border-gold); cursor: pointer;
+  box-shadow: var(--card-shadow); transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.ig-arrow:hover { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+.ig-arrow:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.ig-arrow svg { width: 20px; height: 20px; }
+.ig-arrow--prev { left: -6px; }
+.ig-arrow--next { right: -6px; }
+@media (min-width: 1400px) { .ig-arrow--prev { left: -22px; } .ig-arrow--next { right: -22px; } }
+@media (max-width: 560px) { .ig-arrow { width: 38px; height: 38px; } .ig-arrow svg { width: 18px; height: 18px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ig-track { scroll-behavior: auto; }
+  .ig-slide__link { transition: none; }
+  .ig-slide__link:hover, .ig-slide__link:focus-visible { transform: none; }
+}

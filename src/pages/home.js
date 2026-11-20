@@ -350,6 +350,100 @@ function partner() {
     </section>`;
 }
 
+/**
+ * Trust & Instagram gallery — owner/brand introduction, customer-experience
+ * trust points, and a horizontal Instagram-style slider (auto-advance, arrows,
+ * native swipe; JS in client/main.js). Placed immediately after the fleet
+ * section.
+ *
+ * IMPORTANT: Instagram cannot be read without login and is unreachable from the
+ * build environment, so the slide tiles are branded PLACEHOLDERS — no invented
+ * photos. To use real content, fill each GALLERY entry with the real values:
+ *   { img: "/assets/img/instagram/<file>", alt: "…", href: "<post URL>", label: "…" }
+ * Dropping real `img`/`href` in is all that's needed; the markup adapts.
+ */
+function instagramGallery() {
+  const IG_URL = "https://www.instagram.com/landiolimoservices/";
+  const igGlyph =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/></svg>';
+  const personGlyph =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>';
+  const chL =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
+  const chR =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+
+  // Placeholder tiles — replace img/href/alt with real @landiolimoservices posts.
+  const GALLERY = [
+    { label: "Executive fleet", img: null, href: IG_URL },
+    { label: "Airport transfers", img: null, href: IG_URL },
+    { label: "Weddings & events", img: null, href: IG_URL },
+    { label: "Corporate travel", img: null, href: IG_URL },
+    { label: "Professional chauffeurs", img: null, href: IG_URL },
+    { label: "Stretch limo nights", img: null, href: IG_URL },
+    { label: "Group transport", img: null, href: IG_URL },
+    { label: "DC metro journeys", img: null, href: IG_URL },
+  ];
+
+  const slide = (g) => `
+          <li class="ig-slide">
+            <a class="ig-slide__link" href="${esc(g.href)}" target="_blank" rel="noopener" aria-label="${esc(g.label)} — view on Instagram (@landiolimoservices)">
+              ${g.img
+                ? `<img class="ig-slide__img" src="${esc(g.img)}" alt="${esc(g.alt || g.label)}" loading="lazy" decoding="async" width="600" height="750">`
+                : `<span class="ig-slide__ph" aria-hidden="true"><span class="ig-slide__glyph">${igGlyph}</span><span class="ig-slide__phlabel">${esc(g.label)}</span><span class="ig-slide__phnote">Instagram photo</span></span>`}
+              <span class="ig-slide__tag" aria-hidden="true">${igGlyph}</span>
+            </a>
+          </li>`;
+
+  const trust = [
+    [I.plane, "Flight-tracked airport transfers to IAD, DCA &amp; BWI"],
+    [I.chauffeur, "Professional, carefully vetted chauffeurs"],
+    [I.car, "A meticulously maintained luxury fleet"],
+    [I.clock, "24/7 dispatch, every day of the year"],
+  ];
+
+  return `
+    <section class="section ig-section" aria-labelledby="ig-title">
+      <div class="container">
+        <div class="ig-intro">
+          <div class="ig-intro__media">
+            <span class="ig-owner" aria-hidden="true">
+              <span class="ig-owner__ph">${personGlyph}</span>
+              <span class="ig-owner__note">Owner photo</span>
+            </span>
+          </div>
+          <div class="ig-intro__content">
+            <span class="eyebrow">A Personal Standard</span>
+            <h2 id="ig-title">Luxury Travel, <span class="gold">Treated Personally</span></h2>
+            <p class="ig-lede">At Landio Limo Services, luxury is personal. We built this company on one standard — treat every passenger like the most important client of the day. From a quiet Executive Sedan to the airport to a Stretch Limo for a night to remember, every detail is handled by a professional chauffeur who knows the DC metro inside and out.</p>
+            <p>Across Washington, DC, Maryland, and Northern Virginia, clients return because the experience stays consistent: a meticulously maintained fleet, flight-tracked airport pickups, and a dispatch team on call around the clock. It is chauffeured travel that feels effortless — punctual, discreet, and genuinely premium.</p>
+            <p class="ig-sign">— The Landio Limo Services Team</p>
+            <ul class="ig-trust">
+              ${trust.map(([ic, t]) => `<li><span class="ig-trust__ico" aria-hidden="true">${ic}</span><span>${t}</span></li>`).join("\n              ")}
+            </ul>
+          </div>
+        </div>
+
+        <div class="ig-gallery">
+          <div class="ig-gallery__head">
+            <div class="ig-gallery__intro">
+              <span class="eyebrow ig-handle">${igGlyph} @landiolimoservices</span>
+              <h3 class="ig-gallery__title">Follow the Journey</h3>
+              <p class="text-secondary">Moments from the road across the DC metro — the fleet, airport runs, weddings, and nights out.</p>
+            </div>
+            <a class="btn btn-primary ig-follow" href="${IG_URL}" target="_blank" rel="noopener">${igGlyph} Follow Us on Instagram</a>
+          </div>
+          <div class="ig-slider" data-ig-slider>
+            <button class="ig-arrow ig-arrow--prev" type="button" data-ig-prev aria-label="Previous photos">${chL}</button>
+            <ul class="ig-track" data-ig-track>${GALLERY.map(slide).join("")}
+            </ul>
+            <button class="ig-arrow ig-arrow--next" type="button" data-ig-next aria-label="Next photos">${chR}</button>
+          </div>
+        </div>
+      </div>
+    </section>`;
+}
+
 export function home() {
   return {
     path: "/",
@@ -359,7 +453,7 @@ export function home() {
     bodyClass: "page-home",
     jsonLd: [faqJsonLd(SITE.faqs)],
     main: [
-      hero(), marquee(), fleet(), routes(), services(), threeStepsSection(),
+      hero(), marquee(), fleet(), instagramGallery(), routes(), services(), threeStepsSection(),
       whatIncludes(), airportServed(), areasServed(), eventCta(),
       excellence(), faq(), partner(), contactBar(),
     ].join("\n"),
