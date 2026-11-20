@@ -6415,3 +6415,43 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
   .ig-slide__link { transition: none; }
   .ig-slide__link:hover, .ig-slide__link:focus-visible { transform: none; }
 }
+
+/* ============================================================
+   Google Reviews — "What Our Clients Say" (homepage, after excellence)
+   Clean premium section; renders real review cards only when provided.
+   ============================================================ */
+.rv-section { position: relative; }
+.rv-head { text-align: center; max-width: 62ch; margin: 0 auto clamp(26px, 4vw, 40px); }
+.rv-head .eyebrow { color: var(--gold); }
+.rv-head h2 { margin: 10px 0 12px; }
+.rv-badge {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; padding: 9px 18px;
+  border: 1px solid var(--border-gold); border-radius: var(--radius-pill);
+  background: var(--black-card); color: var(--text-1); font-weight: var(--fw-semibold); font-size: 0.9rem;
+}
+.rv-badge svg { width: 18px; height: 18px; }
+
+.rv-grid { list-style: none; margin: 0 0 clamp(26px, 4vw, 40px); padding: 0; display: grid; gap: clamp(14px, 2vw, 22px); grid-template-columns: 1fr; }
+@media (min-width: 640px) { .rv-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 980px) { .rv-grid { grid-template-columns: repeat(3, 1fr); } }
+.rv-card {
+  background: var(--black-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(18px, 2.4vw, 26px); box-shadow: var(--card-shadow);
+  display: flex; flex-direction: column; gap: 12px; text-align: left;
+}
+.rv-card__head { display: flex; align-items: center; gap: 12px; }
+.rv-avatar {
+  width: 44px; height: 44px; border-radius: 50%; flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: var(--fw-bold); color: var(--on-gold); background: var(--gold-metal);
+}
+.rv-card__id { min-width: 0; }
+.rv-name { margin: 0; font-weight: var(--fw-semibold); color: var(--text-1); }
+.rv-stars { display: inline-flex; gap: 2px; color: var(--gold); margin-top: 3px; }
+.rv-stars svg { width: 15px; height: 15px; display: block; }
+.rv-star--off { color: var(--border); }
+.rv-g { margin-left: auto; align-self: flex-start; }
+.rv-g svg { width: 20px; height: 20px; }
+.rv-text { margin: 0; color: var(--text-2); font-size: 0.96rem; line-height: 1.6; }
+.rv-date { margin: 0; color: var(--text-muted); font-size: 0.8rem; }
+.rv-cta { text-align: center; }
