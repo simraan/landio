@@ -6352,7 +6352,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
    Instagram feed (homepage, immediately after fleet)
    Continuous CSS marquee; dark/gold tokens; scoped under .ig-*.
    ============================================================ */
-.ig-section { position: relative; }
+.ig-section { position: relative; background: #151412; }
 
 /* owner introduction */
 .ig-intro { display: grid; gap: clamp(22px, 4vw, 48px); align-items: center; margin-bottom: clamp(36px, 5vw, 64px); }
@@ -6385,8 +6385,8 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .ig-slider::before, .ig-slider::after {
   content: ""; position: absolute; top: 0; bottom: 0; width: clamp(24px, 6vw, 90px); z-index: 2; pointer-events: none;
 }
-.ig-slider::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-.ig-slider::after { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.ig-slider::before { left: 0; background: linear-gradient(90deg, #151412, transparent); }
+.ig-slider::after { right: 0; background: linear-gradient(270deg, #151412, transparent); }
 .ig-track { list-style: none; margin: 0; padding: 6px 0; display: flex; flex-wrap: nowrap; width: max-content; }
 .ig-track--marquee { animation: ig-marquee 34s linear infinite; }
 .ig-slider:hover .ig-track--marquee,
