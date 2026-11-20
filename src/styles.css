@@ -17,7 +17,7 @@
 
 :root {
   /* Dark body surfaces */
-  --bg: #0a0a0a;
+  --bg: #0b0a08;
   --bg-1: #101010;
   --bg-2: #161616;
   --bg-3: #1c1c1c;
@@ -28,24 +28,24 @@
 
   --border: #262626;
   --border-light: #e7e7e7;
-  --border-gold: rgba(198, 166, 100, 0.22);
+  --border-gold: rgba(232, 188, 74, 0.22);
 
   /* Gold accent (standardized) */
-  --gold: #c6a664;
-  --gold-hover: #d8be84;
-  --gold-rgb: 198, 166, 100; /* keep in sync with --gold */
+  --gold: #e8bc4a;
+  --gold-hover: #fbd145;
+  --gold-rgb: 232, 188, 74; /* keep in sync with --gold */
   --gold-dim: rgba(var(--gold-rgb), 0.12);
   --gold-glow: rgba(var(--gold-rgb), 0.38);
   --ambient-gold: rgba(var(--gold-rgb), 0.16);
   /* Metallic sheen (lighter champagne → base gold → deeper gold) for the quote
      form's active tab, derived from ATown's --gold. */
-  --gold-metal: linear-gradient(180deg, #e2d2a0 0%, #c6a664 52%, #ab8d4f 100%);
-  --gold-metal-hover: linear-gradient(180deg, #ecdcb4 0%, #d8be84 52%, #bd9d5d 100%);
+  --gold-metal: linear-gradient(180deg, #fbd145 0%, #dc9f29 52%, #bf8535 100%);
+  --gold-metal-hover: linear-gradient(180deg, #ffe07a 0%, #ecb43a 52%, #cf9240 100%);
   /* Premium gold-gradient design system (used for cards, icons, buttons, accents). */
-  --gold-primary: #c6a15b;
-  --gold-light: #e5c887;
-  --gold-dark: #8e6b2d;
-  --gold-gradient: linear-gradient(135deg, #8e6b2d 0%, #c6a15b 50%, #e5c887 100%);
+  --gold-primary: #dea62e;
+  --gold-light: #f7d06b;
+  --gold-dark: #9e6b22;
+  --gold-gradient: linear-gradient(135deg, #9e6b22 0%, #dea62e 50%, #fbd145 100%);
   --gold-gradient-soft: linear-gradient(140deg, rgba(var(--gold-rgb), 0.20) 0%, rgba(var(--gold-rgb), 0.05) 100%);
   --black-primary: #080808;
   --black-card: #11100d;
@@ -545,7 +545,7 @@ svg {
 .hero {
   background: radial-gradient(
       120% 90% at 15% -10%,
-      rgba(198, 166, 100, 0.1),
+      rgba(232, 188, 74, 0.1),
       transparent 55%
     ),
     var(--bg);
@@ -2367,7 +2367,7 @@ svg {
     box-shadow 0.18s var(--ease);
 }
 .btn-primary:hover {
-  box-shadow: 0 6px 20px rgba(198, 166, 100, 0.35);
+  box-shadow: 0 6px 20px rgba(232, 188, 74, 0.35);
 }
 .btn-ghost:hover {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
@@ -2704,7 +2704,7 @@ svg {
 }
 /* Slightly more defined gold border on the cards. */
 .fleet-card {
-  border-color: rgba(198, 166, 100, 0.32);
+  border-color: rgba(232, 188, 74, 0.32);
 }
 /* All fleet images the same height (fixed box, cover-cropped). */
 .fleet-card__media {
@@ -3039,7 +3039,7 @@ svg {
     left: 8px;
     right: 8px;
     height: 2px;
-    background: linear-gradient(90deg, var(--gold), rgba(198, 166, 100, 0.25));
+    background: linear-gradient(90deg, var(--gold), rgba(232, 188, 74, 0.25));
   }
 }
 
@@ -3792,7 +3792,7 @@ body.modal-open { overflow: hidden; }
 }
 .step-card.in::after { transform: scaleX(1); }
 .includes-note {
-  background: radial-gradient(600px 180px at 100% 0%, rgba(198,166,100,0.14), transparent 60%), linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  background: radial-gradient(600px 180px at 100% 0%, rgba(232,188,74,0.14), transparent 60%), linear-gradient(180deg, var(--bg-3), var(--bg-2));
   border-color: var(--border-gold);
 }
 .airport-tile { transition: transform 0.25s var(--ease), border-color 0.25s var(--ease); }
@@ -3863,7 +3863,7 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
   .steps-timeline { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; position: relative; }
   .steps-timeline::before {
     content: ""; position: absolute; top: 32px; left: 16.66%; right: 16.66%; height: 2px;
-    background: linear-gradient(90deg, var(--gold), rgba(198, 166, 100, 0.35), var(--gold));
+    background: linear-gradient(90deg, var(--gold), rgba(232, 188, 74, 0.35), var(--gold));
     z-index: 0;
   }
 }
@@ -3896,7 +3896,7 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
   overflow: hidden;
   border: 1px solid var(--border-gold);
   background:
-    radial-gradient(520px 220px at 115% -25%, rgba(198, 166, 100, 0.20), transparent 60%),
+    radial-gradient(520px 220px at 115% -25%, rgba(232, 188, 74, 0.20), transparent 60%),
     linear-gradient(180deg, var(--bg-3), var(--bg-2));
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
@@ -3927,12 +3927,12 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
 .includes-note ul li::before {
   content: ""; position: absolute; left: 0; top: 0.5em;
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--gold); box-shadow: 0 0 10px rgba(198, 166, 100, 0.6);
+  background: var(--gold); box-shadow: 0 0 10px rgba(232, 188, 74, 0.6);
 }
 
 /* Steps — soft glow + ripple on the number circles */
 .steps-node__num {
-  box-shadow: 0 0 22px rgba(198, 166, 100, 0.22);
+  box-shadow: 0 0 22px rgba(232, 188, 74, 0.22);
 }
 .steps-node__num::before,
 .steps-node__num::after {
@@ -3946,7 +3946,7 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
   100% { transform: scale(1.65); opacity: 0; }
 }
 .steps-node:hover .steps-node__num {
-  box-shadow: 0 0 34px rgba(198, 166, 100, 0.5);
+  box-shadow: 0 0 34px rgba(232, 188, 74, 0.5);
 }
 @media (prefers-reduced-motion: reduce) {
   .steps-node__num::before, .steps-node__num::after { animation: none; }
@@ -3963,7 +3963,7 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
 .route-chip:hover::after { left: 150%; }
 .route-chip:hover {
   border-color: var(--gold);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38), 0 0 22px rgba(198, 166, 100, 0.18);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38), 0 0 22px rgba(232, 188, 74, 0.18);
 }
 .route-chip:hover .route-chip__go { background: var(--gold); color: var(--on-gold); }
 
@@ -4150,7 +4150,7 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
 }
 .vcard:hover, .vcard:focus-visible {
   transform: translateY(-3px); border-color: var(--gold);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38), 0 0 22px rgba(198, 166, 100, 0.18);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38), 0 0 22px rgba(232, 188, 74, 0.18);
 }
 .vcard:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .vcard__media { display: block; position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0d0d0d; }
@@ -4328,8 +4328,8 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
   position: relative; display: flex; flex-direction: column; overflow: hidden;
   transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), opacity 0.25s var(--ease);
 }
-.lp-vcard:hover, .lp-vcard:focus-within { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 16px 36px rgba(0,0,0,0.4), 0 0 24px rgba(198,166,100,0.16); }
-.lp-vcard.is-fit { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 0 28px rgba(198,166,100,0.25); }
+.lp-vcard:hover, .lp-vcard:focus-within { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 16px 36px rgba(0,0,0,0.4), 0 0 24px rgba(232,188,74,0.16); }
+.lp-vcard.is-fit { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 0 28px rgba(232,188,74,0.25); }
 .lp-vcard.is-dim { opacity: 0.45; }
 .lp-vcard.is-dim:hover, .lp-vcard.is-dim:focus-within { opacity: 1; }
 .lp-vcard__media { position: relative; aspect-ratio: 16 / 9; background: #0d0d0d; overflow: hidden; }
@@ -4382,7 +4382,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .lp-timeline__dot {
   grid-row: span 2; position: relative; width: 56px; height: 56px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
-  background: var(--bg-2); border: 2px solid var(--gold); box-shadow: 0 0 18px rgba(198,166,100,0.2);
+  background: var(--bg-2); border: 2px solid var(--gold); box-shadow: 0 0 18px rgba(232,188,74,0.2);
 }
 .lp-timeline__n {
   position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%;
@@ -4392,14 +4392,14 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 @media (max-width: 759px) {
   .lp-timeline li:not(:last-child)::after {
     content: ""; position: absolute; left: 27px; top: 60px; bottom: -1.25rem; width: 2px;
-    background: linear-gradient(var(--gold), rgba(198,166,100,0.2));
+    background: linear-gradient(var(--gold), rgba(232,188,74,0.2));
   }
 }
 @media (min-width: 760px) {
   .lp-timeline { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
   .lp-timeline::before {
     content: ""; position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 2px;
-    background: linear-gradient(90deg, var(--gold), rgba(198,166,100,0.35), var(--gold)); z-index: 0;
+    background: linear-gradient(90deg, var(--gold), rgba(232,188,74,0.35), var(--gold)); z-index: 0;
   }
   .lp-timeline li { grid-template-columns: 1fr; text-align: center; justify-items: center; row-gap: 0.4rem; }
   .lp-timeline li > strong, .lp-timeline li > span:last-child { grid-column: 1; }
@@ -4429,7 +4429,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 }
 .lp-linkcard:hover, .lp-linkcard:focus-visible {
   transform: translateY(-3px); border-color: var(--gold); color: inherit;
-  box-shadow: 0 14px 32px rgba(0,0,0,0.38), 0 0 22px rgba(198,166,100,0.16);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.38), 0 0 22px rgba(232,188,74,0.16);
 }
 .lp-linkcard:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .lp-linkcard__title { font-weight: 700; font-size: 1.05rem; color: var(--text); margin-top: 0.4rem; }
@@ -4487,7 +4487,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .cbox:has(.cbox__action:focus-visible) {
   border-color: var(--gold);
   transform: translateY(-3px);
-  box-shadow: 0 0 0 1px rgba(198, 166, 100, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 26px rgba(198, 166, 100, 0.18);
+  box-shadow: 0 0 0 1px rgba(232, 188, 74, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 26px rgba(232, 188, 74, 0.18);
 }
 .cbox:hover .cbox__action, .cbox:has(.cbox__action:focus-visible) .cbox__action { color: var(--gold); }
 .cbox__action:focus-visible { outline: none; }
@@ -4513,7 +4513,7 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .fleet-card:hover, .fleet-card:has(.fleet-card__cta:focus-visible),
 .route-card:hover, .related-card:hover, .fleet-card:has(.fleet-card__link:hover) {
   border-color: var(--gold); transform: translateY(-3px);
-  box-shadow: 0 0 0 1px rgba(198, 166, 100, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 26px rgba(198, 166, 100, 0.18);
+  box-shadow: 0 0 0 1px rgba(232, 188, 74, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 26px rgba(232, 188, 74, 0.18);
 }
 @media (prefers-reduced-motion: reduce) {
   .fleet-card:hover, .route-card:hover, .related-card:hover { transform: none; }
