@@ -122,6 +122,22 @@ function navItems(currentPath = "/") {
     .join("\n          ");
 }
 
+/** Instagram glyph (line style, matches the footer chip). */
+const igGlyphSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>`;
+
+/** The business's Instagram URL from the single source of truth (SITE.sameAs). */
+export function instagramUrl() {
+  return (SITE.sameAs || []).find((u) => /instagram\.com/i.test(u)) || "";
+}
+
+/** Topbar Instagram icon link (icon-only; empty when no IG profile is set). */
+function topbarIg() {
+  const ig = instagramUrl();
+  return ig
+    ? `<a class="topbar__ig" href="${esc(ig)}" target="_blank" rel="noopener" aria-label="Follow Landio Limo Services on Instagram">${igGlyphSvg}</a>`
+    : "";
+}
+
 /** Thin announcement bar above the header (gold, dark accents). */
 export function topbar() {
   return `
@@ -130,7 +146,7 @@ export function topbar() {
       <span class="topbar__left"><span class="topbar__dot" aria-hidden="true"></span>24/7 Chauffeured Service &middot; Washington, DC, Maryland &amp; Virginia</span>
       <span class="topbar__right">
         <a href="tel:${esc(SITE.phone.e164)}">${phoneSvg}${esc(SITE.phone.display)}</a>
-        <a href="mailto:${esc(SITE.email)}"><svg class="btn-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${esc(SITE.email)}</a>
+        <a href="mailto:${esc(SITE.email)}"><svg class="btn-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${esc(SITE.email)}</a>${topbarIg()}
       </span>
     </div>
   </div>`;

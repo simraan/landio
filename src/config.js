@@ -533,7 +533,7 @@ export const SITE = {
   ],
 
   // --- Social / sameAs (fill in as profiles are confirmed) ---------------
-  sameAs: [],
+  sameAs: ["https://www.instagram.com/landiolimoservices/"],
 };
 
 /**

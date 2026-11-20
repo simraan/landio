@@ -385,6 +385,8 @@ export function eventCta(opts = {}) {
 export function contactSection({ alt = true, variant = "default" } = {}) {
   const a = SITE.address;
   const addr = `${a.street}, ${a.city}, ${a.region} ${a.postalCode}`;
+  const ig = (SITE.sameAs || []).find((u) => /instagram\.com/i.test(u));
+  const igSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>`;
   const tel = { href: `tel:${SITE.phone.e164}`, cue: "Call now" };
   const mail = { href: `mailto:${SITE.email}`, cue: "Email us" };
   // "landing" = landing-template variant (inline icons; Call · Email · Service Area · Hours).
@@ -415,6 +417,11 @@ export function contactSection({ alt = true, variant = "default" } = {}) {
           ${cards.map((c) => cbox({ cls: "contact-card card-surface", lead: c.lead, title: c.title, act: c.act, future: c.future, futureCue: c.futureCue,
             bodyHtml: `<p>${esc(c.body[0])}<br>${esc(c.body[1])}</p>` })).join("\n          ")}
         </ul>
+        ${ig ? `<div class="contact-social">
+          <a class="contact-social__chip" href="${esc(ig)}" target="_blank" rel="noopener">
+            <span class="contact-social__ico">${igSvg}</span>Follow us on Instagram
+          </a>
+        </div>` : ""}
       </div>
     </section>`;
 }

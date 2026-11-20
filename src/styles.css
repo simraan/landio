@@ -6455,3 +6455,20 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 .rv-text { margin: 0; color: var(--text-2); font-size: 0.96rem; line-height: 1.6; }
 .rv-date { margin: 0; color: var(--text-muted); font-size: 0.8rem; }
 .rv-cta { text-align: center; }
+
+/* ============================================================
+   Instagram integration — topbar icon + contact-section chip
+   ============================================================ */
+.topbar__ig { display: inline-flex; align-items: center; }
+.topbar__ig svg { width: 16px; height: 16px; }
+
+.contact-social { text-align: center; margin-top: clamp(20px, 3vw, 30px); }
+.contact-social__chip {
+  display: inline-flex; align-items: center; gap: 10px; padding: 11px 22px;
+  border-radius: var(--radius-pill); border: 1px solid var(--border-gold);
+  background: var(--black-card); color: var(--text-1); font-weight: var(--fw-semibold);
+  text-decoration: none; transition: border-color .3s var(--ease), color .3s var(--ease);
+}
+.contact-social__chip:hover, .contact-social__chip:focus-visible { border-color: var(--gold); color: var(--gold); outline: none; }
+.contact-social__ico { display: inline-flex; color: var(--gold); }
+.contact-social__ico svg { width: 20px; height: 20px; display: block; }
