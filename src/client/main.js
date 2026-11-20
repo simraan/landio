@@ -41,12 +41,135 @@ document.documentElement.classList.add("js");
   });
 })();
 
-/* ---- Group Transfers hero: drop the native <datalist> on the Pickup/Drop-off
-   fields so no suggestion dropdown opens on hover/focus. Typing, selection,
-   validation and submission are unaffected. Scoped to this page only. ---- */
-(function gtHeroNoPlacesDropdown() {
-  if (!document.body.classList.contains("page-group-transfers")) return;
-  document.querySelectorAll(".hero--page form input[list]").forEach((i) => i.removeAttribute("list"));
+/* ---- Pickup / Drop-off type-ahead autocomplete ----
+   Replaces the native <datalist> with a custom, fully styleable combobox: the
+   suggestions filter as you TYPE (not just a browser dropdown on hover/focus),
+   with full keyboard support (Down/Up to move through matches, Enter to choose,
+   Esc to close) plus mouse/touch selection. Free text is always preserved — any
+   address can be typed even if it is not in the preset list. Options come from
+   the server-rendered <datalist> (single source of truth), so this stays
+   zero-dependency and applies to every booking form (hero, modal, footer,
+   reservations, group-transfers) without per-page special-casing. ---- */
+(function placesAutocomplete() {
+  const inputs = document.querySelectorAll("input[data-places]");
+  if (!inputs.length) return;
+  const escHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  let uid = 0;
+
+  inputs.forEach((input) => {
+    // Pull the option values from the associated <datalist>, then detach the
+    // native list so only our combobox renders.
+    const listId = input.getAttribute("list");
+    const dl = listId && document.getElementById(listId);
+    const options = dl ? Array.from(dl.querySelectorAll("option")).map((o) => o.value) : [];
+    if (!options.length) return;
+    input.removeAttribute("list");
+
+    // Wrap the input so the dropdown can sit directly beneath it. The swap
+    // button is absolutely positioned on .qf-locs, so wrapping is layout-safe.
+    const wrap = document.createElement("div");
+    wrap.className = "bf-combo";
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+
+    const listboxId = `bf-ac-${++uid}`;
+    const list = document.createElement("ul");
+    list.id = listboxId;
+    list.className = "bf-ac";
+    list.setAttribute("role", "listbox");
+    list.hidden = true;
+    wrap.appendChild(list);
+
+    input.setAttribute("role", "combobox");
+    input.setAttribute("aria-autocomplete", "list");
+    input.setAttribute("aria-expanded", "false");
+    input.setAttribute("aria-controls", listboxId);
+
+    let active = -1;
+    let items = [];
+    let silent = false; // guards the programmatic input event fired on select
+
+    const close = () => {
+      if (list.hidden) return;
+      list.hidden = true;
+      active = -1;
+      input.setAttribute("aria-expanded", "false");
+      input.removeAttribute("aria-activedescendant");
+    };
+
+    const render = () => {
+      if (silent) return;
+      const q = input.value.trim().toLowerCase();
+      items = options
+        .filter((o) => o.toLowerCase().includes(q))
+        .sort((a, b) => (b.toLowerCase().startsWith(q) ? 1 : 0) - (a.toLowerCase().startsWith(q) ? 1 : 0))
+        .slice(0, 8);
+      if (!items.length) { close(); return; }
+      list.innerHTML = items
+        .map((m, i) => `<li id="${listboxId}-${i}" role="option" class="bf-ac__opt" aria-selected="false">${escHtml(m)}</li>`)
+        .join("");
+      list.hidden = false;
+      active = -1;
+      input.setAttribute("aria-expanded", "true");
+      input.removeAttribute("aria-activedescendant");
+    };
+
+    const setActive = (i) => {
+      const opts = list.querySelectorAll(".bf-ac__opt");
+      if (!opts.length) return;
+      active = (i + opts.length) % opts.length;
+      opts.forEach((o, j) => {
+        const on = j === active;
+        o.classList.toggle("is-active", on);
+        o.setAttribute("aria-selected", String(on));
+      });
+      input.setAttribute("aria-activedescendant", `${listboxId}-${active}`);
+      opts[active].scrollIntoView({ block: "nearest" });
+    };
+
+    const choose = (i) => {
+      if (i < 0 || i >= items.length) return;
+      input.value = items[i];
+      silent = true;
+      input.dispatchEvent(new Event("input", { bubbles: true })); // sync return trip etc. without reopening
+      silent = false;
+      close();
+    };
+
+    input.addEventListener("input", render);
+    input.addEventListener("focus", () => { if (input.value.trim()) render(); });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); if (list.hidden) render(); setActive(active + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (list.hidden) render(); setActive(active - 1); }
+      else if (e.key === "Enter") { if (!list.hidden && active >= 0) { e.preventDefault(); choose(active); } }
+      else if (e.key === "Escape") { if (!list.hidden) { e.preventDefault(); close(); } }
+      else if (e.key === "Tab") { close(); }
+    });
+    // mousedown (not click) so the choice lands before the input blurs.
+    list.addEventListener("mousedown", (e) => {
+      const li = e.target.closest(".bf-ac__opt");
+      if (!li) return;
+      e.preventDefault();
+      choose(Array.prototype.indexOf.call(list.children, li));
+      input.focus();
+    });
+    list.addEventListener("mousemove", (e) => {
+      const li = e.target.closest(".bf-ac__opt");
+      if (li) setActive(Array.prototype.indexOf.call(list.children, li));
+    });
+    input.addEventListener("blur", () => setTimeout(close, 120));
+  });
+
+  // Close any open combobox on an outside click.
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".bf-combo")) return;
+    document.querySelectorAll(".bf-ac:not([hidden])").forEach((l) => {
+      l.hidden = true;
+      const inp = l.parentNode.querySelector("input[data-places]");
+      inp?.setAttribute("aria-expanded", "false");
+      inp?.removeAttribute("aria-activedescendant");
+    });
+  });
 })();
 
 

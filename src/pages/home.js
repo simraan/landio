@@ -394,10 +394,10 @@ function instagramGallery() {
   const slides = GALLERY.map((g) => slide(g, false)).join("") + GALLERY.map((g) => slide(g, true)).join("");
 
   const trust = [
-    [I.plane, "Flight-tracked airport transfers to IAD, DCA &amp; BWI"],
-    [I.chauffeur, "Professional, carefully vetted chauffeurs"],
-    [I.car, "A meticulously maintained luxury fleet"],
-    [I.clock, "24/7 dispatch, every day of the year"],
+    [I.plane, "Flight-tracked transfers to IAD, DCA &amp; BWI"],
+    [I.shield, "Vetted, professional chauffeurs"],
+    [I.car, "Immaculately maintained luxury fleet"],
+    [I.clock, "24/7 year-round dispatch"],
   ];
 
   return `
@@ -425,7 +425,7 @@ function instagramGallery() {
         <div class="ig-gallery">
           <div class="ig-gallery__head ig-gallery__head--center">
             <span class="eyebrow ig-handle"><a href="${IG_URL}" target="_blank" rel="noopener">${igGlyph} @landiolimoservices</a></span>
-            <h3 class="ig-gallery__title">Follow the Journey</h3>
+            <h2 class="ig-gallery__title">Follow the Journey</h2>
             <p class="text-secondary">Moments from the road across the DC metro — the fleet, airport runs, weddings, and nights out.</p>
           </div>
           <div class="ig-slider">
