@@ -351,7 +351,7 @@ function routeFaqs(o, d, grp) {
   const air3 = { q: `Is meet & greet available at ${o.short}?`, a: `Yes. On request, your chauffeur can meet you inside the terminal with a name sign and help with your luggage, then walk you to the vehicle.` };
   const loc2 = { q: `Where do you pick up in ${o.short}?`, a: `${o.note}` };
   const loc3 = { q: `Can you handle luggage and multiple stops on the ${o.short} to ${d.name} trip?`, a: `Yes. We size the vehicle to your party and luggage, and we can plan stops along the way — just tell us when you book.` };
-  const q4 = { q: `Which vehicles are available for ${o.short} to ${d.name}?`, a: `Everything from an Executive Sedan or Luxury SUV to a Sprinter Van, Mini Bus, or ${CAPACITY.coach.paxMax}-passenger Motor Coach — matched to your party size and luggage.` };
+  const q4 = { q: `Which vehicles are available for ${o.short} to ${d.name}?`, a: `Everything from an Executive Sedan or Executive SUV to a Sprinter Van, Minibus, or ${CAPACITY.coach.paxMax}-passenger Motor Coach — matched to your party size and luggage.` };
   const q5 = { q: `Is the ${o.short} to ${d.name} car service available 24/7?`, a: `Yes. Aura Hamptons operates ${SITE.hours}, so early departures and late arrivals to and from ${d.name} are covered.` };
   return grp === "airport" ? [q1, air2, air3, q4, q5] : [q1, loc2, loc3, q4, q5];
 }

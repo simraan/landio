@@ -89,7 +89,7 @@ function venuePage(v) {
     faqs: [
       { q: `Do you provide car service to ${place}?`, a: `Yes. Landio drops you close to the entrance at ${place} and returns at a time and spot you set, ${SITE.hours}, with no surge pricing.` },
       { q: `Where will my chauffeur drop me off at ${place}?`, a: `As close to the entrance as the venue allows on event days. Your chauffeur then returns to a set pickup spot when you're ready — no parking, no walk back to a lot.` },
-      { q: `Can you handle a group to ${place}?`, a: `Yes. The Sprinter van keeps a group together, and mini buses and charter buses cover larger parties. Tell us your headcount when you book.` },
+      { q: `Can you handle a group to ${place}?`, a: `Yes. The Sprinter van keeps a group together, and minibuses and charter buses cover larger parties. Tell us your headcount when you book.` },
       { q: "Is there event-day surge pricing?", a: "No. Every trip is quoted up front with no surge pricing, even on the busiest event nights." },
       { q: "Can you add an airport transfer for visiting guests?", a: "Yes. We meet guests at Dulles (IAD), Reagan National (DCA), or BWI, track their flight, and handle the airport run and the venue trip on one booking." },
       { q: "What is your cancellation policy?", a: SITE.cancellation.full },
@@ -120,7 +120,7 @@ function venuePage(v) {
         eyebrow: "Why Landio",
         h2: `A ${v.name} Trip, Done Right`,
         items: [
-          { icon: "van", title: "Group-sized vehicles", text: "Sedans and SUVs, plus Sprinter vans, mini buses, and charter buses for groups.", act: { modal: { dropoff: place } } },
+          { icon: "van", title: "Group-sized vehicles", text: "Sedans and SUVs, plus Sprinter vans, minibuses, and charter buses for groups.", act: { modal: { dropoff: place } } },
           { icon: "tag", title: "No event-day surge", text: "Every trip is quoted up front, even on the busiest nights.", act: { modal: { dropoff: place } } },
           { icon: "clock", title: "A return on your schedule", text: "Set your pickup time and spot; your chauffeur is there when the event lets out.", act: { modal: { dropoff: place } } },
           { icon: "shield", title: "Professional chauffeurs", text: "Punctual, discreet, and an immaculate vehicle every time.", act: { modal: { dropoff: place } } },

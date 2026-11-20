@@ -48,7 +48,7 @@ function afterBooking() {
 const RES_FAQS = [
   { q: "How do I book a ride?", a: "Fill in the booking form with your pickup, drop-off, date, time, vehicle, and contact details, and we'll confirm your reservation. You can also call or email us anytime." },
   { q: "How far in advance should I book?", a: "We recommend booking as early as possible, especially in peak season. For airport transfers, share your flight details and we'll track your flight." },
-  { q: "Can I request a specific vehicle?", a: "Yes. Choose your vehicle class in the booking form — Executive Sedan, Luxury SUV, Sprinter Van, Mini Bus, or Charter Bus — and we'll confirm availability." },
+  { q: "Can I request a specific vehicle?", a: "Yes. Choose your vehicle class in the booking form — Executive Sedan, Executive SUV, Sprinter Van, Minibus, or Charter Bus — and we'll confirm availability." },
   { q: "Do you track flights for airport pickups?", a: "Yes. Share your airline and flight number and your pickup adjusts to your actual arrival, with no charge for delays." },
   { q: "Can I change or cancel my reservation?", a: `Yes. Contact us at ${SITE.phone.display} or ${SITE.email} and we'll adjust your booking. Please review our Cancellation Policy for timing.` },
   { q: "How will I receive confirmation?", a: `We respond to every reservation request — typically within the hour — by phone or email to confirm the details. Landio Limo Services operates ${SITE.hours}.` },

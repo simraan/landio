@@ -53,9 +53,9 @@ const SPOKE_FEATURES = [
   { icon: "car", label: "5 vehicle classes" },
 ];
 const SPOKE_INTRO_IMG = {
-  "airport-transfers": { base: "/assets/img/fleet/executive-suv", alt: "Landio chauffeured Luxury SUV for DC-area airport transfers" },
+  "airport-transfers": { base: "/assets/img/fleet/executive-suv", alt: "Landio chauffeured Executive SUV for DC-area airport transfers" },
   "meet-and-greet": { base: "/assets/img/fleet/executive-sedan", alt: "Landio chauffeur and Executive Sedan at arrivals" },
-  "corporate-executive": { base: "/assets/img/fleet/executive-suv", alt: "Landio Luxury SUV for executive travel" },
+  "corporate-executive": { base: "/assets/img/fleet/executive-suv", alt: "Landio Executive SUV for executive travel" },
   "fbo-private-jet": { base: "/assets/img/fleet/sprinter-van", alt: "Landio Sprinter Van for private aviation transfers" },
   "diplomatic-transportation": { base: "/assets/img/fleet/executive-sedan", alt: "Landio Executive Sedan for diplomatic transportation" },
   "hourly-chauffeur": { base: "/assets/img/fleet/executive-sedan", alt: "Landio Executive Sedan for hourly chauffeur service" },
@@ -288,7 +288,7 @@ export function planningSection(data) {
         <figure class="gt-split__media">
           <span class="gt-split__accent" aria-hidden="true"></span>
           <span class="gt-split__accent gt-split__accent--br" aria-hidden="true"></span>
-          ${splitPicture("/assets/img/fleet/executive-suv", "A chauffeured Aura Hamptons luxury SUV", { width: 1024, height: 576, widths: [640, 1024] })}
+          ${splitPicture("/assets/img/fleet/executive-suv", "A chauffeured Landio Limo Services Executive SUV", { width: 1024, height: 576, widths: [640, 1024] })}
         </figure>
       </div>
     </section>`;
@@ -322,7 +322,7 @@ export function groupDetail(data) {
         <figure class="gt-split__media">
           <span class="gt-split__accent" aria-hidden="true"></span>
           <span class="gt-split__accent gt-split__accent--br" aria-hidden="true"></span>
-          ${splitPicture(data.detailImage || "/assets/img/hero/hamptons-hero", data.detailImageAlt || "Aura Hamptons chauffeured vehicle at a Hamptons estate", { width: 1500, height: 844 })}
+          ${splitPicture(data.detailImage || "/assets/img/hero/hamptons-hero", data.detailImageAlt || "Landio Limo Services chauffeured vehicle in the Washington, DC metro", { width: 1500, height: 844 })}
         </figure>
       </div>
     </section>`;
@@ -875,7 +875,7 @@ function render(data) {
       preFooterCta: {
         eyebrow: "Reserve Your Group Ride",
         heading: "Ready to Move Your Group in Comfort?",
-        sub: `Tell us your date, headcount, and itinerary, and we'll build the right plan — Sprinter Vans, Mini Buses, and Motor Coaches up to ${CAPACITY.coach.paxMax} passengers, 24/7.`,
+        sub: `Tell us your date, headcount, and itinerary, and we'll build the right plan — Sprinter Vans, Minibuses, and Motor Coaches up to ${CAPACITY.coach.paxMax} passengers, 24/7.`,
       },
     };
   }
@@ -1259,7 +1259,7 @@ const CMP_SEDAN = mkVehicleCmp({ name: "Executive Sedan", lead: "A quiet, comfor
   ["tag", "Pricing", "Quoted up front for your route.", "Fares vary with demand."],
   ["calendar", "Reserved", "Booked in advance for your schedule.", "Requested on demand, subject to availability."],
 ] });
-const CMP_SUV = mkVehicleCmp({ name: "Luxury SUV", lead: "Room for your party and luggage, with a professional chauffeur.", rows: [
+const CMP_SUV = mkVehicleCmp({ name: "Executive SUV", lead: "Room for your party and luggage, with a professional chauffeur.", rows: [
   ["users", "Space", "Room for your party to travel together.", "Sized to whatever car arrives."],
   ["luggage", "Luggage", "Space for luggage, golf clubs, and gear.", "Limited to the vehicle that shows up."],
   ["userCheck", "Chauffeur", "A professional, vetted chauffeur.", "Whichever driver is available."],
@@ -1302,7 +1302,7 @@ const SPOKES = [
       { q: "Do you track incoming flights?", a: "Yes. We monitor your inbound flight in real time and position your chauffeur for your actual landing time." },
       { q: "What happens if my flight is delayed?", a: "Your pickup adjusts automatically to your real arrival — early or delayed — at no extra charge, because we track the flight." },
       { q: "Is meet & greet service available?", a: "Yes. On request, your chauffeur meets you inside the arrivals area with a personalized name sign and helps with your luggage." },
-      { q: "Can I book an SUV or Sprinter for airport transfers?", a: `Yes. Choose from five vehicle classes — Executive Sedan, Luxury SUV, Sprinter Van, Mini Bus, or Charter Bus — sized to your party and luggage.` },
+      { q: "Can I book an SUV or Sprinter for airport transfers?", a: `Yes. Choose from five vehicle classes — Executive Sedan, Executive SUV, Sprinter Van, Minibus, or Charter Bus — sized to your party and luggage.` },
       { q: "Can I book a round-trip airport transfer?", a: "Yes. Add your return details when you book, or tell us your itinerary and we'll arrange both legs of your trip." },
       { q: "How can I get an airport transfer quote?", a: `Use the booking form on this page for an instant quote, or call ${SITE.phone.display} and we'll help you directly.` },
       { q: "Are airport transfers available 24/7?", a: "Yes. Landio operates 24/7, including holidays, for early departures and late-night arrivals alike." },
@@ -1322,7 +1322,7 @@ const SPOKES = [
       "Corporate and executive car service across the DC metro — discreet chauffeured travel for executives, clients, roadshows, and corporate programs, 24/7.",
     body: [
       "For executives and corporate travelers, the ride has to be reliable, discreet, and on time, every time. Landio provides professional chauffeur service for board meetings, client visits, investor roadshows, and daily executive travel across the DC metro.",
-      "Your chauffeur arrives early, tracks traffic, and gets you where you need to be with time to spare. Travel in an Executive Sedan or Luxury SUV, or move a team together in a Sprinter Van, with Wi-Fi and a quiet, professional environment to work on the way.",
+      "Your chauffeur arrives early, tracks traffic, and gets you where you need to be with time to spare. Travel in an Executive Sedan or Executive SUV, or move a team together in a Sprinter Van, with Wi-Fi and a quiet, professional environment to work on the way.",
       "We coordinate multi-stop days, airport connections, and corporate accounts with centralized billing — one standard of service whether you're moving a single executive or an entire visiting team.",
     ],
     points: [
@@ -1334,7 +1334,7 @@ const SPOKES = [
     faqs: [
       { q: "Do you offer corporate accounts?", a: "Yes. We set up corporate accounts with centralized billing and priority dispatch for companies that book regularly. Contact us to set one up." },
       { q: "Can you handle an executive roadshow or multi-stop day?", a: "Yes. We coordinate full-day executive travel with multiple stops, waiting time, and airport connections, planned around your schedule." },
-      { q: "Which vehicles are best for corporate travel?", a: "The Executive Sedan and Luxury SUV suit most executive travel; the Sprinter Van moves a team together in comfort." },
+      { q: "Which vehicles are best for corporate travel?", a: "The Executive Sedan and Executive SUV suit most executive travel; the Sprinter Van moves a team together in comfort." },
       { q: "Is the service discreet?", a: "Yes. Discretion and professionalism are central to our corporate service — vetted chauffeurs, a quiet environment, and confidentiality throughout." },
       { q: "Do you travel outside the DC metro?", a: "Yes. We handle long-distance corporate trips up the Northeast corridor, including DC to Baltimore, Philadelphia, and New York." },
       { q: "Is corporate service available 24/7?", a: "Yes. Landio operates 24/7, including holidays, for early meetings and late finishes alike." },
@@ -1387,7 +1387,7 @@ const SPOKES = [
       "Diplomatic transportation in Washington, DC — discreet, protocol-aware chauffeur service for embassies, missions, delegations, and visiting dignitaries, 24/7.",
     body: [
       "Washington, DC is home to the world's diplomatic community, and moving dignitaries, delegations, and embassy staff calls for a higher standard of discretion, punctuality, and professionalism. Landio provides chauffeured transportation built for exactly that.",
-      "Our chauffeurs are vetted, experienced, and protocol-aware, handling embassy transfers, airport arrivals for visiting officials, and multi-vehicle movements for delegations. Travel in an Executive Sedan or Luxury SUV, or coordinate a group in Sprinter vans and larger vehicles.",
+      "Our chauffeurs are vetted, experienced, and protocol-aware, handling embassy transfers, airport arrivals for visiting officials, and multi-vehicle movements for delegations. Travel in an Executive Sedan or Executive SUV, or coordinate a group in Sprinter vans and larger vehicles.",
       "We coordinate closely with embassy and mission staff on timing, routing, and confidentiality, and we handle airport meet &amp; greet for arriving officials at Dulles, Reagan National, and BWI. Every detail is managed quietly and professionally.",
     ],
     points: [
@@ -1414,16 +1414,16 @@ const SPOKES = [
     eyebrow: "For Groups",
     introEyebrow: "Group Transfers",
     introHeading: "Keep your whole group together",
-    lede: `Landio provides luxury group transportation for corporate groups, conference shuttles, wedding guests, and private events — Sprinter vans, mini buses, and charter buses up to ${CAPACITY.coach.paxMax} passengers across the DC metro.`,
+    lede: `Landio provides luxury group transportation for corporate groups, conference shuttles, wedding guests, and private events — Sprinter vans, minibuses, and charter buses up to ${CAPACITY.coach.paxMax} passengers across the DC metro.`,
     description:
-      "Group transportation across the DC metro — Sprinter vans, mini buses, and charter buses for corporate groups, conferences, weddings, and events, 24/7.",
+      "Group transportation across the DC metro — Sprinter vans, minibuses, and charter buses for corporate groups, conferences, weddings, and events, 24/7.",
     body: [
-      "When you're moving a group, splitting across cars means lost time and lost people. Landio keeps everyone together in Sprinter vans, mini buses, and charter buses, with professional chauffeurs and a plan built around your schedule.",
+      "When you're moving a group, splitting across cars means lost time and lost people. Landio keeps everyone together in Sprinter vans, minibuses, and charter buses, with professional chauffeurs and a plan built around your schedule.",
       `Our group fleet runs from the 14-passenger Sprinter Van up to a ${CAPACITY.coach.paxMax}-passenger Charter Bus, matched to your headcount and luggage. We handle conference and hotel shuttles, corporate offsites, wedding guest transport, and group airport transfers across DC, Maryland, and Northern Virginia.`,
       "Tell us your date, headcount, and itinerary, and we'll build the right plan — single vehicles or a coordinated fleet, with upfront quotes and no surge pricing.",
     ],
     points: [
-      `Sprinter vans, mini buses, and charter buses up to ${CAPACITY.coach.paxMax} passengers`,
+      `Sprinter vans, minibuses, and charter buses up to ${CAPACITY.coach.paxMax} passengers`,
       "Conference shuttles, corporate offsites, and events",
       "Group airport transfers with real-time flight tracking",
       "Upfront quotes, no surge pricing, 24/7 dispatch",
@@ -1483,7 +1483,7 @@ const SPOKES = [
       "Hourly chauffeur service across the DC metro — a dedicated chauffeur and vehicle by the hour for meetings, roadshows, events, and multi-stop days, 24/7.",
     body: [
       "Some days have too many stops for a point-to-point booking. With hourly chauffeur service, your chauffeur and vehicle stay with you for the day, waiting between stops so you never wait for a ride.",
-      "It's ideal for executive roadshows, back-to-back meetings, client visits, dinners, and events across the DC metro. Choose an Executive Sedan or Luxury SUV for individual travel, or a Sprinter Van to keep a team together.",
+      "It's ideal for executive roadshows, back-to-back meetings, client visits, dinners, and events across the DC metro. Choose an Executive Sedan or Executive SUV for individual travel, or a Sprinter Van to keep a team together.",
       "Tell us your start time, approximate hours, and itinerary, and we'll build the day around it — with upfront pricing and no surge.",
     ],
     points: [
@@ -1496,7 +1496,7 @@ const SPOKES = [
       { q: "How does hourly chauffeur service work?", a: "Your chauffeur and vehicle stay with you for a set number of hours, waiting between stops, so you have a dedicated ride for the whole day." },
       { q: "What is hourly service good for?", a: "It's ideal for executive roadshows, back-to-back meetings, client visits, dinners, and events across the DC metro." },
       { q: "Is there a minimum number of hours?", a: `Minimums vary by vehicle and day. Share your plan and we'll confirm the details — call ${SITE.phone.display} or use the booking form.` },
-      { q: "Which vehicles are available by the hour?", a: "Choose an Executive Sedan or Luxury SUV for individual travel, or a Sprinter Van to keep a team together." },
+      { q: "Which vehicles are available by the hour?", a: "Choose an Executive Sedan or Executive SUV for individual travel, or a Sprinter Van to keep a team together." },
       { q: "Is pricing fixed for hourly service?", a: "Yes. Hourly service is quoted up front with no surge pricing, based on vehicle, hours, and any special requirements." },
       { q: "Is hourly chauffeur service available 24/7?", a: "Yes. Landio operates 24/7, including holidays, around your schedule." },
     ],

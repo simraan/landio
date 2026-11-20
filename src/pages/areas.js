@@ -202,7 +202,7 @@ function areaPage(a) {
         items: [
           { href: "/services/airport-transfers/", icon: "plane", title: "DC Airport Car Service", text: "IAD, DCA & BWI transfers, flight-tracked.", cta: "Open service" },
           { href: HUBS.areas.path, icon: "pin", title: "All DC-metro areas", text: "Every city we serve.", cta: "View areas" },
-          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Mini Bus, and Charter Bus.", cta: "View fleet" },
+          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Minibus, and Charter Bus.", cta: "View fleet" },
           { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your pickup online.", cta: "Reserve" },
         ],
       }],
@@ -225,7 +225,7 @@ function areaFaqs(a, c) {
     },
     {
       q: `Which vehicle should I book for a ${a.name} trip?`,
-      a: `The Executive Sedan seats up to 3, the Luxury SUV up to 6 with luggage, and the Sprinter van up to 14 — with mini buses and charter buses for larger groups. Choose by group size first, then luggage. ${SITE.responsePromise}`,
+      a: `The Executive Sedan seats up to 3, the Executive SUV up to 6 with luggage, and the Sprinter van up to 14 — with minibuses and charter buses for larger groups. Choose by group size first, then luggage. ${SITE.responsePromise}`,
     },
     { q: "Is there surge pricing on busy days?", a: `No. ${PHONE.display} or the booking form gets you an upfront quote. Landio has no surge pricing — the price depends on distance, vehicle, duration, tolls, and stops.` },
     { q: "What is your cancellation policy?", a: SITE.cancellation.full },

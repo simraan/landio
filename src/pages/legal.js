@@ -136,7 +136,7 @@ const TERMS = [
 
   h2("1. Company Information"),
   raw(`<p>${esc(SITE.legalName)}<br>${esc(A.street)}<br>${esc(A.city)}, ${esc(A.region)} ${esc(A.postalCode)}, ${esc(A.countryName)}<br>Phone: ${esc(SITE.phone.display)}<br>Website: ${siteLink}</p>`),
-  p("We provide professional chauffeured transportation services including Executive Sedans, Luxury SUVs, Sprinter Vans, Mini Buses, and Charter Buses."),
+  p("We provide professional chauffeured transportation services including Executive Sedans, Executive SUVs, Sprinter Vans, Minibuses, and Charter Buses."),
 
   h2("2. Eligibility"),
   p("By using our website and services, you confirm that:"),

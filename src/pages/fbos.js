@@ -182,7 +182,7 @@ function fboPage(slug) {
         items: [
           { href: HUBS.fbo.path, icon: "plane", title: "All private-jet airports", text: "Every FBO airfield we serve across the DC metro.", cta: "View airfields" },
           { href: "/services/airport-transfers/", icon: "plane", title: "Commercial airport transfers", text: "Flying commercial? IAD, DCA & BWI transfers.", cta: "Open service" },
-          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Mini Bus, and Charter Bus.", cta: "View fleet" },
+          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Minibus, and Charter Bus.", cta: "View fleet" },
           { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your private-aviation transfer online.", cta: "Reserve" },
         ],
       }],

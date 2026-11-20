@@ -35,7 +35,7 @@ export const HUB = {
   why: [
     { icon: "radar", title: "Flight-tracked transfers", text: "Pickups from any area move with your real landing time at IAD, DCA, and BWI." },
     { icon: "tag", title: "No surge pricing", text: "Every trip is quoted up front, the same standard across every area." },
-    { icon: "van", title: "The right vehicle", text: "Sedan, SUV, Sprinter van, mini bus, or charter bus, matched to your group and luggage." },
+    { icon: "van", title: "The right vehicle", text: "Sedan, SUV, Sprinter van, minibus, or charter bus, matched to your group and luggage." },
     { icon: "clock", title: "24/7, holidays included", text: "A live dispatch team around the clock, every day of the year." },
   ],
   faqs: [

@@ -48,7 +48,7 @@ const base = ({ code, name, h1short, where, arriveNote }) => ({
     { q: `Where will my chauffeur meet me at ${code}?`, a: `At baggage claim with a personalized name sign, or at the arrivals curb — whichever you prefer. We track your flight and confirm the exact meeting point when you book. Meet & greet inside the terminal is available on request.` },
     { q: `Do you track flights into ${code}?`, a: `Yes. We monitor your inbound flight in real time and move your pickup to your actual landing time, with no charge for flight delays.` },
     { q: `How much is a car service from ${code}?`, a: `Rates depend on your vehicle and destination. Use the booking form on this page for an instant quote, or call ${PHONE.display}.` },
-    { q: `Can I book an SUV or Sprinter van at ${code}?`, a: `Yes. Choose from the Executive Sedan, Luxury SUV, Sprinter Van, Mini Bus, or Charter Bus — sized to your party and luggage.` },
+    { q: `Can I book an SUV or Sprinter van at ${code}?`, a: `Yes. Choose from the Executive Sedan, Executive SUV, Sprinter Van, Minibus, or Charter Bus — sized to your party and luggage.` },
     { q: `Do you serve ${code} 24/7?`, a: `Yes. Landio runs ${code} transfers ${SITE.hours}, for early departures and late-night arrivals alike.` },
     { q: "What is your cancellation policy?", a: SITE.cancellation.full },
   ],

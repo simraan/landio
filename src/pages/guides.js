@@ -52,7 +52,7 @@ const G = {
     eyebrow: "Corporate",
     body: [
       p("Washington, DC runs on meetings — with the federal government, the diplomatic corps, trade associations, and a dense corporate base across Northern Virginia and Maryland. For executives and visiting teams, chauffeured travel has to be reliable, discreet, and punctual, every time."),
-      p("Landio provides professional chauffeur service for board meetings, client visits, investor roadshows, and daily executive travel across the DC metro. We coordinate multi-stop days, airport connections, and corporate accounts with centralized billing, and we handle protocol-aware diplomatic transportation for embassies and missions. Travel in an Executive Sedan or Luxury SUV, or move a team together in a Sprinter van, with Wi-Fi and a quiet environment to work on the way."),
+      p("Landio provides professional chauffeur service for board meetings, client visits, investor roadshows, and daily executive travel across the DC metro. We coordinate multi-stop days, airport connections, and corporate accounts with centralized billing, and we handle protocol-aware diplomatic transportation for embassies and missions. Travel in an Executive Sedan or Executive SUV, or move a team together in a Sprinter van, with Wi-Fi and a quiet environment to work on the way."),
       p(`For regular travel, a corporate account adds centralized billing and priority dispatch. To set one up, use the booking form or call ${PHONE.display}.`),
     ],
     related: [],

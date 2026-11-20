@@ -71,7 +71,7 @@ function fleet() {
         <div class="section-head">
           <span class="eyebrow">Our Premium Fleet</span>
           <h2 id="fleet-title">Luxury Vehicles for Every Occasion</h2>
-          <p class="text-secondary">From the Executive Sedan and Luxury SUV to Sprinter Vans, Mini Buses, and Charter Buses — the right vehicle for airport transfers, corporate travel, diplomatic service, and group trips across the DC metro.</p>
+          <p class="text-secondary">From the Executive Sedan and Executive SUV to Sprinter Vans, Minibuses, and Charter Buses — the right vehicle for airport transfers, corporate travel, diplomatic service, and group trips across the DC metro.</p>
         </div>
         <ul class="fleet-grid">${cards}</ul>
       </div>

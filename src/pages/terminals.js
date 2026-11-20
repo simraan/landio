@@ -100,7 +100,7 @@ function terminalPage(t) {
         items: [
           { href: ATL_HUB_PATH, icon: "plane", title: "DC Airport Car Service", text: "The full airport hub: IAD, DCA, BWI, and booking.", cta: "Open hub" },
           ...others.map((o) => ({ href: airportPath(o.key), icon: "plane", title: `${o.code} airport car service`, text: o.summary, cta: "View airport" })),
-          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Mini Bus, and Charter Bus.", cta: "View fleet" },
+          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Minibus, and Charter Bus.", cta: "View fleet" },
           { href: "/private-jet-fbo-transfers/", icon: "plane", title: "Private jet & FBO transfers", text: "Flying private? Signature and the region's FBOs.", cta: "View FBOs" },
           { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your airport pickup online.", cta: "Reserve" },
         ],

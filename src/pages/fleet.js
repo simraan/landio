@@ -110,7 +110,7 @@ export function fleetPage() {
     path: "/fleet/",
     title: "Fleet",
     description:
-      `The Landio fleet — Executive Sedan (${paxLabel(CAPACITY.sedan)}), Luxury SUV (${paxLabel(CAPACITY.suv)}), Sprinter Van (${paxLabel(CAPACITY.sprinter)}), Mini Bus (${paxLabel(CAPACITY.minibus)}), and Charter Bus (${paxLabel(CAPACITY.coach)}). Chauffeured luxury across the DC metro.`,
+      `The Landio fleet — Executive Sedan (${paxLabel(CAPACITY.sedan)}), Executive SUV (${paxLabel(CAPACITY.suv)}), Sprinter Van (${paxLabel(CAPACITY.sprinter)}), Minibus (${paxLabel(CAPACITY.minibus)}), and Charter Bus (${paxLabel(CAPACITY.coach)}). Chauffeured luxury across the DC metro.`,
     bodyClass: "page-fleet",
     cluster: "fleet",
     hub: true,

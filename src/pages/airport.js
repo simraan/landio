@@ -56,7 +56,7 @@ const FAQS = [
   { q: "What is your cancellation policy?", a: CANCELLATION.full },
   {
     q: "Which vehicle fits my group and luggage?",
-    a: `${vehicleSpec(SEDAN)}. ${vehicleSpec(SUV)}. ${vehicleSpec(SPRINTER)}. We also run mini buses and charter buses for larger groups. Choose by group size first, then luggage.`,
+    a: `${vehicleSpec(SEDAN)}. ${vehicleSpec(SUV)}. ${vehicleSpec(SPRINTER)}. We also run minibuses and charter buses for larger groups. Choose by group size first, then luggage.`,
   },
   {
     q: "Do you run airport transfers 24/7?",

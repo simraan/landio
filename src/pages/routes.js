@@ -108,7 +108,7 @@ export function routesHub() {
 
 /* ---------------------------- Route pages ------------------------------- */
 function routeBody(r) {
-  const fleetLine = `For intercity comfort, most clients choose the Executive Sedan or Luxury SUV; the Sprinter van carries groups of ${paxLabel(CAPACITY.sprinter)}, with mini buses and charter buses for larger parties.`;
+  const fleetLine = `For intercity comfort, most clients choose the Executive Sedan or Executive SUV; the Sprinter van carries groups of ${paxLabel(CAPACITY.sprinter)}, with minibuses and charter buses for larger parties.`;
   return `
     <section class="section" aria-labelledby="route-intro">
       <div class="container prose-wide">

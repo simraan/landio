@@ -91,7 +91,7 @@ function ourStory() {
         <figure class="about-split__media about-collage">
           <picture class="about-collage__pic">
             <source type="image/webp" srcset="/assets/img/fleet/executive-suv-640.webp 640w, /assets/img/fleet/executive-suv-1024.webp 1024w" sizes="(min-width:900px) 46vw, 100vw">
-            <img class="about-collage__main" src="/assets/img/fleet/executive-suv-1024.jpg" srcset="/assets/img/fleet/executive-suv-640.jpg 640w, /assets/img/fleet/executive-suv-1024.jpg 1024w" sizes="(min-width:900px) 46vw, 100vw" alt="Landio Luxury SUV in the DC metro" loading="lazy" decoding="async" width="1024" height="576">
+            <img class="about-collage__main" src="/assets/img/fleet/executive-suv-1024.jpg" srcset="/assets/img/fleet/executive-suv-640.jpg 640w, /assets/img/fleet/executive-suv-1024.jpg 1024w" sizes="(min-width:900px) 46vw, 100vw" alt="Landio Executive SUV in the DC metro" loading="lazy" decoding="async" width="1024" height="576">
           </picture>
           <span class="about-collage__accent" aria-hidden="true"></span>
         </figure>

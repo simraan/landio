@@ -325,7 +325,7 @@ export function quoteForm(id, { heading = "Instant Quote", location = "hero", pr
                 <input type="hidden" name="country_code" data-cf-input value="+1">
                 <div class="cf-pop" data-cf-pop hidden>${ccList}</div>
               </div>
-              <input class="bf-input" type="tel" name="phone" autocomplete="tel" placeholder="(631) 555-0142" required>
+              <input class="bf-input" type="tel" name="phone" autocomplete="tel" placeholder="(202) 555-0142" required>
             </div>
           </label>
           <label class="quote-field quote-field--full"><span>Email</span>

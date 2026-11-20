@@ -231,7 +231,7 @@ export const SITE = {
     "Luxury chauffeured car & limo service across the Washington, DC metro — " +
     "DC, Maryland, and Northern Virginia. IAD, DCA & BWI airport transfers, " +
     "corporate and executive travel, private jet/FBO transfers, diplomatic " +
-    "transportation, and group transport in Sprinter vans, mini buses, and " +
+    "transportation, and group transport in Sprinter vans, minibuses, and " +
     "charter buses. Available 24/7.",
 
   // --- NAP ----------------------------------------------------------------
@@ -301,7 +301,7 @@ export const SITE = {
     },
     {
       key: "suv",
-      name: "Luxury SUV",
+      name: "Executive SUV",
       slug: "luxury-suv",
       seats: CAPACITY.suv.paxMax,
       pax: paxLabel(CAPACITY.suv),
@@ -337,7 +337,7 @@ export const SITE = {
     },
     {
       key: "minibus",
-      name: "Mini Bus",
+      name: "Minibus",
       slug: "mini-bus",
       seats: CAPACITY.minibus.paxMax,
       pax: paxLabel(CAPACITY.minibus),
@@ -403,7 +403,7 @@ export const SITE = {
       url: "/services/group-transfers/",
       icon: "van",
       blurb:
-        `Luxury group transportation for corporate groups, conference shuttles, wedding guests, and private events — Sprinter vans, mini buses, and charter buses up to ${CAPACITY.coach.paxMax} passengers.`,
+        `Luxury group transportation for corporate groups, conference shuttles, wedding guests, and private events — Sprinter vans, minibuses, and charter buses up to ${CAPACITY.coach.paxMax} passengers.`,
     },
     {
       title: "Meet & Greet Service",
@@ -481,8 +481,8 @@ export const SITE = {
       a: "No problem. We monitor all arrivals and automatically adjust pickup times for delays, with no additional charge for the delay itself. Your chauffeur will be waiting when you arrive.",
     },
     {
-      q: "Can I book a Sprinter van, mini bus, or charter bus for group transportation?",
-      a: "Absolutely. Our fleet includes Sprinter vans, mini buses, and charter buses for corporate groups, conferences, weddings, and private events across the DC metro. Choose your vehicle in the booking form or call us for a group quote.",
+      q: "Can I book a Sprinter van, minibus, or charter bus for group transportation?",
+      a: "Absolutely. Our fleet includes Sprinter vans, minibuses, and charter buses for corporate groups, conferences, weddings, and private events across the DC metro. Choose your vehicle in the booking form or call us for a group quote.",
     },
     {
       q: "What is your cancellation policy?",

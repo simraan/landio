@@ -19,13 +19,13 @@ const HERO_IMAGE = "/assets/img/hero/hamptons-hero";
 /** Per-service presentation: image + short, specific description. Titles/URLs
  *  come from `config.js` (single source of truth) so they never drift. */
 const SVC = {
-  "airport-transfers":   { img: "/assets/img/fleet/executive-suv",  alt: "Landio Luxury SUV for DC-area airport transfers",        desc: "Flight-tracked, door-to-door transfers to and from Dulles (IAD), Reagan National (DCA) and BWI." },
+  "airport-transfers":   { img: "/assets/img/fleet/executive-suv",  alt: "Landio Executive SUV for DC-area airport transfers",        desc: "Flight-tracked, door-to-door transfers to and from Dulles (IAD), Reagan National (DCA) and BWI." },
   "corporate-executive": { img: "/assets/img/fleet/executive-sedan", alt: "Landio Executive Sedan for corporate travel",            desc: "Discreet, punctual chauffeured travel for executives, clients and corporate programs." },
   "fbo-private-jet":     { img: "/assets/img/fleet/sprinter-van",    alt: "Landio Sprinter Van for private aviation transfers",     desc: "Crew-coordinated transfers at Signature (IAD, DCA, BWI), Manassas, Leesburg, Montgomery County Airpark and Frederick." },
   "diplomatic-transportation": { img: "/assets/img/fleet/executive-sedan", alt: "Landio Executive Sedan for diplomatic transportation", desc: "Protocol-aware, confidential chauffeur service for embassies, missions and visiting dignitaries." },
-  "group-transfers":     { img: "/assets/img/fleet/motor-coach",     alt: "Landio Charter Bus for group transportation",            desc: "Sprinter Vans, Mini Buses and Charter Buses for corporate groups, conferences and events." },
+  "group-transfers":     { img: "/assets/img/fleet/motor-coach",     alt: "Landio Charter Bus for group transportation",            desc: "Sprinter Vans, Minibuses and Charter Buses for corporate groups, conferences and events." },
   "meet-and-greet":      { img: "/assets/img/fleet/executive-sedan", alt: "Landio Executive Sedan for terminal meet & greet",       desc: "Your chauffeur greets you inside the terminal with a name sign and luggage assistance." },
-  "hourly-chauffeur":    { img: "/assets/img/fleet/executive-suv",   alt: "Landio Luxury SUV for hourly chauffeur service",         desc: "A dedicated chauffeur and vehicle by the hour for meetings, roadshows and multi-stop days." },
+  "hourly-chauffeur":    { img: "/assets/img/fleet/executive-suv",   alt: "Landio Executive SUV for hourly chauffeur service",         desc: "A dedicated chauffeur and vehicle by the hour for meetings, roadshows and multi-stop days." },
 };
 
 const CATEGORIES = [
