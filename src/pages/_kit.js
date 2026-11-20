@@ -40,11 +40,11 @@ export const VENUE_PLACE = {
 };
 
 export const HERO_IMG = {
-  base: "/assets/img/hero/hamptons-hero",
+  base: "/assets/img/hero/dc-limo-hero",
   widths: [640, 1024, 1500],
   width: 1500,
   height: 844,
-  alt: "Landio chauffeured car in the DC metro",
+  alt: "Landio luxury chauffeured SUV at the U.S. Capitol in Washington, DC",
 };
 
 /** Sources used across pages: key → [url, label]. Every fact cites one. */

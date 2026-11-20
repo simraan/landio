@@ -251,8 +251,8 @@ function airportServed() {
 }
 
 function areasServed() {
-  // Villages are the single source of truth in config.js (AREAS) — no duplicate
-  // list here. Dropoff prefill stays exactly "{name}, NY".
+  // Areas are the single source of truth in config.js (AREAS) — no duplicate
+  // list here. Dropoff prefill uses each area's pickup value (e.g. "Bethesda, MD").
   const PIN = `<svg class="area-chip__pin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-10A6.5 6.5 0 0 1 18.5 11c0 4.5-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.3"/></svg>`;
   return `
     <section class="section areas-section" aria-labelledby="areas-title">
