@@ -738,39 +738,3 @@ document.addEventListener("click", (e) => {
     page_path: location.pathname,
   });
 });
-
-/* ---- Instagram gallery slider: auto-advance, arrows, native swipe.
- *  Pauses on hover/focus/touch and when the tab is hidden; no auto-advance
- *  under prefers-reduced-motion (manual arrows + swipe still work). ---- */
-(function igSlider() {
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll("[data-ig-slider]").forEach((root) => {
-    const track = root.querySelector("[data-ig-track]");
-    if (!track) return;
-    const prev = root.querySelector("[data-ig-prev]");
-    const next = root.querySelector("[data-ig-next]");
-    const step = () => {
-      const s = track.querySelector(".ig-slide");
-      const gap = parseFloat(getComputedStyle(track).gap) || 0;
-      return s ? s.getBoundingClientRect().width + gap : track.clientWidth;
-    };
-    const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-    const atStart = () => track.scrollLeft <= 4;
-    const go = (dir) => {
-      if (dir > 0 && atEnd()) track.scrollTo({ left: 0, behavior: "smooth" });
-      else if (dir < 0 && atStart()) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
-      else track.scrollBy({ left: dir * step(), behavior: "smooth" });
-    };
-    if (prev) prev.addEventListener("click", () => go(-1));
-    if (next) next.addEventListener("click", () => go(1));
-
-    let timer = null;
-    const start = () => { if (reduce || timer) return; timer = setInterval(() => go(1), 3800); };
-    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
-    ["mouseenter", "focusin", "touchstart", "pointerdown"].forEach((ev) =>
-      root.addEventListener(ev, stop, { passive: true }));
-    ["mouseleave", "focusout"].forEach((ev) => root.addEventListener(ev, start));
-    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
-    start();
-  });
-})();
