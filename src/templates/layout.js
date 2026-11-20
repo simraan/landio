@@ -78,7 +78,7 @@ ${
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${esc(ogImage)}">
 
-  <link rel="icon" href="/assets/img/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png">
   <link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${esc(cssHref)}">

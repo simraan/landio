@@ -15,10 +15,10 @@ export const esc = (s) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 
-// Aura Hamptons wordmark (gold SUV lockup on near-black; blends on the dark
-// header/footer). Client-supplied PNG, 600×240 (2.5:1).
-const LOGO = "/assets/img/brand/aura-hamptons-logo.png";
-const LOGO_FOOTER = "/assets/img/brand/aura-hamptons-logo.png";
+// Landio Limo Services logo (gold monogram on transparent; sits on the dark
+// header/footer). Client-supplied PNG, 525×380 (≈1.38:1), trimmed.
+const LOGO = "/assets/img/brand/landio-logo.png";
+const LOGO_FOOTER = "/assets/img/brand/landio-logo.png";
 
 /** Small icon for inside a button (uses the provided SVG set). */
 // Button icons come from the shared inline line set (templates/icons.js): one
@@ -55,7 +55,7 @@ export function fleetPicture(v, { alt, sizes = "(min-width: 900px) 33vw, 85vw", 
 
 export function brand(href = "/") {
   return `<a class="brand" href="${esc(href)}" aria-label="${esc(SITE.company)} — home">
-    <img class="brand__logo" src="${LOGO}" alt="${esc(SITE.company)}" width="155" height="62" style="width:155px;height:62px;max-width:none">
+    <img class="brand__logo" src="${LOGO}" alt="${esc(SITE.company)}" width="85" height="62" style="height:62px;width:auto;max-width:none">
   </a>`;
 }
 
@@ -432,7 +432,7 @@ export function footer(year) {
     <div class="container">
       <div class="site-footer__grid">
         <div class="site-footer__brand">
-          <img class="site-footer__logo" src="${LOGO_FOOTER}" alt="${esc(SITE.company)}" width="185" height="74" loading="lazy" style="width:185px;height:74px;max-width:none">
+          <img class="site-footer__logo" src="${LOGO_FOOTER}" alt="${esc(SITE.company)}" width="102" height="74" loading="lazy" style="height:74px;width:auto;max-width:none">
           <p class="site-footer__about">Landio delivers chauffeured luxury travel across Washington, DC, Maryland, and Northern Virginia — IAD, DCA &amp; BWI airport transfers, corporate and executive travel, private aviation, diplomatic transportation, and group logistics, backed by professional chauffeurs and a meticulously maintained fleet, available 24/7.</p>
           ${social}
         </div>
