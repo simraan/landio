@@ -537,6 +537,17 @@ svg {
   .dropdown a {
     padding: 0.4rem 0;
   }
+  /* Dark header (used site-wide): the open mobile menu panel matches the header
+     instead of defaulting to a white #fff wrapper, which left the light nav
+     text unreadable. Item dividers become a subtle light-on-dark hairline. */
+  .site-header--dark .site-nav {
+    background: #0a0a0a;
+    color: #ededed;
+  }
+  .site-header--dark .site-nav__list > li > a,
+  .site-header--dark .site-nav__toplabel {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* ==========================================================================
