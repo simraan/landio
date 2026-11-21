@@ -413,7 +413,7 @@ svg {
   font-size: var(--nav-size);
   line-height: 15px;
   letter-spacing: var(--nav-tracking);
-  text-transform: uppercase;
+  text-transform: none; /* Title Case labels (markup is already Title Case) — not all-caps */
   white-space: nowrap;
   cursor: pointer;
 }
