@@ -65,7 +65,9 @@ export function brand(href = "/") {
  * grows on its own as pages ship. `{ group }` entries are visual labels.
  */
 function navChildren(key) {
-  const link = (label, href) => ({ label, href });
+  const link = (label, href, extra = {}) => ({ label, href, ...extra });
+  // Map a service's image-icon name to the inline line-icon set (icons.js).
+  const SVC_ICON = { airplane: "plane", handshake: "userCheck" };
   switch (key) {
     case "airport":
       return [
@@ -77,16 +79,36 @@ function navChildren(key) {
       ];
     case "services":
       return [
-        ...SITE.services.filter((s) => s.url !== ATL_HUB_PATH && s.slug !== "fbo-private-jet").map((s) => link(s.title, s.url)),
-        isBuilt(HUBS.fbo.path) ? link("Private Jet & FBO Transfers", HUBS.fbo.path) : link("Private Jet & FBO Transfers", "/services/fbo-private-jet/"),
-        link("All services & destinations", HUBS.services.path),
+        ...SITE.services.filter((s) => s.url !== ATL_HUB_PATH && s.slug !== "fbo-private-jet").map((s) => link(s.title, s.url, { icon: SVC_ICON[s.icon] || s.icon })),
+        isBuilt(HUBS.fbo.path) ? link("Private Jet & FBO Transfers", HUBS.fbo.path, { icon: "plane" }) : link("Private Jet & FBO Transfers", "/services/fbo-private-jet/", { icon: "plane" }),
+        link("All Services", HUBS.services.path, { footer: true }),
       ];
-    case "areas":
-      return [link("All areas we serve", HUBS.areas.path), ...AREAS.map((a) => link(a.name, a.path))];
-    case "venues":
-      return [link("All venues", HUBS.venues.path), ...VENUES.map((v) => link(v.name, v.path))];
+    case "areas": {
+      const regions = [["dc", "Washington, DC"], ["md", "Maryland"], ["va", "Northern Virginia"]];
+      const out = [];
+      for (const [reg, title] of regions) {
+        const items = AREAS.filter((a) => a.region === reg);
+        if (!items.length) continue;
+        out.push(link(title, null, { group: title }));
+        out.push(...items.map((a) => link(a.name, a.path, { icon: "pin" })));
+      }
+      out.push(link("All Areas", HUBS.areas.path, { footer: true }));
+      return out;
+    }
+    case "venues": {
+      const out = [];
+      for (const cat of [...new Set(VENUES.map((v) => v.category))]) {
+        out.push(link(cat, null, { group: cat }));
+        out.push(...VENUES.filter((v) => v.category === cat).map((v) => link(v.name, v.path, { icon: "pin" })));
+      }
+      out.push(link("All Venues", HUBS.venues.path, { footer: true }));
+      return out;
+    }
     case "events":
-      return [link("All events", HUBS.events.path), ...EVENTS.map((e) => link(e.name, e.path))];
+      return [
+        ...EVENTS.map((e) => link(e.name, e.path, { icon: "calendar" })),
+        link("All Events", HUBS.events.path, { footer: true }),
+      ];
     default:
       return [];
   }
@@ -106,15 +128,27 @@ function navItems(currentPath = "/") {
       const kids = navChildren(item.children).filter((c) => c.group || isBuilt(c.href));
       // Drop group labels with nothing under them.
       const items = kids.filter((c, i) => !c.group || (kids[i + 1] && !kids[i + 1].group));
-      if (items.some((c) => !c.group && c.href !== item.href)) {
+      if (items.some((c) => !c.group && !c.footer && c.href !== item.href)) {
         const id = `nav-sub-${n}`;
-        const cols = items.length > 8 ? " dropdown--cols" : "";
-        const sub = items
-          .map((c) => (c.group ? `<li class="dropdown__group" aria-hidden="true">${esc(c.group)}</li>` : `<li><a href="${esc(c.href)}"${c.href === currentPath ? ' aria-current="page"' : ""}>${esc(c.label)}</a></li>`))
+        const body = items.filter((c) => !c.footer);
+        const foot = items.find((c) => c.footer);
+        const hasGroups = body.some((c) => c.group);
+        const links = body.filter((c) => !c.group).length;
+        // Column count: only long menus (Areas) go 3-up; grouped/mid menus 2-up.
+        const cols = links > 12 ? " dropdown--3" : hasGroups || links > 4 ? " dropdown--2" : "";
+        const sub = body
+          .map((c) =>
+            c.group
+              ? `<li class="mega__group" aria-hidden="true">${esc(c.group)}</li>`
+              : `<li class="mega__item"><a href="${esc(c.href)}"${c.href === currentPath ? ' aria-current="page"' : ""}>${c.icon ? `<span class="mega__ico" aria-hidden="true">${icon(c.icon, { size: 18 })}</span>` : ""}<span class="mega__label">${esc(c.label)}</span></a></li>`
+          )
           .join("");
+        const footHtml = foot
+          ? `<li class="mega__foot"><a href="${esc(foot.href)}"${foot.href === currentPath ? ' aria-current="page"' : ""}>${esc(foot.label)}${icon("arrow", { size: 16 })}</a></li>`
+          : "";
         return `<li class="has-dropdown${active ? " is-active" : ""}">
           <a class="site-nav__toplabel" href="${esc(item.href)}"${item.href === currentPath ? ' aria-current="page"' : ""}>${esc(item.label)}</a><button type="button" class="nav-sub" aria-expanded="false" aria-controls="${id}"><span class="sr-only">${esc(item.label)} menu</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-          <ul class="dropdown${cols}" id="${id}">${sub}</ul>
+          <ul class="dropdown mega${cols}" id="${id}">${sub}${footHtml}</ul>
         </li>`;
       }
       return `<li><a${active ? ' class="is-active"' : ""} href="${esc(item.href)}"${item.href === currentPath ? ' aria-current="page"' : ""}>${esc(item.label)}</a></li>`;

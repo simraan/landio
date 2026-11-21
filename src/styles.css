@@ -462,6 +462,35 @@ svg {
   color: var(--text-muted);
 }
 
+/* ===== Mega menu (shared desktop flyout + mobile accordion) ================= */
+.mega__item > a {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.5rem 0.6rem; border-radius: 10px; border: 1px solid transparent;
+  color: var(--header-text); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.16s var(--ease), background-color 0.16s var(--ease), border-color 0.16s var(--ease);
+}
+.mega__ico {
+  flex: none; width: 34px; height: 34px; border-radius: 9px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--gold-dim); border: 1px solid rgba(var(--gold-rgb), 0.28); color: var(--gold);
+}
+.mega__ico svg { width: 18px; height: 18px; }
+.mega__label { line-height: 1.25; }
+.mega__group {
+  padding: 0.75rem 0.6rem 0.3rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); border-bottom: 1px solid rgba(var(--gold-rgb), 0.14); margin-bottom: 0.15rem;
+}
+.mega__group:first-child { padding-top: 0.15rem; }
+.mega__foot { margin-top: 0.3rem; border-top: 1px solid rgba(var(--gold-rgb), 0.14); }
+.mega__foot a {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.7rem 0.6rem 0.25rem;
+  color: var(--gold); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.mega__foot a svg { transition: transform 0.2s var(--ease); }
+.mega__foot a:hover svg { transform: translateX(4px); }
+
 @media (min-width: 992px) {
   .nav-toggle {
     display: none;
@@ -3390,6 +3419,13 @@ svg {
 .site-header--dark .dropdown a { color: #ededed; }
 .site-header--dark .dropdown a:hover { color: var(--gold); background: rgba(var(--gold-rgb), 0.12); transform: translateX(3px); }
 .site-header--dark .dropdown__group { color: var(--gold); }
+/* Mega items highlight as a gold-tinted card (no slide); the footer link stays flat. */
+.site-header--dark .dropdown.mega .mega__item > a:hover,
+.site-header--dark .dropdown.mega .mega__item > a[aria-current="page"] {
+  transform: none; color: var(--gold);
+  background: rgba(var(--gold-rgb), 0.1); border-color: rgba(var(--gold-rgb), 0.3);
+}
+.site-header--dark .dropdown.mega .mega__foot a:hover { transform: none; background: transparent; }
 /* No slide on mobile (stacked accordion), only the desktop flyout. */
 @media (max-width: 991px) { .site-header--dark .dropdown a:hover { transform: none; } }
 .site-header--dark .brand__logo { height: 54px; }
@@ -4648,9 +4684,15 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 @media (min-width: 992px) {
   .site-nav__list { gap: 1.25rem; }
   .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
-  .dropdown--cols { columns: 2; column-gap: 0.35rem; min-width: 500px; }
-  .dropdown--cols li { break-inside: avoid; }
-  .has-dropdown:last-child .dropdown, .has-dropdown:nth-last-child(-n+3) .dropdown--cols { left: auto; right: 0; }
+  /* Mega-menu grid: 1 / 2 / 3 columns by menu size; group headings + footer span full width. */
+  .dropdown.mega { display: grid; gap: 0.1rem 0.5rem; padding: 0.7rem; max-width: calc(100vw - 1.5rem); }
+  .dropdown.mega.dropdown--2 { grid-template-columns: repeat(2, minmax(200px, 1fr)); width: 440px; }
+  .dropdown.mega.dropdown--3 { grid-template-columns: repeat(3, minmax(180px, 1fr)); width: 600px; }
+  .dropdown.mega .mega__group, .dropdown.mega .mega__foot { grid-column: 1 / -1; }
+  /* Right-of-centre menus (and the last item) open toward the right edge so a wide
+     panel never runs off-screen; left-of-centre menus stay anchored left. */
+  .has-dropdown:nth-child(n+5) .dropdown,
+  .has-dropdown:last-child .dropdown { left: auto; right: 0; }
 }
 @media (min-width: 992px) and (max-width: 1239px) {
   .site-nav__list { gap: 0.85rem; }
