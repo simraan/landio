@@ -320,28 +320,30 @@ function partner() {
   const builtFor = ["Travel advisors", "Hotel concierges", "Event planners", "Wedding planners", "Hospitality", "Corporate travel"];
   const chips = ["Chauffeur", "Groups", "Events"];
   return `
-    <section class="section partner" aria-labelledby="partner-title">
-      <div class="partner__bg" aria-hidden="true">
-        <picture>
-          <source type="image/webp" srcset="${IMG}-640.webp 640w, ${IMG}-1024.webp 1024w, ${IMG}-1500.webp 1500w" sizes="100vw">
-          <img src="${IMG}-1024.jpg" srcset="${IMG}-640.jpg 640w, ${IMG}-1024.jpg 1024w, ${IMG}-1500.jpg 1500w" sizes="100vw" alt="" width="1500" height="844" loading="lazy" decoding="async">
-        </picture>
-      </div>
+    <section class="section section--alt partner" aria-labelledby="partner-title">
       <div class="container">
-        <div class="partner__glass">
-          <span class="partner__badge">${sparkle} Landio Partner Network</span>
-          <p class="eyebrow">Partner Program</p>
-          <h2 id="partner-title">Become a <span class="gold">Landio Partner</span></h2>
-          <p class="partner__lede">Partner with Landio Limo Services and give your clients and guests seamless luxury transportation across Washington, DC, Maryland, and Northern Virginia — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.</p>
-          <ul class="partner__chips" aria-label="Partner service types">${chips.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
-          <ul class="partner__benefits">
-            ${benefits.map(([ic, t, d]) => `<li><span class="partner__benefit-ico" aria-hidden="true">${ic}</span><span class="partner__benefit-t">${esc(t)}</span><span class="partner__benefit-d">${esc(d)}</span></li>`).join("\n            ")}
-          </ul>
-          <p class="partner__built">Built For</p>
-          <ul class="partner__taglist">${builtFor.map((bf) => `<li>${esc(bf)}</li>`).join("")}</ul>
-          <div class="partner__cta">
-            <a class="btn btn-primary" href="/become-a-partner/">${btnIcon("handshake")}Become a Partner</a>
-            <p class="partner__talk">Prefer to talk? <a href="tel:${esc(SITE.phone.e164)}">${esc(SITE.phone.display)}</a></p>
+        <div class="partner__panel">
+          <div class="partner__media">
+            <picture>
+              <source type="image/webp" srcset="${IMG}-640.webp 640w, ${IMG}-1024.webp 1024w, ${IMG}-1500.webp 1500w" sizes="(min-width: 900px) 46vw, 92vw">
+              <img src="${IMG}-1024.jpg" srcset="${IMG}-640.jpg 640w, ${IMG}-1024.jpg 1024w, ${IMG}-1500.jpg 1500w" sizes="(min-width: 900px) 46vw, 92vw" alt="Landio chauffeured sedan in the DC metro" width="1500" height="844" loading="lazy" decoding="async">
+            </picture>
+            <span class="partner__badge">${sparkle} Landio Partner Network</span>
+            <div class="partner__chips">${chips.map((c) => `<span>${esc(c)}</span>`).join("")}</div>
+          </div>
+          <div class="partner__content">
+            <p class="eyebrow">Partner Program</p>
+            <h2 id="partner-title">Become a <span class="gold">Landio Partner</span></h2>
+            <p class="partner__lede">Partner with Landio Limo Services and give your clients and guests seamless luxury transportation across Washington, DC, Maryland, and Northern Virginia — professional chauffeurs, a meticulously maintained fleet, and 24/7 booking support.</p>
+            <ul class="partner__benefits">
+              ${benefits.map(([ic, t, d]) => `<li><span class="partner__benefit-ico" aria-hidden="true">${ic}</span><span class="partner__benefit-t">${esc(t)}</span><span class="partner__benefit-d">${esc(d)}</span></li>`).join("\n              ")}
+            </ul>
+            <p class="partner__built">Built For</p>
+            <ul class="partner__taglist">${builtFor.map((bf) => `<li>${esc(bf)}</li>`).join("")}</ul>
+            <div class="partner__cta">
+              <a class="btn btn-primary" href="/become-a-partner/">${btnIcon("handshake")}Become a Partner</a>
+              <p class="partner__talk">Prefer to talk? <a href="tel:${esc(SITE.phone.e164)}">${esc(SITE.phone.display)}</a></p>
+            </div>
           </div>
         </div>
       </div>

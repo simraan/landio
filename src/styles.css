@@ -5639,10 +5639,9 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 /* Flourished eyebrow (left-aligned) to match the rest of the homepage. */
 :is(.page-home, .page-group-transfers, .page-partner, .page-about, .page-service-spoke, .page-fleet) .event-cta .eyebrow,
 .page-home .partner .eyebrow {
-  display: flex; /* own line, below the network badge (was inline → shared a line) */
+  display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  margin: 0;
 }
 :is(.page-home, .page-group-transfers, .page-partner, .page-about, .page-service-spoke, .page-fleet) .event-cta .eyebrow::after,
 .page-home .partner .eyebrow::after {
@@ -5695,58 +5694,42 @@ html:not(.js) .lp-tabpanel + .lp-tabpanel { margin-top: 2.5rem; }
 :is(.page-home, .page-group-transfers, .page-partner, .page-about, .page-service-spoke, .page-fleet) .event-cta__call-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 :is(.page-home, .page-group-transfers, .page-partner, .page-about, .page-service-spoke, .page-fleet) .event-cta__call-num { font-size: 1.2rem; font-weight: 700; color: #fff; }
 
-/* --- Partner Program: compact glassmorphism card over a DC backdrop --- */
-.page-home .partner { position: relative; overflow: hidden; isolation: isolate; }
-.page-home .partner__bg { position: absolute; inset: 0; z-index: -1; }
-.page-home .partner__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-/* Darken the left (behind the card) and let the DC image breathe on the right. */
-.page-home .partner__bg::after {
-  content: ""; position: absolute; inset: 0;
-  background:
-    linear-gradient(100deg, rgba(8, 8, 8, 0.94) 0%, rgba(8, 8, 8, 0.82) 46%, rgba(8, 8, 8, 0.34) 100%),
-    radial-gradient(120% 120% at 0% 50%, rgba(var(--gold-rgb), 0.12), transparent 62%);
+/* --- Partner Program: framed image + content panel --- */
+.page-home .partner__panel {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.95);
 }
-/* The glass card: compact (not full-width), left-aligned content. */
-.page-home .partner__glass {
-  max-width: 600px;
-  margin: 0; /* sits at the container's left edge */
-  padding: clamp(1.6rem, 3.2vw, 2.6rem);
-  border-radius: 22px;
-  text-align: left;
-  background: rgba(18, 18, 18, 0.55);
-  border: 1px solid rgba(var(--gold-rgb), 0.28);
-  box-shadow: 0 30px 80px -42px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
-  backdrop-filter: blur(16px) saturate(130%);
-}
-@media (max-width: 620px) {
-  .page-home .partner__glass { max-width: none; border-radius: 18px; }
-}
-/* Fallback when backdrop-filter is unsupported — keep text readable. */
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .page-home .partner__glass { background: rgba(14, 14, 14, 0.92); }
+@media (max-width: 900px) { .page-home .partner__panel { grid-template-columns: 1fr; } }
+.page-home .partner__media { position: relative; min-height: 340px; }
+.page-home .partner__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+@media (max-width: 900px) {
+  .page-home .partner__media { min-height: 0; }
+  .page-home .partner__media img { position: relative; height: 240px; }
 }
 .page-home .partner__badge {
-  display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1rem;
+  position: absolute; top: 1rem; left: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0.4rem 0.8rem; border-radius: 999px;
   font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gold); background: rgba(10, 10, 10, 0.5); border: 1px solid rgba(var(--gold-rgb), 0.4);
+  color: var(--gold); background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(var(--gold-rgb), 0.4); backdrop-filter: blur(6px);
 }
-/* Chauffeur · Groups · Events — a tidy row of glass pills (was overlaid on the image). */
 .page-home .partner__chips {
-  list-style: none; margin: 0 0 1.5rem; padding: 0;
-  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: flex; gap: 0.55rem; flex-wrap: wrap; align-items: center;
+  padding: 0.6rem 0.85rem; border-radius: 12px;
+  background: rgba(10, 10, 10, 0.55); border: 1px solid var(--border-gold); backdrop-filter: blur(6px);
 }
-.page-home .partner__chips li {
-  font-size: 0.78rem; font-weight: 600; color: var(--text);
-  padding: 0.3rem 0.75rem; border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(var(--gold-rgb), 0.3);
-}
-.page-home .partner__glass h2 {
+.page-home .partner__chips span { font-size: 0.8rem; color: var(--text); font-weight: 600; }
+.page-home .partner__chips span + span::before { content: "·"; color: var(--gold); margin-right: 0.55rem; }
+.page-home .partner__content { padding: clamp(1.75rem, 3.5vw, 2.75rem); }
+.page-home .partner__content h2 {
   margin: 0.6rem 0 0.9rem; color: #fff;
   font-size: clamp(2rem, 1.3rem + 2.4vw, 2.9rem); line-height: 1.05;
 }
-.page-home .partner__glass h2 .gold { color: var(--gold); }
+.page-home .partner__content h2 .gold { color: var(--gold); }
 .page-home .partner__lede { color: var(--text-2); margin: 0 0 1.5rem; }
 .page-home .partner__benefits { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; gap: 0.95rem; }
 .page-home .partner__benefits li { display: grid; grid-template-columns: auto 1fr; column-gap: 0.85rem; }
