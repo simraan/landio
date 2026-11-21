@@ -371,7 +371,7 @@ export const SITE = {
       url: "/services/airport-transfers/",
       icon: "airplane",
       blurb:
-        "Reliable transfers to and from Dulles (IAD), Reagan National (DCA), and Baltimore/Washington (BWI). We track your flight in real time so your pickup stays punctual, even if your flight is delayed.",
+        "Reliable transfers to and from Dulles (IAD), Reagan National (DCA), and Baltimore/Washington (BWI), with real-time flight tracking so your pickup stays punctual even when your schedule changes.",
     },
     {
       title: "Corporate & Executive Travel",
@@ -379,7 +379,7 @@ export const SITE = {
       url: "/services/corporate-executive/",
       icon: "briefcase",
       blurb:
-        "Discreet, professional chauffeur transportation for executives, business travelers, and VIP guests across the DC metro and the Northeast corridor.",
+        "Discreet, professional chauffeur service for executives, business travelers, and VIP guests across the DC metro and the Northeast corridor — punctual, polished, and always confidential.",
     },
     {
       title: "Private Jet & FBO Transfers",
@@ -387,7 +387,7 @@ export const SITE = {
       url: "/services/fbo-private-jet/",
       icon: "airplane",
       blurb:
-        "Premium transfers to and from the region's private-aviation terminals and FBOs — Signature at IAD, DCA, and BWI, plus Manassas, Leesburg Executive, Montgomery County Airpark, and Frederick. Seamless coordination with your flight crew.",
+        "Premium transfers to the region's private-aviation terminals and FBOs — Signature at IAD, DCA, and BWI, plus Manassas, Leesburg, and Frederick — coordinated seamlessly with your flight crew.",
     },
     {
       title: "Diplomatic Transportation",
@@ -411,7 +411,7 @@ export const SITE = {
       url: "/services/meet-and-greet/",
       icon: "handshake",
       blurb:
-        "Your chauffeur meets you inside the arrivals area with a personalized name sign, assists with luggage, and escorts you to your vehicle.",
+        "Your chauffeur greets you inside the arrivals hall with a personalized name sign, helps with your luggage, and escorts you to your vehicle for a smooth, unhurried start.",
     },
     {
       title: "Hourly Chauffeur Service",
@@ -419,7 +419,7 @@ export const SITE = {
       url: "/services/hourly-chauffeur/",
       icon: "calendar",
       blurb:
-        "Flexible transportation for meetings, roadshows, dinners, events, and full-day DC travel. Your dedicated chauffeur waits wherever the day takes you.",
+        "Flexible, by-the-hour transportation for meetings, roadshows, dinners, and full-day DC travel, with a dedicated chauffeur who waits and moves with you wherever the day leads.",
     },
   ],
 

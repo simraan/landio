@@ -12,9 +12,9 @@ import { esc } from "../templates/partials.js";
 /** "Send Us A Message" — 2 columns: form (left) + office map (right). */
 function messageForm() {
   const a = SITE.address;
-  // Verified Google Business Profile embed for Aura Hamptons — the marker is
-  // pinned on the registered office at 12410 Milestone Center Dr, Germantown, MD 20876.
-  const mapSrc = "https://www.google.com/maps?q=12410%20Milestone%20Center%20Dr%20Suite%20600,%20Germantown,%20MD%2020876&output=embed";
+  // Google Maps embed pinned on the real Landio Limo Services office —
+  // 12410 Milestone Center Dr, Suite 600, Germantown, MD 20876 (the NAP address).
+  const mapSrc = "https://www.google.com/maps?q=12410%20Milestone%20Center%20Dr%20Suite%20600%2C%20Germantown%2C%20MD%2020876&output=embed";
   return `
     <section class="section" aria-labelledby="message-title">
       <div class="container">

@@ -437,11 +437,13 @@ export function footer(year) {
         </div>`
     : "";
 
-  // Google Maps business listing (genuine embed — light roadmap view) + real
-  // "Open in Maps" (listing CID) and "Directions" (destination coords) links.
-  const MAP_EMBED = "https://www.google.com/maps?q=12410%20Milestone%20Center%20Dr%20Suite%20600,%20Germantown,%20MD%2020876&output=embed";
-  const MAP_OPEN = "https://www.google.com/maps?cid=115514870756707717";
-  const MAP_DIR = "https://www.google.com/maps/dir/?api=1&amp;destination=40.8839052713681,-72.39735542396555";
+  // Google Maps — all three target the real Landio office address in Germantown,
+  // MD (the NAP), so the embed, "Open in Maps" and "Directions" all resolve to
+  // the same genuine location. (No hardcoded coordinates or stale listing CID.)
+  const MAP_QUERY = "12410%20Milestone%20Center%20Dr%20Suite%20600%2C%20Germantown%2C%20MD%2020876";
+  const MAP_EMBED = `https://www.google.com/maps?q=${MAP_QUERY}&output=embed`;
+  const MAP_OPEN = `https://www.google.com/maps/search/?api=1&amp;query=${MAP_QUERY}`;
+  const MAP_DIR = `https://www.google.com/maps/dir/?api=1&amp;destination=${MAP_QUERY}`;
 
   return `
   <footer class="site-footer">
