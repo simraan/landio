@@ -73,6 +73,12 @@ const NOINDEX_ALL = process.env.NOINDEX !== "false";
  */
 const GTM_ID = /^GTM-[A-Z0-9]+$/.test(process.env.GTM_ID || "") ? process.env.GTM_ID : "GTM-W5JNP5HT";
 
+/**
+ * Google Analytics 4 Measurement ID from env GA4_ID. Unset (or malformed) → no
+ * GA4 code is emitted. Hardcoded default so GA4 works without the env var.
+ */
+const GA4_ID = /^G-[A-Z0-9]+$/.test(process.env.GA4_ID || "") ? process.env.GA4_ID : "G-33BDL98P6F";
+
 /** Short content hash for cache-busting hashed asset filenames. */
 const hash = (buf) => createHash("sha256").update(buf).digest("hex").slice(0, 10);
 
@@ -308,6 +314,7 @@ function build() {
     year: YEAR,
     noindexAll: NOINDEX_ALL,
     gtmId: GTM_ID,
+    ga4Id: GA4_ID,
   };
 
   const pages = loadPages();

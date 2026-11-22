@@ -707,6 +707,7 @@ document.documentElement.classList.add("js");
             eventCallback: once,
             eventTimeout: 1200,
           });
+          if (window.gtag) window.gtag("event", "generate_lead", { vehicle: data.vehicle || "", service: data.trip_type || "" });
           setTimeout(once, 1300); // GTM absent -> still navigate
         } else {
           go();
@@ -745,6 +746,7 @@ document.addEventListener("click", (e) => {
   if (!a) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: "click_to_call", page_path: location.pathname });
+  if (window.gtag) window.gtag("event", "contact", { method: "phone" });
 });
 
 /* ---- ARIA tabs (landing template): [data-tabs] → role=tablist/tab/tabpanel.

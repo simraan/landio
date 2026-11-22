@@ -11,7 +11,7 @@ import { esc, header, footer, floatingCta, preFooterCta, scrollTop, quoteModal }
 const OG_IMAGE = "/assets/img/brand/landio-og.jpg";
 
 export function renderPage(page, assets) {
-  const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId } = assets;
+  const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId, ga4Id } = assets;
 
   // GTM only when GTM_ID is set (validated in build.js). dataLayer events
   // (form_submit_success, click_to_call) are pushed by client/main.js.
@@ -20,6 +20,11 @@ export function renderPage(page, assets) {
     : "";
   const gtmBody = gtmId
     ? `  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n`
+    : "";
+  // GA4 (gtag) loaded directly — pageviews auto; conversion events
+  // (generate_lead, contact) are fired from client/main.js.
+  const ga4Head = ga4Id
+    ? `  <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4Id}"></script>\n  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}');</script>\n`
     : "";
   const canonical = absoluteUrl(siteUrl, page.path || "/");
 
@@ -54,7 +59,7 @@ export function renderPage(page, assets) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-${gtmHead}
+${gtmHead}${ga4Head}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.classList.add("js")</script>
   <title>${esc(title)}</title>
