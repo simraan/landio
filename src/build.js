@@ -71,7 +71,7 @@ const NOINDEX_ALL = process.env.NOINDEX !== "false";
  * Google Tag Manager container ID from env GTM_ID. Unset (or malformed) → no
  * GTM code is emitted at all.
  */
-const GTM_ID = /^GTM-[A-Z0-9]+$/.test(process.env.GTM_ID || "") ? process.env.GTM_ID : "";
+const GTM_ID = /^GTM-[A-Z0-9]+$/.test(process.env.GTM_ID || "") ? process.env.GTM_ID : "GTM-W5JNP5HT";
 
 /** Short content hash for cache-busting hashed asset filenames. */
 const hash = (buf) => createHash("sha256").update(buf).digest("hex").slice(0, 10);
