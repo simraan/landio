@@ -13,9 +13,26 @@ import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
 import { HERO_IMG, glanceTiles, serviceNode, abs } from "./_kit.js";
+import { fleetCards } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
+
+/* IAD-only "Choose Your Vehicle" section — reuses the homepage fleet cards
+   (SITE.fleet order: Sedan, SUV, Sprinter, Stretch Limo, Minibus, Charter Bus)
+   and the homepage .section-head / .fleet-grid design. `alt` keeps the page's
+   alternating background rhythm. */
+const iadFleetSection = (alt) => `
+    <section class="section${alt ? " section--alt" : ""}" aria-labelledby="iad-fleet-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Choose Your Vehicle</span>
+          <h2 id="iad-fleet-title">The Right Vehicle for Your IAD Transfer</h2>
+          <p class="text-secondary">From a solo arrival to a full group, pick the class that fits your party and luggage — every Landio vehicle runs flight-tracked transfers between Dulles (IAD) and anywhere across Washington, DC, Maryland, and Northern Virginia.</p>
+        </div>
+        <ul class="fleet-grid">${fleetCards(SITE.fleet)}</ul>
+      </div>
+    </section>`;
 
 function terminalPage(t) {
   const path = airportPath(t.key);
@@ -120,10 +137,12 @@ function terminalPage(t) {
         footHtml: "We confirm your exact meeting point when you book.",
       }],
 
-      // The airport-specific Step-by-Step timeline above already covers the flow,
-      // so IAD drops the generic "Three Steps to Your Ride" section (kept on
-      // DCA/BWI). The section renderer simply skips an omitted entry — no gap.
-      ...(t.key === "iad" ? [] : [["steps", { prefillPickup: pickup }]]),
+      // IAD: the airport-specific Step-by-Step timeline above already covers the
+      // flow, so instead of the generic "Three Steps to Your Ride" section
+      // (kept on DCA/BWI) IAD shows a homepage-style "Choose Your Vehicle" fleet.
+      ...(t.key === "iad"
+        ? [["html", { render: iadFleetSection }]]
+        : [["steps", { prefillPickup: pickup }]]),
 
       ["faq", { heading: `${t.code} Airport Car Service FAQ`, eyebrow: "Good to Know" }],
 
