@@ -127,7 +127,8 @@ export function normalizeLead(d) {
 const escHtml = (s) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-/** Branded dark/gold lead-notification email (Aura Hamptons). */
+/** Lead-notification email. Sent as plain text (see sendResend) so it lands in
+ *  the Primary tab and reads like a normal message, not a marketing campaign. */
 function renderEmail(lead) {
   const row = (label, value) =>
     value
@@ -174,22 +175,26 @@ function renderEmail(lead) {
     </table></body></html>`;
 
   const text = [
-    `New ${SITE.company} ${isPartner ? "partner enquiry" : "quote request"}`,
-    lead.company ? `Company:  ${lead.company}` : "",
-    lead.partnerType ? `Partner:  ${lead.partnerType}` : "",
-    `Name:     ${lead.name}`,
-    `Phone:    ${lead.phone}`,
-    `Email:    ${lead.email}`,
-    isPartner ? "" : `Trip:     ${trip}`,
-    isPartner ? "" : `Pickup:   ${lead.pickup}`,
-    isPartner ? "" : `Drop-off: ${lead.dropoff}`,
-    isPartner ? "" : `When:     ${lead.date} ${lead.time}`,
-    isPartner ? "" : `Vehicle:  ${lead.vehicle}`,
-    ret ? `Return:   ${ret}` : "",
-    lead.message ? `Notes:    ${lead.message}` : "",
-    `SMS:      ${lead.smsConsent ? "Yes" : "No"}`,
-    `Source:   ${src}`,
-  ].filter(Boolean).join("\n");
+    `New ${isPartner ? "partner enquiry" : "quote request"} — ${SITE.company}`,
+    ``,
+    lead.company ? `Company:    ${lead.company}` : null,
+    lead.partnerType ? `Partner:    ${lead.partnerType}` : null,
+    `Name:       ${lead.name}`,
+    `Phone:      ${lead.phone}`,
+    `Email:      ${lead.email}`,
+    isPartner ? null : `Trip:       ${trip}`,
+    isPartner ? null : `Pickup:     ${lead.pickup}`,
+    isPartner ? null : `Drop-off:   ${lead.dropoff}`,
+    isPartner ? null : `Date/Time:  ${`${lead.date} ${lead.time}`.trim()}`,
+    isPartner ? null : `Vehicle:    ${lead.vehicle}`,
+    ret ? `Return:     ${ret}` : null,
+    lead.message ? `Notes:      ${lead.message}` : null,
+    `SMS opt-in: ${lead.smsConsent ? "Yes" : "No"}`,
+    `Source:     ${src}`,
+    t.page_url ? `Page:       ${t.page_url}` : null,
+    lead.email ? `` : null,
+    lead.email ? `Reply to this email to respond directly.` : null,
+  ].filter((l) => l !== null).join("\n");
 
   return { html, text };
 }
@@ -243,13 +248,12 @@ async function sendResend(env, lead) {
   const to = [...new Set([SITE.email, "reinterio@gmail.com", ...envTo])];
   if (!key) return false;
 
-  const { html, text } = renderEmail(lead);
+  const { text } = renderEmail(lead);
   const ownerBody = {
     from,
     to,
     subject: `New quote: ${lead.name || "website"}${lead.vehicle ? ` · ${lead.vehicle}` : ""}`,
-    html,
-    text,
+    text, // plain text only → lands in Primary, not Promotions
   };
   // Owner hits Reply → goes straight to the customer.
   if (lead.email) ownerBody.reply_to = lead.email;
@@ -274,8 +278,7 @@ async function sendResend(env, lead) {
           to: [lead.email],
           reply_to: SITE.email, // customer hits Reply → business inbox
           subject: c.subject,
-          html: c.html,
-          text: c.text,
+          text: c.text, // plain text only → Primary, not Promotions
         }),
       });
     } catch (_) { /* best-effort */ }
