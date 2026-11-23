@@ -551,12 +551,19 @@ export function trustStrip(o, { alt } = {}) {
 
 /** 3 · Intro: two short answer-first columns, each with its own query H2. */
 export function introSplit(o, { alt } = {}) {
+  // Optional section-level H2 (opt-in). When present the section is labelled by
+  // it and the column headings drop to H3 for correct heading hierarchy.
+  const colTag = o.colTitleTag || "h2";
+  const head = (o.eyebrow || o.h2)
+    ? `<div class="section-head">${o.eyebrow ? `<span class="eyebrow">${esc(o.eyebrow)}</span>` : ""}${o.h2 ? `<h2${o.h2Id ? ` id="${esc(o.h2Id)}"` : ""}>${esc(o.h2)}</h2>` : ""}</div>`
+    : "";
+  const label = o.h2 && o.h2Id ? ` aria-labelledby="${esc(o.h2Id)}"` : ` aria-label="${esc(o.label)}"`;
   return `
-    <section class="${secClass(alt, "lp-intro")}" aria-label="${esc(o.label)}">
+    <section class="${secClass(alt, "lp-intro")}"${label}>
       <div class="container">
-        ${o.eyebrow ? `<div class="section-head"><span class="eyebrow">${esc(o.eyebrow)}</span></div>` : ""}
+        ${head}
         <div class="lp-intro__cols">
-          ${o.cols.map((c) => cbox({ tag: "div", cls: "lp-intro__col", lead: icon(c.icon), title: c.h2, titleTag: "h2", titleId: c.id, act: c.act, cue: c.cue, bodyHtml: c.html })).join("\n          ")}
+          ${o.cols.map((c) => cbox({ tag: "div", cls: "lp-intro__col", lead: icon(c.icon), title: c.h2, titleTag: colTag, titleId: c.id, act: c.act, cue: c.cue, bodyHtml: c.html })).join("\n          ")}
         </div>
         ${o.sourcesHtml ? `<p class="source-note">${o.sourcesHtml}</p>` : ""}
       </div>

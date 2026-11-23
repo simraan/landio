@@ -89,6 +89,11 @@ function terminalPage(t) {
       ["intro", {
         label: "Pickup and drop-off",
         eyebrow: "Pickup & Drop-off",
+        // IAD gets a section-level H2 (and H3 column headings) to match the
+        // homepage / At-a-Glance hierarchy; DCA/BWI keep the heading-less layout.
+        h2: t.key === "iad" ? `Airport Pickup & Drop-off at ${t.code}` : undefined,
+        h2Id: t.key === "iad" ? `pd-${t.key}` : undefined,
+        colTitleTag: t.key === "iad" ? "h3" : undefined,
         cols: [
           { id: `pickup-${t.key}`, icon: "radar", h2: `Pickup at ${t.code}`, act: arriveAct, cue: "Book a pickup", html: t.pickupText },
           { id: `dropoff-${t.key}`, icon: "plane", h2: `Drop-off for ${t.code} Departures`, act: departAct, cue: "Book a drop-off", html: t.dropoffText },

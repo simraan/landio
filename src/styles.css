@@ -4321,8 +4321,10 @@ button.airport-tile:hover { border-color: var(--gold); transform: translateY(-4p
   padding: clamp(1.4rem, 3vw, 2rem); border: 1px solid var(--border); border-radius: var(--radius-lg);
   background: var(--bg-2);
 }
-.lp-intro__col h2 { font-size: clamp(1.35rem, 1.1rem + 1vw, 1.7rem); margin: 0.75rem 0 0.6rem; }
+.lp-intro__col h2, .lp-intro__col h3 { font-size: clamp(1.35rem, 1.1rem + 1vw, 1.7rem); margin: 0.75rem 0 0.6rem; }
 .lp-intro__col p { margin: 0; color: var(--text-2); }
+/* IAD: emphasise the "International arrivals" / "Departures level" callouts. */
+.page-airport-iad .lp-intro__col p strong { color: #fff; font-weight: 700; }
 .lp-intro__col p a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 @media (min-width: 760px) { .lp-intro__cols { grid-template-columns: 1fr 1fr; } }
 

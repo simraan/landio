@@ -66,6 +66,11 @@ export const TERMINALS = {
     // Gold-accented H1 to match the homepage hero's heading style. The text
     // content is identical to `h1` (and `title`), so SEO/meta are unchanged.
     h1Html: `IAD Airport Car Service (<span class="gold">Dulles</span>)`,
+    // Concise, IAD-specific pickup/drop-off copy focused on meeting point +
+    // customs (pickup) and the departures level + timing (drop-off) — distinct
+    // from the At-a-Glance facts and the Step-by-Step flow.
+    pickupText: `<p>Choose where we meet you at IAD — at baggage claim with a personalized name sign, or curbside on the arrivals level — and we confirm the exact spot when you book. <strong>International arrivals</strong> clear customs and immigration in the Main Terminal first, then step out to your waiting chauffeur.</p>`,
+    dropoffText: `<p>We collect you anywhere across the DC metro and drop you at IAD's <strong>Departures level</strong> for your airline, with time built in for bag drop, check-in and security.</p>`,
   },
   dca: base({
     code: "DCA",
