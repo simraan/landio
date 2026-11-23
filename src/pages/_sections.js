@@ -347,6 +347,12 @@ export function eventCta(opts = {}) {
   // (byte-identical sitewide). `email: true` renders two COMPACT inline contact
   // cards (Call + Email) side by side above the unchanged quote button — used
   // only by the Group Transfers page.
+  // Optional overrides (defaults keep every existing caller byte-identical):
+  // a custom primary-button label, an IAD/area pickup to prefill, and a custom
+  // call-block label.
+  const ctaLabel = opts.ctaLabel || "Get a Free Quote";
+  const prefillAttr = opts.prefillPickup ? ` data-prefill-pickup="${esc(opts.prefillPickup)}"` : "";
+  const callLabel = opts.callLabel || "Call us, any hour";
   const actions = opts.email ? `
           <div class="event-cta__actions">
             <div class="event-cta__contacts">
@@ -359,14 +365,14 @@ export function eventCta(opts = {}) {
                 <span class="event-cta__call-text"><span class="event-cta__call-label">Email us</span><span class="event-cta__call-num">${esc(SITE.email)}</span></span>
               </a>
             </div>
-            <button type="button" class="btn btn-primary btn-block" data-open-quote>${btnIcon("calendar")}Get a Free Quote</button>
+            <button type="button" class="btn btn-primary btn-block" data-open-quote${prefillAttr}>${btnIcon("calendar")}${esc(ctaLabel)}</button>
           </div>` : `
           <div class="event-cta__actions">
             <a class="event-cta__call" href="tel:${esc(SITE.phone.e164)}">
               <span class="event-cta__call-ico" aria-hidden="true">${CB_ICON.phone}</span>
-              <span class="event-cta__call-text"><span class="event-cta__call-label">Call us, any hour</span><span class="event-cta__call-num">${esc(SITE.phone.display)}</span></span>
+              <span class="event-cta__call-text"><span class="event-cta__call-label">${esc(callLabel)}</span><span class="event-cta__call-num">${esc(SITE.phone.display)}</span></span>
             </a>
-            <button type="button" class="btn btn-primary btn-block" data-open-quote>${btnIcon("calendar")}Get a Free Quote</button>
+            <button type="button" class="btn btn-primary btn-block" data-open-quote${prefillAttr}>${btnIcon("calendar")}${esc(ctaLabel)}</button>
           </div>`;
   // Copy defaults to the sitewide "Event Transport" band; a premium service page
   // can pass its own eyebrow / heading / lede (raw HTML allowed).
@@ -512,7 +518,7 @@ export function heroSplit(o) {
       <div class="container lp-hero__grid${o.form === false ? " lp-hero__grid--solo" : ""}">
         <div class="lp-hero__copy">
           <p class="lp-eyebrow">${esc(o.eyebrow)}</p>
-          <h1 id="lp-h1">${esc(o.h1)}</h1>
+          <h1 id="lp-h1">${o.h1Html || esc(o.h1)}</h1>
           <p class="lp-hero__answer">${o.answerHtml}</p>
           ${o.chips && o.chips.length ? `<ul class="lp-chips">
             ${o.chips.map((c) => `<li>${icon(c.icon)}<span>${esc(c.text)}</span></li>`).join("\n            ")}
@@ -529,13 +535,19 @@ export function heroSplit(o) {
 
 /** 2 · Trust strip: visible eyebrow + compact H2, then one row of icon tiles. */
 export function trustStrip(o, { alt } = {}) {
+  // Optional airport-overview strip (label + value facts). Opt-in: only pages
+  // that pass `o.facts` render it, so other trust strips are unchanged.
+  const overview = o.facts && o.facts.length ? `
+        <ul class="lp-overview" aria-label="${esc(o.factsLabel || "Overview")}">
+          ${o.facts.map((f) => `<li class="lp-overview__item"><span class="lp-overview__ico" aria-hidden="true">${icon(f.icon, { size: 20 })}</span><span class="lp-overview__text"><span class="lp-overview__label">${esc(f.label)}</span><span class="lp-overview__value">${esc(f.value)}</span></span></li>`).join("\n          ")}
+        </ul>` : "";
   return `
     <section class="${secClass(alt, "lp-trust")}" aria-labelledby="${esc(o.id)}">
       <div class="container">
         <div class="lp-trust__head">
           <span class="eyebrow">${esc(o.eyebrow)}</span>
           <h2 id="${esc(o.id)}" class="lp-h2-compact">${esc(o.h2)}</h2>
-        </div>
+        </div>${overview}
         <ul class="lp-trust__tiles">
           ${o.tiles.map((t) => cbox({ cls: "lp-trust__tile", lead: icon(t.icon), title: t.text, titleTag: "p", act: t.act, cue: t.cue, future: t.future })).join("\n          ")}
         </ul>
@@ -545,12 +557,19 @@ export function trustStrip(o, { alt } = {}) {
 
 /** 3 · Intro: two short answer-first columns, each with its own query H2. */
 export function introSplit(o, { alt } = {}) {
+  // Optional section-level H2 (opt-in). When present the section is labelled by
+  // it and the column headings drop to H3 for correct heading hierarchy.
+  const colTag = o.colTitleTag || "h2";
+  const head = (o.eyebrow || o.h2)
+    ? `<div class="section-head">${o.eyebrow ? `<span class="eyebrow">${esc(o.eyebrow)}</span>` : ""}${o.h2 ? `<h2${o.h2Id ? ` id="${esc(o.h2Id)}"` : ""}>${esc(o.h2)}</h2>` : ""}</div>`
+    : "";
+  const label = o.h2 && o.h2Id ? ` aria-labelledby="${esc(o.h2Id)}"` : ` aria-label="${esc(o.label)}"`;
   return `
-    <section class="${secClass(alt, "lp-intro")}" aria-label="${esc(o.label)}">
+    <section class="${secClass(alt, "lp-intro")}"${label}>
       <div class="container">
-        ${o.eyebrow ? `<div class="section-head"><span class="eyebrow">${esc(o.eyebrow)}</span></div>` : ""}
+        ${head}
         <div class="lp-intro__cols">
-          ${o.cols.map((c) => cbox({ tag: "div", cls: "lp-intro__col", lead: icon(c.icon), title: c.h2, titleTag: "h2", titleId: c.id, act: c.act, cue: c.cue, bodyHtml: c.html })).join("\n          ")}
+          ${o.cols.map((c) => cbox({ tag: "div", cls: "lp-intro__col", lead: icon(c.icon), title: c.h2, titleTag: colTag, titleId: c.id, act: c.act, cue: c.cue, bodyHtml: c.html })).join("\n          ")}
         </div>
         ${o.sourcesHtml ? `<p class="source-note">${o.sourcesHtml}</p>` : ""}
       </div>
@@ -644,8 +663,8 @@ export function tabbedTimeline(o, { alt } = {}) {
                 bodyHtml: `<span class="lp-timeline__d">${esc(st.text)}</span>`,
               })).join("\n              ")}
             </ol>
-            ${cbox({ tag: "div", cls: "lp-tabpanel__point", lead: icon("pin", { size: 18 }), titleTag: "p", titleCls: "lp-point__t",
-                     title: "Meeting point", act: t.act, cue: t.pointCue || t.cue, future: t.future, futureCue: t.futureCue,
+            ${cbox({ tag: "div", cls: "lp-tabpanel__point", lead: icon(t.pointIcon || "pin", { size: 18 }), titleTag: "p", titleCls: "lp-point__t",
+                     title: t.pointTitle || "Meeting point", act: t.act, cue: t.pointCue || t.cue, future: t.future, futureCue: t.futureCue,
                      bodyHtml: `<span class="lp-point__d">${esc(t.point)}</span>` })}
             ${t.linksHtml ? `<p class="lp-tabpanel__links">${t.linksHtml}</p>` : ""}`,
   }));
@@ -786,6 +805,66 @@ export function tableSection(o, { alt } = {}) {
           </table>
         </div>
         ${o.sourcesHtml ? `<p class="source-note">${o.sourcesHtml}</p>` : ""}
+      </div>
+    </section>`;
+}
+
+/**
+ * Google Reviews — shared renderer (homepage + airport pages). Google reviews
+ * can't be fetched from the API without billing, so this shows a premium Google
+ * badge + "Read More Google Reviews" CTA. Review cards render ONLY when genuine
+ * reviews are pasted into REVIEWS below — never invent names, text, or ratings.
+ * Defaults reproduce the homepage section exactly; pass opts to retheme (e.g.
+ * an airport page's heading).
+ */
+export function googleReviews({
+  id = "rv-title",
+  eyebrow = "Client Reviews",
+  h2 = "What Our Clients Say",
+  lede = "Clients across Washington, DC, Maryland, and Northern Virginia share their Landio Limo Services experience on Google. Read their reviews — and leave your own.",
+  ctaLabel = "Read More Google Reviews",
+  alt = true,
+} = {}) {
+  const REVIEWS_URL = "https://share.google/v9oRmrQYknBB8f2TQ";
+  const googleG =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.7v3h3.9c2.3-2.1 3.5-5.2 3.5-8.9z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8L20 3.2A12 12 0 0 0 12 0 12 12 0 0 0 1.3 6.6l4 3.1C6.2 6.9 8.9 4.8 12 4.8z"/></svg>';
+  const star = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 21l1.4-6.8L2.2 9.6l6.9-.7z"/></svg>';
+
+  // Paste GENUINE Google reviews here, e.g.
+  //   { name: "Jane D.", rating: 5, text: "…", date: "2 weeks ago" }
+  // Leave empty until you have real reviews — do not invent any.
+  const REVIEWS = [];
+
+  const stars = (n) =>
+    Array.from({ length: 5 }, (_, i) => `<span class="${i < n ? "" : "rv-star--off"}">${star}</span>`).join("");
+
+  const card = (r) => `
+          <li class="rv-card">
+            <div class="rv-card__head">
+              <span class="rv-avatar" aria-hidden="true">${esc((r.name || "?").trim().charAt(0).toUpperCase())}</span>
+              <div class="rv-card__id">
+                <p class="rv-name">${esc(r.name)}</p>
+                <div class="rv-stars" aria-label="${esc(String(r.rating))} out of 5 stars">${stars(r.rating)}</div>
+              </div>
+              <span class="rv-g" aria-hidden="true">${googleG}</span>
+            </div>
+            <p class="rv-text">${esc(r.text)}</p>
+            ${r.date ? `<p class="rv-date">${esc(r.date)}</p>` : ""}
+          </li>`;
+
+  return `
+    <section class="section${alt ? " section--alt" : ""} rv-section" aria-labelledby="${esc(id)}">
+      <div class="container">
+        <div class="rv-head">
+          <span class="eyebrow">${esc(eyebrow)}</span>
+          <h2 id="${esc(id)}">${esc(h2)}</h2>
+          <p class="text-secondary">${esc(lede)}</p>
+          <span class="rv-badge">${googleG}<span>Reviews on Google</span></span>
+        </div>
+        ${REVIEWS.length ? `<ul class="rv-grid">${REVIEWS.map(card).join("")}\n        </ul>` : ""}
+        <div class="rv-cta">
+          <a class="btn btn-primary" href="${REVIEWS_URL}" target="_blank" rel="noopener">${esc(ctaLabel)}</a>
+        </div>
       </div>
     </section>`;
 }

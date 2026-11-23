@@ -103,6 +103,9 @@ export function landingPage(cfg) {
     hub: cfg.hub,
     card: cfg.card,
     noindex: cfg.noindex,
+    // Opt out of the shared pre-footer cta-band (e.g. a page with its own
+    // dedicated final CTA). Default false → sitewide band renders as before.
+    hidePreFooterCta: cfg.hidePreFooterCta,
     graph,
     headExtra,
     main: [breadcrumb(cfg.trail || []), ...sections].join("\n"),

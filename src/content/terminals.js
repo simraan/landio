@@ -54,14 +54,30 @@ const base = ({ code, name, h1short, where, arriveNote }) => ({
   ],
 });
 
+const iadBase = base({
+  code: "IAD",
+  name: "Washington Dulles International Airport",
+  h1short: "Dulles",
+  where: "in Dulles, Virginia, west of Washington, DC, with international and domestic service across its main terminal and midfield concourses",
+  arriveNote: "International arrivals clear customs in the main terminal before meeting your chauffeur.",
+});
+
 export const TERMINALS = {
-  iad: base({
-    code: "IAD",
-    name: "Washington Dulles International Airport",
-    h1short: "Dulles",
-    where: "in Dulles, Virginia, west of Washington, DC, with international and domestic service across its main terminal and midfield concourses",
-    arriveNote: "International arrivals clear customs in the main terminal before meeting your chauffeur.",
-  }),
+  iad: {
+    ...iadBase,
+    // Gold-accented H1 to match the homepage hero's heading style. The text
+    // content is identical to `h1` (and `title`), so SEO/meta are unchanged.
+    h1Html: `IAD Airport Car Service (<span class="gold">Dulles</span>)`,
+    // Concise, IAD-specific pickup/drop-off copy focused on meeting point +
+    // customs (pickup) and the departures level + timing (drop-off) — distinct
+    // from the At-a-Glance facts and the Step-by-Step flow.
+    pickupText: `<p>Choose where we meet you at IAD — at baggage claim with a personalized name sign, or curbside on the arrivals level — and we confirm the exact spot when you book. <strong>International arrivals</strong> clear customs and immigration in the Main Terminal first, then step out to your waiting chauffeur.</p>`,
+    dropoffText: `<p>We collect you anywhere across the DC metro and drop you at IAD's <strong>Departures level</strong> for your airline, with time built in for bag drop, check-in and security.</p>`,
+    // Timeline meeting-point callouts reframed as complementary takeaways so they
+    // don't repeat the Pickup & Drop-off cards' "where we meet you" wording.
+    arriving: { ...iadBase.arriving, point: "You'll have your chauffeur's name and vehicle details before you land, so you know exactly who to look for." },
+    departing: { ...iadBase.departing, point: "Share your flight number and we set the pickup time for you — no math, and margin to spare for check-in." },
+  },
   dca: base({
     code: "DCA",
     name: "Ronald Reagan Washington National Airport",
