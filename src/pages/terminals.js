@@ -139,9 +139,26 @@ function terminalPage(t) {
 
       // IAD: the airport-specific Step-by-Step timeline above already covers the
       // flow, so instead of the generic "Three Steps to Your Ride" section
-      // (kept on DCA/BWI) IAD shows a homepage-style "Choose Your Vehicle" fleet.
+      // (kept on DCA/BWI) IAD shows a homepage-style "Choose Your Vehicle" fleet
+      // followed by a "Why Choose Landio" benefits grid.
       ...(t.key === "iad"
-        ? [["html", { render: iadFleetSection }]]
+        ? [
+            ["html", { render: iadFleetSection }],
+            ["why", {
+              id: "why-iad",
+              eyebrow: "Why Landio",
+              h2: "Why Choose Landio for Dulles Airport Transfers?",
+              lede: "The reasons DC-metro travelers rely on Landio for Dulles — from the first quote to the final drop-off.",
+              items: [
+                { icon: "radar", title: "Real-time flight tracking", text: "We watch your inbound flight and shift your pickup to your actual landing — early or delayed, we're there." },
+                { icon: "userCheck", title: "Professional, vetted chauffeurs", text: "Experienced, background-checked drivers who know Dulles and every route across the DC metro." },
+                { icon: "clock", title: "Punctual pickups", text: "Live tracking and built-in margin keep your car ready and waiting — not the other way around." },
+                { icon: "tag", title: "One upfront price", text: "A flat quote confirmed before you book — no surge, no meter, no surprises at the curb." },
+                { icon: "car", title: "Immaculate luxury fleet", text: "Sedans to charter buses, each late-model and meticulously maintained inside and out." },
+                { icon: "pin", title: "Reliable, round-the-clock", text: "24/7 service to and from IAD across Washington, DC, Maryland, and Northern Virginia." },
+              ],
+            }],
+          ]
         : [["steps", { prefillPickup: pickup }]]),
 
       ["faq", { heading: `${t.code} Airport Car Service FAQ`, eyebrow: "Good to Know" }],

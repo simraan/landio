@@ -6597,3 +6597,7 @@ h1 .gold {
   flex: none; width: 40px; height: 40px; padding: 11px; border-radius: 11px; box-sizing: border-box;
   background: rgba(10, 10, 10, 0.4); border: 1px solid rgba(var(--gold-rgb), 0.3); color: var(--gold);
 }
+
+/* ---- Why Choose Landio: gold icons in the badges (the base .lp-icon-badge
+   leaves the icon inheriting), matching the IAD gold-dim badge treatment. ---- */
+.page-airport-iad .lp-icon-badge { color: var(--gold); }
