@@ -61,11 +61,11 @@ const SITE_URL = process.env.SITE_URL || DEFAULT_SITE_URL;
 const YEAR = new Date().getFullYear();
 
 /**
- * Indexing switch. NOINDEX by default (pre-launch: the live WordPress site still
- * owns the domain). Set NOINDEX=false in Cloudflare Pages at launch — that
- * flips every page to index,follow and robots.txt to allow + sitemap.
+ * Indexing switch. LAUNCHED: indexable by default — every page is index,follow
+ * and robots.txt allows crawling + points to the sitemap. Set NOINDEX=true in
+ * Cloudflare Pages to force a noindex build again (e.g. a staging rebuild).
  */
-const NOINDEX_ALL = process.env.NOINDEX !== "false";
+const NOINDEX_ALL = process.env.NOINDEX === "true";
 
 /**
  * Google Tag Manager container ID from env GTM_ID. Unset (or malformed) → no
