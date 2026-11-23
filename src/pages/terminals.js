@@ -50,6 +50,7 @@ function terminalPage(t) {
       ["hero", {
         eyebrow: `${t.code} Airport Transfers · 24/7`,
         h1: t.h1,
+        h1Html: t.h1Html, // only IAD sets this (gold accent); others fall back to esc(h1)
         answerHtml: esc(t.answer),
         chips: t.chips,
         image: HERO_IMG,

@@ -512,7 +512,7 @@ export function heroSplit(o) {
       <div class="container lp-hero__grid${o.form === false ? " lp-hero__grid--solo" : ""}">
         <div class="lp-hero__copy">
           <p class="lp-eyebrow">${esc(o.eyebrow)}</p>
-          <h1 id="lp-h1">${esc(o.h1)}</h1>
+          <h1 id="lp-h1">${o.h1Html || esc(o.h1)}</h1>
           <p class="lp-hero__answer">${o.answerHtml}</p>
           ${o.chips && o.chips.length ? `<ul class="lp-chips">
             ${o.chips.map((c) => `<li>${icon(c.icon)}<span>${esc(c.text)}</span></li>`).join("\n            ")}

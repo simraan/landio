@@ -6479,17 +6479,38 @@ h1 .gold {
 /* The glance strip carries its own padding; tighten it to match the new rhythm. */
 .page-airport-iad .lp-trust { padding-block: clamp(1.5rem, 3vw, 2.25rem); }
 
-/* ---- Hero: deeper, richer image treatment with a soft gold glow ---- */
-.page-airport-iad .lp-hero { padding-block: clamp(2.75rem, 6vw, 5.25rem); }
-.page-airport-iad .lp-hero__bg img { object-position: center 30%; }
+/* ---- Hero: mirror the homepage hero (.hero--home) design system exactly:
+   generous padding, left-weighted overlay with a top-left gold glow, the same
+   glass quote card, grid ratio and 940px two-column breakpoint. ---- */
+.page-airport-iad .lp-hero { padding-block: clamp(56px, 8vw, 116px); }
+.page-airport-iad .lp-hero__bg img { object-position: center 38%; }
 .page-airport-iad .lp-hero__overlay {
   background:
-    radial-gradient(85% 120% at 88% -5%, rgba(var(--gold-rgb), 0.16), transparent 55%),
-    linear-gradient(90deg, rgba(8, 8, 8, 0.96) 0%, rgba(8, 8, 8, 0.82) 46%, rgba(8, 8, 8, 0.48) 100%),
-    linear-gradient(0deg, rgba(8, 8, 8, 1) 0%, rgba(8, 8, 8, 0) 42%);
+    radial-gradient(120% 90% at 12% -10%, rgba(var(--gold-rgb), 0.16), transparent 55%),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.86) 46%, rgba(10, 10, 10, 0.58) 100%),
+    linear-gradient(0deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0) 42%);
 }
 .page-airport-iad .lp-hero__answer { color: var(--text); }
-.page-airport-iad .lp-chips li { background: rgba(10, 10, 10, 0.72); }
+/* Glass quote card, matched to the homepage. */
+.page-airport-iad .lp-hero .quote-card {
+  background: rgba(20, 20, 20, 0.94);
+  -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85);
+}
+/* Layout: same gap, column ratio and breakpoint as the homepage hero. */
+.page-airport-iad .lp-hero__grid { gap: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 940px) {
+  .page-airport-iad .lp-hero__grid { grid-template-columns: 1.1fr 0.9fr; }
+}
+/* Phones: stronger lower fade so the stacked copy stays legible (homepage parity). */
+@media (max-width: 939px) {
+  .page-airport-iad .lp-hero__overlay {
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(var(--gold-rgb), 0.14), transparent 55%),
+      linear-gradient(180deg, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.9) 60%, rgba(10, 10, 10, 0.96) 100%);
+  }
+  .page-airport-iad .lp-hero__bg img { object-position: center 32%; }
+}
 
 /* ---- At a Glance tiles: icon badge + premium hover lift ---- */
 .page-airport-iad .lp-trust__tile {

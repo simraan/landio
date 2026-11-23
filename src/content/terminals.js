@@ -55,13 +55,18 @@ const base = ({ code, name, h1short, where, arriveNote }) => ({
 });
 
 export const TERMINALS = {
-  iad: base({
-    code: "IAD",
-    name: "Washington Dulles International Airport",
-    h1short: "Dulles",
-    where: "in Dulles, Virginia, west of Washington, DC, with international and domestic service across its main terminal and midfield concourses",
-    arriveNote: "International arrivals clear customs in the main terminal before meeting your chauffeur.",
-  }),
+  iad: {
+    ...base({
+      code: "IAD",
+      name: "Washington Dulles International Airport",
+      h1short: "Dulles",
+      where: "in Dulles, Virginia, west of Washington, DC, with international and domestic service across its main terminal and midfield concourses",
+      arriveNote: "International arrivals clear customs in the main terminal before meeting your chauffeur.",
+    }),
+    // Gold-accented H1 to match the homepage hero's heading style. The text
+    // content is identical to `h1` (and `title`), so SEO/meta are unchanged.
+    h1Html: `IAD Airport Car Service (<span class="gold">Dulles</span>)`,
+  },
   dca: base({
     code: "DCA",
     name: "Ronald Reagan Washington National Airport",
