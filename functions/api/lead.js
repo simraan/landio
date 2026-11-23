@@ -1,5 +1,5 @@
 /**
- * POST /api/lead — Aura Hamptons quote-request capture.
+ * POST /api/lead — Landio Limo Services quote-request capture.
  *
  * Delivery (web-standard fetch only — no Node built-ins, no deps, so
  * `nodejs_compat` is NOT required):
@@ -146,7 +146,7 @@ function renderEmail(lead) {
   const html = `<!doctype html><html><body style="margin:0;background:#0a0a0a;padding:24px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#141414;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden">
       <tr><td style="background:#0a0a0a;padding:20px 24px;border-bottom:2px solid #c9a94e">
-        <span style="color:#c9a94e;font:700 20px/1 Arial,sans-serif;letter-spacing:.06em">AURA HAMPTONS</span>
+        <span style="color:#c9a94e;font:700 20px/1 Arial,sans-serif;letter-spacing:.06em">${escHtml(SITE.company.toUpperCase())}</span>
         <span style="color:#9a8f7a;font:400 13px/1 Arial,sans-serif;float:right;padding-top:6px">${escHtml(headline)}</span>
       </td></tr>
       <tr><td style="padding:18px 12px 6px">
@@ -174,7 +174,7 @@ function renderEmail(lead) {
     </table></body></html>`;
 
   const text = [
-    `New Aura Hamptons ${isPartner ? "partner enquiry" : "quote request"}`,
+    `New ${SITE.company} ${isPartner ? "partner enquiry" : "quote request"}`,
     lead.company ? `Company:  ${lead.company}` : "",
     lead.partnerType ? `Partner:  ${lead.partnerType}` : "",
     `Name:     ${lead.name}`,
@@ -194,29 +194,89 @@ function renderEmail(lead) {
   return { html, text };
 }
 
-/** Send the lead email via Resend. Returns true only on a 2xx response. */
+/** Plain customer auto-reply — confirms the request, signed by the owner.
+ *  Reply-To is the business inbox so a customer reply reaches the team. */
+function renderCustomerEmail(lead) {
+  const name = (lead.name || "").split(" ")[0] || "there";
+  const phone = PHONE.display;
+  const text = [
+    `Hi ${name},`,
+    ``,
+    `Thank you for requesting a quote with ${SITE.company}. We've received your details and are preparing your quote now.`,
+    ``,
+    `If you have any questions in the meantime, call us at ${phone} or simply reply to this email.`,
+    ``,
+    `Regards,`,
+    `Mohamet Thiam`,
+    SITE.company,
+    SITE.email,
+    phone,
+  ].join("\n");
+
+  const html = `<div style="font:400 15px/1.6 Arial,Helvetica,sans-serif;color:#1a1a1a;max-width:560px">
+    <p>Hi ${escHtml(name)},</p>
+    <p>Thank you for requesting a quote with <strong>${escHtml(SITE.company)}</strong>. We've received your details and are preparing your quote now.</p>
+    <p>If you have any questions in the meantime, call us at <a href="tel:${escHtml(PHONE.e164)}" style="color:#9a7a1e">${escHtml(phone)}</a> or simply reply to this email.</p>
+    <p style="margin-top:22px;color:#1a1a1a">Regards,<br>
+      Mohamet Thiam<br>
+      ${escHtml(SITE.company)}<br>
+      <a href="mailto:${escHtml(SITE.email)}" style="color:#9a7a1e">${escHtml(SITE.email)}</a><br>
+      ${escHtml(phone)}</p>
+  </div>`;
+
+  return { subject: `We've received your request — ${SITE.company}`, html, text };
+}
+
+/** Send the lead emails via Resend. Returns true only when the team
+ *  notification is accepted (2xx); the customer auto-reply is best-effort. */
 async function sendResend(env, lead) {
   const key = env.RESEND_API_KEY;
   const from = env.QUOTE_NOTIFY_FROM;
-  const to = (env.QUOTE_NOTIFY_TO || "").split(",").map((s) => s.trim()).filter(Boolean);
-  if (!key || !from || !to.length) return false;
+  // Team recipients: always the business inbox + owner's Gmail, plus any extra
+  // addresses configured in QUOTE_NOTIFY_TO (comma-separated). Deduped.
+  const envTo = (env.QUOTE_NOTIFY_TO || "").split(",").map((s) => s.trim()).filter(Boolean);
+  const to = [...new Set([SITE.email, "reinterio@gmail.com", ...envTo])];
+  if (!key || !from) return false;
 
   const { html, text } = renderEmail(lead);
-  const body = {
+  const ownerBody = {
     from,
     to,
     subject: `New quote: ${lead.name || "website"}${lead.vehicle ? ` · ${lead.vehicle}` : ""}`,
     html,
     text,
   };
-  if (lead.email) body.reply_to = lead.email;
+  // Owner hits Reply → goes straight to the customer.
+  if (lead.email) ownerBody.reply_to = lead.email;
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify(ownerBody),
   });
-  return res.ok;
+  const delivered = res.ok;
+
+  // Customer auto-reply — best-effort, never changes the delivered result.
+  if (delivered && lead.email) {
+    try {
+      const addr = (String(from).match(/<([^>]+)>/) || [null, from])[1].trim();
+      const c = renderCustomerEmail(lead);
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+        body: JSON.stringify({
+          from: `${SITE.company} <${addr}>`,
+          to: [lead.email],
+          reply_to: SITE.email, // customer hits Reply → business inbox
+          subject: c.subject,
+          html: c.html,
+          text: c.text,
+        }),
+      });
+    } catch (_) { /* best-effort */ }
+  }
+
+  return delivered;
 }
 
 /** Best-effort upsert into GoHighLevel. Silent on any failure. */
@@ -245,7 +305,7 @@ async function pushToGhl(env, lead) {
     email: lead.email || undefined,
     phone: lead.phone || undefined,
     companyName: lead.company || undefined,
-    source: "Aura Hamptons website",
+    source: `${SITE.company} website`,
     tags: (isPartner
       ? ["partner-enquiry", lead.partnerType]
       : ["website-quote", lead.vehicle]
