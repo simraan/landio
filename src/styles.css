@@ -6467,3 +6467,67 @@ h1 .gold {
   .page-fleet .flh-card__media::before,
   .page-services .svc-card__media::before { display: none; }
 }
+
+/* ==========================================================================
+   IAD (Dulles) airport page — premium polish.
+   Scoped to .page-airport-iad ONLY; the DCA (.page-airport-dca) and BWI
+   (.page-airport-bwi) pages are deliberately left untouched.
+   ========================================================================== */
+
+/* Tighter, more deliberate vertical rhythm (was a loose 48–80px per section). */
+.page-airport-iad { --section-pad: clamp(38px, 4.4vw, 60px); }
+/* The glance strip carries its own padding; tighten it to match the new rhythm. */
+.page-airport-iad .lp-trust { padding-block: clamp(1.5rem, 3vw, 2.25rem); }
+
+/* ---- Hero: deeper, richer image treatment with a soft gold glow ---- */
+.page-airport-iad .lp-hero { padding-block: clamp(2.75rem, 6vw, 5.25rem); }
+.page-airport-iad .lp-hero__bg img { object-position: center 30%; }
+.page-airport-iad .lp-hero__overlay {
+  background:
+    radial-gradient(85% 120% at 88% -5%, rgba(var(--gold-rgb), 0.16), transparent 55%),
+    linear-gradient(90deg, rgba(8, 8, 8, 0.96) 0%, rgba(8, 8, 8, 0.82) 46%, rgba(8, 8, 8, 0.48) 100%),
+    linear-gradient(0deg, rgba(8, 8, 8, 1) 0%, rgba(8, 8, 8, 0) 42%);
+}
+.page-airport-iad .lp-hero__answer { color: var(--text); }
+.page-airport-iad .lp-chips li { background: rgba(10, 10, 10, 0.72); }
+
+/* ---- At a Glance tiles: icon badge + premium hover lift ---- */
+.page-airport-iad .lp-trust__tile {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  transition: transform 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+.page-airport-iad .lp-trust__tile > svg:first-child {
+  width: 42px; height: 42px; padding: 10px; border-radius: 11px; box-sizing: border-box;
+  background: var(--gold-dim); border: 1px solid rgba(var(--gold-rgb), 0.3); color: var(--gold);
+}
+.page-airport-iad .lp-trust__tile:hover {
+  transform: translateY(-3px); border-color: var(--gold);
+  box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.9), 0 0 24px -14px rgba(var(--gold-rgb), 0.45);
+}
+
+/* ---- Pickup / Drop-off cards: gold-tint surface, icon badge, hover, aligned cue ---- */
+.page-airport-iad .lp-intro__col {
+  display: flex; flex-direction: column;
+  border-color: var(--border-gold);
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  transition: transform 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+.page-airport-iad .lp-intro__col > svg:first-child {
+  width: 48px; height: 48px; padding: 12px; border-radius: 13px; box-sizing: border-box;
+  background: var(--gold-dim); border: 1px solid rgba(var(--gold-rgb), 0.3); color: var(--gold);
+}
+/* Always show the booking cue on these cards (clearer CTA, fills the card) — it
+   is otherwise hover-only, which left the shorter card looking empty. */
+.page-airport-iad .lp-intro__col .cbox__cue {
+  margin-top: auto; padding-top: 1.1rem; color: var(--gold); font-weight: 600;
+  opacity: 1; transform: none;
+}
+.page-airport-iad .lp-intro__col:hover {
+  transform: translateY(-3px); border-color: var(--gold);
+  box-shadow: 0 24px 52px -30px rgba(0, 0, 0, 0.92), 0 0 28px -16px rgba(var(--gold-rgb), 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-airport-iad .lp-trust__tile:hover,
+  .page-airport-iad .lp-intro__col:hover { transform: none; }
+}
