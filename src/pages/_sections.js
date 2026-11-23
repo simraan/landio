@@ -347,6 +347,12 @@ export function eventCta(opts = {}) {
   // (byte-identical sitewide). `email: true` renders two COMPACT inline contact
   // cards (Call + Email) side by side above the unchanged quote button — used
   // only by the Group Transfers page.
+  // Optional overrides (defaults keep every existing caller byte-identical):
+  // a custom primary-button label, an IAD/area pickup to prefill, and a custom
+  // call-block label.
+  const ctaLabel = opts.ctaLabel || "Get a Free Quote";
+  const prefillAttr = opts.prefillPickup ? ` data-prefill-pickup="${esc(opts.prefillPickup)}"` : "";
+  const callLabel = opts.callLabel || "Call us, any hour";
   const actions = opts.email ? `
           <div class="event-cta__actions">
             <div class="event-cta__contacts">
@@ -359,14 +365,14 @@ export function eventCta(opts = {}) {
                 <span class="event-cta__call-text"><span class="event-cta__call-label">Email us</span><span class="event-cta__call-num">${esc(SITE.email)}</span></span>
               </a>
             </div>
-            <button type="button" class="btn btn-primary btn-block" data-open-quote>${btnIcon("calendar")}Get a Free Quote</button>
+            <button type="button" class="btn btn-primary btn-block" data-open-quote${prefillAttr}>${btnIcon("calendar")}${esc(ctaLabel)}</button>
           </div>` : `
           <div class="event-cta__actions">
             <a class="event-cta__call" href="tel:${esc(SITE.phone.e164)}">
               <span class="event-cta__call-ico" aria-hidden="true">${CB_ICON.phone}</span>
-              <span class="event-cta__call-text"><span class="event-cta__call-label">Call us, any hour</span><span class="event-cta__call-num">${esc(SITE.phone.display)}</span></span>
+              <span class="event-cta__call-text"><span class="event-cta__call-label">${esc(callLabel)}</span><span class="event-cta__call-num">${esc(SITE.phone.display)}</span></span>
             </a>
-            <button type="button" class="btn btn-primary btn-block" data-open-quote>${btnIcon("calendar")}Get a Free Quote</button>
+            <button type="button" class="btn btn-primary btn-block" data-open-quote${prefillAttr}>${btnIcon("calendar")}${esc(ctaLabel)}</button>
           </div>`;
   // Copy defaults to the sitewide "Event Transport" band; a premium service page
   // can pass its own eyebrow / heading / lede (raw HTML allowed).

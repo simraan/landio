@@ -13,7 +13,7 @@ import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
 import { HERO_IMG, glanceTiles, serviceNode, abs } from "./_kit.js";
-import { fleetCards, googleReviews } from "./_sections.js";
+import { fleetCards, googleReviews, eventCta } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
@@ -203,18 +203,54 @@ function terminalPage(t) {
 
       ["faq", { heading: `${t.code} Airport Car Service FAQ`, eyebrow: "Good to Know" }],
 
-      ["links", {
-        id: `explore-${t.key}`,
-        eyebrow: "Keep Planning",
-        h2: "Plan the Rest of Your Trip",
-        items: [
-          { href: ATL_HUB_PATH, icon: "plane", title: "DC Airport Car Service", text: "The full airport hub: IAD, DCA, BWI, and booking.", cta: "Open hub" },
-          ...others.map((o) => ({ href: airportPath(o.key), icon: "plane", title: `${o.code} airport car service`, text: o.summary, cta: "View airport" })),
-          { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Minibus, and Charter Bus.", cta: "View fleet" },
-          { href: "/private-jet-fbo-transfers/", icon: "plane", title: "Private jet & FBO transfers", text: "Flying private? Signature and the region's FBOs.", cta: "View FBOs" },
-          { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your airport pickup online.", cta: "Reserve" },
-        ],
-      }],
+      // Bottom flow. IAD gets a cleaned-up "Plan the Rest of Your Trip" (sibling
+      // airports + airport services only — destination/route links now live in
+      // the Popular Routes section above, so they're not duplicated here)
+      // followed by a dedicated final booking CTA. DCA/BWI keep the original
+      // links section unchanged.
+      ...(t.key === "iad"
+        ? [
+            ["links", {
+              id: "explore-iad",
+              eyebrow: "Keep Exploring",
+              h2: "Plan the Rest of Your Trip",
+              lede: "The other airports we serve and the services that round out your Dulles transfer.",
+              items: [
+                { href: airportPath("dca"), icon: "plane", title: "DCA airport car service", text: "Reagan National — the closest airport to downtown DC.", cta: "View airport" },
+                { href: airportPath("bwi"), icon: "plane", title: "BWI airport car service", text: "Baltimore/Washington — the Maryland and Baltimore corridor.", cta: "View airport" },
+                { href: ATL_HUB_PATH, icon: "route", title: "DC Airport Car Service", text: "The full hub for IAD, DCA, and BWI transfers.", cta: "Open hub" },
+                { href: "/private-jet-fbo-transfers/", icon: "plane", title: "Private jet & FBO transfers", text: "Flying private? Signature Dulles and the region's FBOs.", cta: "View FBOs" },
+                { href: "/services/meet-and-greet/", icon: "sign", title: "Meet & greet service", text: "In-terminal greeting with a name sign and bag help.", cta: "How it works" },
+              ],
+            }],
+            // Dedicated final booking CTA — reuses the homepage event-cta band
+            // (same design + button styles, no new CSS). Primary button prefills
+            // Dulles (IAD) as the pickup; the call block uses the verified phone.
+            ["html", {
+              render: () => eventCta({
+                eyebrow: "Dulles Airport Transfers · 24/7",
+                headingHtml: `Ready for Your <span class="gold">Dulles Airport</span> Transfer?`,
+                lede: "Flight-tracked pickups, professional chauffeurs, and one upfront price. Book your Washington Dulles (IAD) ride in minutes — or call us any hour for immediate help.",
+                ctaLabel: "Book Your IAD Ride",
+                prefillPickup: pickup,
+                callLabel: "Call for immediate assistance",
+              }),
+            }],
+          ]
+        : [
+            ["links", {
+              id: `explore-${t.key}`,
+              eyebrow: "Keep Planning",
+              h2: "Plan the Rest of Your Trip",
+              items: [
+                { href: ATL_HUB_PATH, icon: "plane", title: "DC Airport Car Service", text: "The full airport hub: IAD, DCA, BWI, and booking.", cta: "Open hub" },
+                ...others.map((o) => ({ href: airportPath(o.key), icon: "plane", title: `${o.code} airport car service`, text: o.summary, cta: "View airport" })),
+                { href: "/fleet/", icon: "car", title: "Our fleet", text: "Sedan, SUV, Sprinter Van, Minibus, and Charter Bus.", cta: "View fleet" },
+                { href: "/private-jet-fbo-transfers/", icon: "plane", title: "Private jet & FBO transfers", text: "Flying private? Signature and the region's FBOs.", cta: "View FBOs" },
+                { href: "/reservations/", icon: "calendar", title: "Reserve your ride", text: "Book your airport pickup online.", cta: "Reserve" },
+              ],
+            }],
+          ]),
 
       ["contact"],
     ],
