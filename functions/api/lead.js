@@ -231,12 +231,17 @@ function renderCustomerEmail(lead) {
  *  notification is accepted (2xx); the customer auto-reply is best-effort. */
 async function sendResend(env, lead) {
   const key = env.RESEND_API_KEY;
-  const from = env.QUOTE_NOTIFY_FROM;
+  // From must be on the verified Resend domain. Honour QUOTE_NOTIFY_FROM only
+  // when it's on that domain; otherwise fall back to a known-good sender so
+  // delivery never breaks on a stale/misconfigured value.
+  const DEFAULT_FROM = `${SITE.company} <leads@send.landiolimoservices.com>`;
+  const envFrom = (env.QUOTE_NOTIFY_FROM || "").trim();
+  const from = /@send\.landiolimoservices\.com/i.test(envFrom) ? envFrom : DEFAULT_FROM;
   // Team recipients: always the business inbox + owner's Gmail, plus any extra
   // addresses configured in QUOTE_NOTIFY_TO (comma-separated). Deduped.
   const envTo = (env.QUOTE_NOTIFY_TO || "").split(",").map((s) => s.trim()).filter(Boolean);
   const to = [...new Set([SITE.email, "reinterio@gmail.com", ...envTo])];
-  if (!key || !from) return false;
+  if (!key) return false;
 
   const { html, text } = renderEmail(lead);
   const ownerBody = {
