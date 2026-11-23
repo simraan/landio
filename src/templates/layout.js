@@ -89,7 +89,7 @@ ${gtmBody}  <a class="sr-only sr-only--focusable" href="#main">Skip to content</
   <main id="main">
 ${page.main}
   </main>
-  ${(page.bodyClass || "").includes("page-event") ? "" : preFooterCta(page.preFooterCta)}
+  ${(page.bodyClass || "").includes("page-event") || page.hidePreFooterCta ? "" : preFooterCta(page.preFooterCta)}
   ${footer(year)}
   ${floatingCta()}
   ${scrollTop()}

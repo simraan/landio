@@ -64,6 +64,9 @@ function terminalPage(t) {
     cluster: "airport",
     card: { title: `${t.code} airport car service`, text: t.summary, icon: "plane" },
     defaultPickup: pickup,
+    // IAD has its own dedicated final CTA (the event-cta band below), so suppress
+    // the generic sitewide pre-footer cta-band on IAD only. DCA/BWI keep it.
+    hidePreFooterCta: t.key === "iad",
     trail: [
       { name: "Home", path: "/" },
       { name: "DC Airport Car Service", path: ATL_HUB_PATH },
@@ -176,7 +179,7 @@ function terminalPage(t) {
             ["html", {
               render: (alt) => googleReviews({
                 id: "reviews-iad",
-                h2: "Trusted for Dulles Airport Transfers",
+                h2: "What Dulles Travelers Say",
                 lede: "Travelers to and from Washington Dulles (IAD) share their Landio Limo Services experience on Google. Read their reviews — and leave your own.",
                 alt,
               }),

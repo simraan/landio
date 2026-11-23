@@ -6480,6 +6480,11 @@ h1 .gold {
 .page-airport-iad { --section-pad: clamp(38px, 4.4vw, 60px); }
 /* The glance strip carries its own padding; tighten it to match the new rhythm. */
 .page-airport-iad .lp-trust { padding-block: clamp(1.5rem, 3vw, 2.25rem); }
+/* Reviews band has no review cards yet (none are fabricated), so keep it compact
+   and intentional on IAD — tighter section padding and a smaller head→CTA gap.
+   Scoped to the IAD page only; the shared homepage reviews band is unchanged. */
+.page-airport-iad .rv-section { padding-block: clamp(30px, 3.4vw, 46px); }
+.page-airport-iad .rv-head { margin-bottom: clamp(14px, 1.8vw, 20px); }
 
 /* ---- Hero: mirror the homepage hero (.hero--home) design system exactly:
    generous padding, left-weighted overlay with a top-left gold glow, the same
