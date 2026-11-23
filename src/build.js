@@ -79,6 +79,17 @@ const GTM_ID = /^GTM-[A-Z0-9]+$/.test(process.env.GTM_ID || "") ? process.env.GT
  */
 const GA4_ID = /^G-[A-Z0-9]+$/.test(process.env.GA4_ID || "") ? process.env.GA4_ID : "G-33BDL98P6F";
 
+/**
+ * Google Maps API key (public, referrer-restricted) from env
+ * PUBLIC_GOOGLE_MAPS_API_KEY. Injected into the page so the booking form's
+ * pickup/drop-off fields get live Google Places (New) autocomplete. Unset or
+ * malformed → no Maps script is emitted and the fields fall back to the
+ * built-in DMV location list.
+ */
+const MAPS_KEY = /^AIza[0-9A-Za-z_-]{20,}$/.test(process.env.PUBLIC_GOOGLE_MAPS_API_KEY || "")
+  ? process.env.PUBLIC_GOOGLE_MAPS_API_KEY
+  : "";
+
 /** Short content hash for cache-busting hashed asset filenames. */
 const hash = (buf) => createHash("sha256").update(buf).digest("hex").slice(0, 10);
 
@@ -315,6 +326,7 @@ function build() {
     noindexAll: NOINDEX_ALL,
     gtmId: GTM_ID,
     ga4Id: GA4_ID,
+    mapsKey: MAPS_KEY,
   };
 
   const pages = loadPages();

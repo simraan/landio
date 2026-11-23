@@ -11,7 +11,7 @@ import { esc, header, footer, floatingCta, preFooterCta, scrollTop, quoteModal }
 const OG_IMAGE = "/assets/img/brand/landio-og.jpg";
 
 export function renderPage(page, assets) {
-  const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId, ga4Id } = assets;
+  const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId, ga4Id, mapsKey } = assets;
 
   // GTM only when GTM_ID is set (validated in build.js). dataLayer events
   // (form_submit_success, click_to_call) are pushed by client/main.js.
@@ -25,6 +25,12 @@ export function renderPage(page, assets) {
   // (generate_lead, contact) are fired from client/main.js.
   const ga4Head = ga4Id
     ? `  <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4Id}"></script>\n  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}');</script>\n`
+    : "";
+  // Google Maps JS API (Places New) — powers live pickup/drop-off autocomplete
+  // in client/main.js. Loaded async; fields fall back to the built-in DMV list
+  // until it's ready, or permanently if the key is unset.
+  const mapsHead = mapsKey
+    ? `  <script async src="https://maps.googleapis.com/maps/api/js?key=${mapsKey}&libraries=places&v=weekly&loading=async"></script>\n`
     : "";
   const canonical = absoluteUrl(siteUrl, page.path || "/");
 
@@ -59,7 +65,7 @@ export function renderPage(page, assets) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-${gtmHead}${ga4Head}
+${gtmHead}${ga4Head}${mapsHead}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.classList.add("js")</script>
   <title>${esc(title)}</title>

@@ -56,6 +56,33 @@ document.documentElement.classList.add("js");
   const escHtml = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   let uid = 0;
 
+  // --- Live Google Places (New) suggestions, shared across every booking input.
+  // Active only when the Maps script (layout.js, gated on
+  // PUBLIC_GOOGLE_MAPS_API_KEY) has loaded. Returns prediction strings, or null
+  // when Places isn't available so callers fall back to the built-in DMV list.
+  // One session token per lookup burst keeps autocomplete billing in-session. ---
+  let gToken = null;
+  const placesReady = () =>
+    !!(window.google && google.maps && google.maps.places && google.maps.places.AutocompleteSuggestion);
+  const googleSuggest = async (q) => {
+    if (!placesReady() || q.length < 3) return null;
+    try {
+      const { AutocompleteSuggestion, AutocompleteSessionToken } = google.maps.places;
+      if (!gToken) gToken = new AutocompleteSessionToken();
+      const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+        input: q,
+        sessionToken: gToken,
+        includedRegionCodes: ["us"],
+      });
+      return (suggestions || [])
+        .map((s) => s.placePrediction && s.placePrediction.text && s.placePrediction.text.text)
+        .filter(Boolean)
+        .slice(0, 8);
+    } catch (_) {
+      return null;
+    }
+  };
+
   inputs.forEach((input) => {
     // Pull the option values from the associated <datalist>, then detach the
     // native list so only our combobox renders.
@@ -97,13 +124,9 @@ document.documentElement.classList.add("js");
       input.removeAttribute("aria-activedescendant");
     };
 
-    const render = () => {
-      if (silent) return;
-      const q = input.value.trim().toLowerCase();
-      items = options
-        .filter((o) => o.toLowerCase().includes(q))
-        .sort((a, b) => (b.toLowerCase().startsWith(q) ? 1 : 0) - (a.toLowerCase().startsWith(q) ? 1 : 0))
-        .slice(0, 8);
+    // Paint a set of suggestion strings into the dropdown.
+    const show = (matches) => {
+      items = matches.slice(0, 8);
       if (!items.length) { close(); return; }
       list.innerHTML = items
         .map((m, i) => `<li id="${listboxId}-${i}" role="option" class="bf-ac__opt" aria-selected="false">${escHtml(m)}</li>`)
@@ -112,6 +135,33 @@ document.documentElement.classList.add("js");
       active = -1;
       input.setAttribute("aria-expanded", "true");
       input.removeAttribute("aria-activedescendant");
+    };
+
+    // Built-in DMV list (airports, villages, FBOs) — instant, offline-safe.
+    const localMatches = (ql) =>
+      options
+        .filter((o) => o.toLowerCase().includes(ql))
+        .sort((a, b) => (b.toLowerCase().startsWith(ql) ? 1 : 0) - (a.toLowerCase().startsWith(ql) ? 1 : 0))
+        .slice(0, 8);
+
+    let gTimer = null;
+    const render = () => {
+      if (silent) return;
+      const q = input.value.trim();
+      const local = localMatches(q.toLowerCase());
+      const willQueryGoogle = q.length >= 3 && placesReady();
+      // Show the built-in matches at once; if there are none but Google is about
+      // to answer, leave the dropdown as-is to avoid a flash of "no results".
+      if (local.length) show(local);
+      else if (!willQueryGoogle) { close(); return; }
+      if (gTimer) clearTimeout(gTimer);
+      if (!willQueryGoogle) return;
+      gTimer = setTimeout(async () => {
+        const g = await googleSuggest(q);
+        if (input.value.trim() !== q || document.activeElement !== input) return;
+        if (g && g.length) show(g);
+        else if (!local.length) close();
+      }, 180);
     };
 
     const setActive = (i) => {
@@ -134,6 +184,7 @@ document.documentElement.classList.add("js");
       input.dispatchEvent(new Event("input", { bubbles: true })); // sync return trip etc. without reopening
       silent = false;
       close();
+      gToken = null; // end the Places session; next lookup starts a fresh one
     };
 
     input.addEventListener("input", render);
