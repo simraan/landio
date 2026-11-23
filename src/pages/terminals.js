@@ -8,7 +8,7 @@
  *   /dc-airport-car-service/bwi/
  */
 
-import { SITE, ATL_HUB_PATH } from "../config.js";
+import { SITE, ATL_HUB_PATH, AREAS, bySlug } from "../config.js";
 import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
@@ -17,6 +17,17 @@ import { fleetCards, googleReviews } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
+
+/* IAD-only "Popular Routes" rows — reuses the landing template's native route
+   component (rideTable via the `routes` section). Each row links to the real
+   destination area page and carries a Quote CTA that prefills Dulles (IAD) → the
+   destination. Destinations come from the AREAS SSOT, so no travel times,
+   distances, or prices are invented. bySlug throws on a typo → build fails fast. */
+const iadRouteRows = (slugs) =>
+  slugs.map((s) => {
+    const a = bySlug(AREAS, s);
+    return { path: a.path, label: `Dulles (IAD) to ${a.name}`, area: a.pickup };
+  });
 
 /* IAD-only "Choose Your Vehicle" section — reuses the homepage fleet cards
    (SITE.fleet order: Sedan, SUV, Sprinter, Stretch Limo, Minibus, Charter Bus)
@@ -169,6 +180,23 @@ function terminalPage(t) {
                 lede: "Travelers to and from Washington Dulles (IAD) share their Landio Limo Services experience on Google. Read their reviews — and leave your own.",
                 alt,
               }),
+            }],
+            // Popular Routes — reuses the landing template's native `routes`
+            // section (tabbedRoutes/rideTable): a link to each destination's area
+            // page plus a Quote CTA that prefills Dulles (IAD) → destination.
+            ["routes", {
+              id: "routes-iad",
+              idBase: "routes-iad",
+              eyebrow: "Popular Routes",
+              h2: "Popular Routes from Dulles Airport",
+              lede: "Our most-requested Dulles (IAD) transfers across the DC metro. Open a destination for details, or tap Quote to start a prefilled booking.",
+              tabsLabel: "Dulles route groups",
+              pickup,
+              groups: [
+                { label: "Northern Virginia", caption: "Dulles Airport car service across Northern Virginia", routes: iadRouteRows(["tysons", "reston", "ashburn", "leesburg", "mclean", "sterling", "fairfax", "arlington"]) },
+                { label: "Washington, DC & Maryland", caption: "Dulles Airport car service to Washington, DC and Maryland", routes: iadRouteRows(["washington-dc", "bethesda", "potomac", "rockville", "gaithersburg", "germantown"]) },
+              ],
+              moreHtml: `See all <a href="/areas/">DC-metro areas we serve</a>.`,
             }],
           ]
         : [["steps", { prefillPickup: pickup }]]),
