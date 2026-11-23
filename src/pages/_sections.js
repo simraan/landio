@@ -313,7 +313,7 @@ export function contactBar() {
   const items = [
     { icon: CB_ICON.phone, title: "Call Us", l1: SITE.phone.display, l2: "Available 24/7 for bookings", href: `tel:${SITE.phone.e164}` },
     { icon: CB_ICON.mail, title: "Email Us", l1: SITE.email, l2: SITE.responsePromise, href: `mailto:${SITE.email}` },
-    { icon: CB_ICON.pin, title: "Service Area", l1: "Washington, DC, Maryland & Northern Virginia", l2: "Airports: IAD, DCA & BWI", modal: true },
+    { icon: CB_ICON.pin, title: "Service Area", l1: "Washington DC, Maryland & Northern Virginia", l2: "Airports: IAD, DCA & BWI", modal: true },
     { icon: CB_ICON.clock, title: "Operating Hours", l1: "24 Hours / 7 Days a Week", l2: "Including holidays", modal: true },
   ];
   const cell = (it) => {
@@ -405,13 +405,13 @@ export function contactSection({ alt = true, variant = "default" } = {}) {
     { lead: ico("phone"), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
     { lead: ico("mail"), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
     { lead: ico("pin"), title: "Service Area", act: { modal: {} },
-      body: ["Washington, DC, Maryland & Northern Virginia", "Airports: IAD, DCA & BWI"] },
+      body: ["Washington DC, Maryland & Northern Virginia", "Airports: IAD, DCA & BWI"] },
     { lead: ico("clock"), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
   ] : [
     { lead: ico("phone"), title: "Call Us", act: tel, body: [SITE.phone.display, "Available 24/7 for bookings"] },
     { lead: ico("mail"), title: "Email Us", act: mail, body: [SITE.email, SITE.responsePromise] },
     { lead: ico("pin"), title: "Our Office", act: { href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`, external: true, cue: "Get directions" },
-      body: [addr, "Serving Washington, DC, Maryland & Virginia"] },
+      body: [addr, "Serving Washington DC, Maryland & Virginia"] },
     { lead: ico("clock"), title: "Operating Hours", act: { modal: {} }, body: ["24 Hours / 7 Days a Week", "Including holidays"] },
   ];
   return `

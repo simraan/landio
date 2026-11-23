@@ -143,7 +143,7 @@ export function topbar() {
   return `
   <div class="topbar">
     <div class="container topbar__inner">
-      <span class="topbar__left"><span class="topbar__dot" aria-hidden="true"></span>24/7 Chauffeured Service &middot; Washington, DC, Maryland &amp; Virginia</span>
+      <span class="topbar__left"><span class="topbar__dot" aria-hidden="true"></span>24/7 Chauffeured Service &middot; Washington DC, Maryland &amp; Virginia</span>
       <span class="topbar__right">
         <a href="tel:${esc(SITE.phone.e164)}">${phoneSvg}${esc(SITE.phone.display)}</a>
         <a href="mailto:${esc(SITE.email)}"><svg class="btn-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${esc(SITE.email)}</a>${topbarIg()}
@@ -485,7 +485,7 @@ export function footer(year) {
       </div>
 
       <div class="site-footer__legal">
-        <span>&copy;${year} ${esc(SITE.company)}<span class="site-footer__sep">·</span>Serving Washington, DC, Maryland &amp; Virginia</span>
+        <span>&copy;${year} ${esc(SITE.company)}<span class="site-footer__sep">·</span>Serving Washington DC, Maryland &amp; Virginia</span>
         ${legalLinks ? `<span class="site-footer__legal-links">${legalLinks}</span>` : ""}
       </div>
     </div>
