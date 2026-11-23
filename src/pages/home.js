@@ -406,8 +406,8 @@ function instagramGallery() {
         <div class="ig-intro">
           <div class="ig-intro__media">
             <picture class="ig-owner">
-              <source type="image/webp" srcset="/assets/img/instagram/owner.webp">
-              <img src="/assets/img/instagram/owner.jpg" alt="The owner of Landio Limo Services" width="560" height="700" loading="lazy" decoding="async">
+              <source type="image/webp" srcset="/assets/img/instagram/ig-3.webp">
+              <img src="/assets/img/instagram/ig-3.jpg" alt="Landio Limo Services luxury SUV in the DC metro" width="500" height="625" loading="lazy" decoding="async">
             </picture>
           </div>
           <div class="ig-intro__content">

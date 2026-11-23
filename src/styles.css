@@ -1399,6 +1399,18 @@ svg {
   border-top-left-radius: var(--radius-lg);
   pointer-events: none;
 }
+/* Our Story media: the owner portrait presented in the homepage's 4:5 frame
+   (reuses the global .ig-owner), centered in the split column. Overrides the
+   landscape .about-split__media framing so the full portrait shows uncropped. */
+.about-story__portrait {
+  overflow: visible;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-story__portrait .ig-owner { max-width: 440px; }
+.about-story__portrait img { min-height: 0; }
 .about-split__media.about-collage:hover img {
   transform: none;
 }
