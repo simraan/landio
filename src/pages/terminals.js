@@ -13,7 +13,7 @@ import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
 import { HERO_IMG, glanceTiles, serviceNode, abs } from "./_kit.js";
-import { fleetCards } from "./_sections.js";
+import { fleetCards, googleReviews } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
@@ -157,6 +157,18 @@ function terminalPage(t) {
                 { icon: "car", title: "Immaculate luxury fleet", text: "Sedans to charter buses, each late-model and meticulously maintained inside and out." },
                 { icon: "pin", title: "Reliable, round-the-clock", text: "24/7 service to and from IAD across Washington, DC, Maryland, and Northern Virginia." },
               ],
+            }],
+            // Reuses the homepage Google Reviews renderer verbatim — only the
+            // heading, id, and intro are IAD-specific. No reviews are invented;
+            // the shared component shows the Google badge + "Read More Google
+            // Reviews" CTA until genuine reviews are pasted into it.
+            ["html", {
+              render: (alt) => googleReviews({
+                id: "reviews-iad",
+                h2: "Trusted for Dulles Airport Transfers",
+                lede: "Travelers to and from Washington Dulles (IAD) share their Landio Limo Services experience on Google. Read their reviews — and leave your own.",
+                alt,
+              }),
             }],
           ]
         : [["steps", { prefillPickup: pickup }]]),

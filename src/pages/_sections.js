@@ -802,3 +802,63 @@ export function tableSection(o, { alt } = {}) {
       </div>
     </section>`;
 }
+
+/**
+ * Google Reviews — shared renderer (homepage + airport pages). Google reviews
+ * can't be fetched from the API without billing, so this shows a premium Google
+ * badge + "Read More Google Reviews" CTA. Review cards render ONLY when genuine
+ * reviews are pasted into REVIEWS below — never invent names, text, or ratings.
+ * Defaults reproduce the homepage section exactly; pass opts to retheme (e.g.
+ * an airport page's heading).
+ */
+export function googleReviews({
+  id = "rv-title",
+  eyebrow = "Client Reviews",
+  h2 = "What Our Clients Say",
+  lede = "Clients across Washington, DC, Maryland, and Northern Virginia share their Landio Limo Services experience on Google. Read their reviews — and leave your own.",
+  ctaLabel = "Read More Google Reviews",
+  alt = true,
+} = {}) {
+  const REVIEWS_URL = "https://share.google/v9oRmrQYknBB8f2TQ";
+  const googleG =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.7v3h3.9c2.3-2.1 3.5-5.2 3.5-8.9z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8L20 3.2A12 12 0 0 0 12 0 12 12 0 0 0 1.3 6.6l4 3.1C6.2 6.9 8.9 4.8 12 4.8z"/></svg>';
+  const star = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 21l1.4-6.8L2.2 9.6l6.9-.7z"/></svg>';
+
+  // Paste GENUINE Google reviews here, e.g.
+  //   { name: "Jane D.", rating: 5, text: "…", date: "2 weeks ago" }
+  // Leave empty until you have real reviews — do not invent any.
+  const REVIEWS = [];
+
+  const stars = (n) =>
+    Array.from({ length: 5 }, (_, i) => `<span class="${i < n ? "" : "rv-star--off"}">${star}</span>`).join("");
+
+  const card = (r) => `
+          <li class="rv-card">
+            <div class="rv-card__head">
+              <span class="rv-avatar" aria-hidden="true">${esc((r.name || "?").trim().charAt(0).toUpperCase())}</span>
+              <div class="rv-card__id">
+                <p class="rv-name">${esc(r.name)}</p>
+                <div class="rv-stars" aria-label="${esc(String(r.rating))} out of 5 stars">${stars(r.rating)}</div>
+              </div>
+              <span class="rv-g" aria-hidden="true">${googleG}</span>
+            </div>
+            <p class="rv-text">${esc(r.text)}</p>
+            ${r.date ? `<p class="rv-date">${esc(r.date)}</p>` : ""}
+          </li>`;
+
+  return `
+    <section class="section${alt ? " section--alt" : ""} rv-section" aria-labelledby="${esc(id)}">
+      <div class="container">
+        <div class="rv-head">
+          <span class="eyebrow">${esc(eyebrow)}</span>
+          <h2 id="${esc(id)}">${esc(h2)}</h2>
+          <p class="text-secondary">${esc(lede)}</p>
+          <span class="rv-badge">${googleG}<span>Reviews on Google</span></span>
+        </div>
+        ${REVIEWS.length ? `<ul class="rv-grid">${REVIEWS.map(card).join("")}\n        </ul>` : ""}
+        <div class="rv-cta">
+          <a class="btn btn-primary" href="${REVIEWS_URL}" target="_blank" rel="noopener">${esc(ctaLabel)}</a>
+        </div>
+      </div>
+    </section>`;
+}
