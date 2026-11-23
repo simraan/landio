@@ -6589,3 +6589,11 @@ h1 .gold {
   .page-airport-iad .lp-trust__tile:hover,
   .page-airport-iad .lp-intro__col:hover { transform: none; }
 }
+
+/* ---- Step-by-Step timeline: tie the nodes and meeting-point callout to the
+   gold-dim icon-badge language used across the other IAD sections. ---- */
+.page-airport-iad .lp-timeline__dot { background: var(--gold-dim); }
+.page-airport-iad .lp-tabpanel__point > svg:first-child {
+  flex: none; width: 40px; height: 40px; padding: 11px; border-radius: 11px; box-sizing: border-box;
+  background: rgba(10, 10, 10, 0.4); border: 1px solid rgba(var(--gold-rgb), 0.3); color: var(--gold);
+}

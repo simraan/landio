@@ -657,8 +657,8 @@ export function tabbedTimeline(o, { alt } = {}) {
                 bodyHtml: `<span class="lp-timeline__d">${esc(st.text)}</span>`,
               })).join("\n              ")}
             </ol>
-            ${cbox({ tag: "div", cls: "lp-tabpanel__point", lead: icon("pin", { size: 18 }), titleTag: "p", titleCls: "lp-point__t",
-                     title: "Meeting point", act: t.act, cue: t.pointCue || t.cue, future: t.future, futureCue: t.futureCue,
+            ${cbox({ tag: "div", cls: "lp-tabpanel__point", lead: icon(t.pointIcon || "pin", { size: 18 }), titleTag: "p", titleCls: "lp-point__t",
+                     title: t.pointTitle || "Meeting point", act: t.act, cue: t.pointCue || t.cue, future: t.future, futureCue: t.futureCue,
                      bodyHtml: `<span class="lp-point__d">${esc(t.point)}</span>` })}
             ${t.linksHtml ? `<p class="lp-tabpanel__links">${t.linksHtml}</p>` : ""}`,
   }));

@@ -105,16 +105,25 @@ function terminalPage(t) {
         idBase: `flow-${t.key}`,
         eyebrow: "Step by Step",
         h2: `Your ${t.code} Ride, Step by Step`,
-        ledeHtml: esc(`${t.name} (${t.code}) is ${t.where}. Here is how a transfer works, arriving or departing.`),
+        // IAD drops the location/terminal sentence (now covered in the At-a-Glance
+        // "About IAD" facts) to avoid duplication; DCA/BWI keep the original lede.
+        ledeHtml: t.key === "iad"
+          ? esc(`Follow a Landio transfer at IAD step by step — choose Arriving or Leaving to see exactly what happens and where you'll meet your chauffeur.`)
+          : esc(`${t.name} (${t.code}) is ${t.where}. Here is how a transfer works, arriving or departing.`),
         tabsLabel: `${t.code} flow`,
+        // IAD labels the callout "Good to know" (a complementary tip, not a
+        // meeting-point restatement); DCA/BWI keep the default "Meeting point".
         tabs: [
-          { label: `Arriving at ${t.code}`, title: `Meeting your chauffeur at ${t.code}`, point: t.arriving.point, act: arriveAct, pointCue: "Book this pickup", steps: t.arriving.steps.map(toStep) },
-          { label: `Leaving from ${t.code}`, title: `Getting to ${t.code} for your flight`, point: t.departing.point, act: departAct, pointCue: "Book a ride here", steps: t.departing.steps.map(toStep) },
+          { label: `Arriving at ${t.code}`, title: `Meeting your chauffeur at ${t.code}`, point: t.arriving.point, act: arriveAct, pointCue: "Book this pickup", steps: t.arriving.steps.map(toStep), ...(t.key === "iad" ? { pointTitle: "Before you land", pointIcon: "message" } : {}) },
+          { label: `Leaving from ${t.code}`, title: `Getting to ${t.code} for your flight`, point: t.departing.point, act: departAct, pointCue: "Book a ride here", steps: t.departing.steps.map(toStep), ...(t.key === "iad" ? { pointTitle: "Before your flight", pointIcon: "message" } : {}) },
         ],
         footHtml: "We confirm your exact meeting point when you book.",
       }],
 
-      ["steps", { prefillPickup: pickup }],
+      // The airport-specific Step-by-Step timeline above already covers the flow,
+      // so IAD drops the generic "Three Steps to Your Ride" section (kept on
+      // DCA/BWI). The section renderer simply skips an omitted entry — no gap.
+      ...(t.key === "iad" ? [] : [["steps", { prefillPickup: pickup }]]),
 
       ["faq", { heading: `${t.code} Airport Car Service FAQ`, eyebrow: "Good to Know" }],
 
