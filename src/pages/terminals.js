@@ -64,7 +64,26 @@ function terminalPage(t) {
         id: `glance-${t.key}`,
         eyebrow: "At a Glance",
         h2: `${t.code} Airport Car Service at a Glance`,
-        tiles: glanceTiles({ pickup }),
+        // IAD gets concise, balanced tile labels + an airport overview strip.
+        // DCA/BWI keep the shared glanceTiles and render no overview.
+        tiles: t.key === "iad"
+          ? [
+              { icon: "clock", text: "24/7, including holidays", act: arriveAct },
+              { icon: "tag", text: "No surge pricing", act: arriveAct },
+              { icon: "refresh", text: "Free cancellation up to 24h", act: { href: "/terms-of-service/#cancellation", cue: "Read the policy" } },
+              { icon: "message", text: "Response within 1 hour", act: { href: "/contact/", cue: "Contact us" } },
+              { icon: "userCheck", text: "Chauffeur details before pickup", act: arriveAct },
+            ]
+          : glanceTiles({ pickup }),
+        factsLabel: "About Washington Dulles (IAD)",
+        facts: t.key === "iad"
+          ? [
+              { icon: "pin", label: "Location", value: "Dulles, Virginia · west of Washington, DC" },
+              { icon: "plane", label: "Terminals", value: "Main terminal + midfield concourses A–D" },
+              { icon: "route", label: "Closest areas", value: "Reston, Ashburn, Tysons, Sterling & Leesburg" },
+              { icon: "radar", label: "Landio coverage", value: "Flight-tracked transfers, 24/7 across the DMV" },
+            ]
+          : undefined,
       }],
 
       ["intro", {

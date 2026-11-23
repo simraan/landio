@@ -529,13 +529,19 @@ export function heroSplit(o) {
 
 /** 2 · Trust strip: visible eyebrow + compact H2, then one row of icon tiles. */
 export function trustStrip(o, { alt } = {}) {
+  // Optional airport-overview strip (label + value facts). Opt-in: only pages
+  // that pass `o.facts` render it, so other trust strips are unchanged.
+  const overview = o.facts && o.facts.length ? `
+        <ul class="lp-overview" aria-label="${esc(o.factsLabel || "Overview")}">
+          ${o.facts.map((f) => `<li class="lp-overview__item"><span class="lp-overview__ico" aria-hidden="true">${icon(f.icon, { size: 20 })}</span><span class="lp-overview__text"><span class="lp-overview__label">${esc(f.label)}</span><span class="lp-overview__value">${esc(f.value)}</span></span></li>`).join("\n          ")}
+        </ul>` : "";
   return `
     <section class="${secClass(alt, "lp-trust")}" aria-labelledby="${esc(o.id)}">
       <div class="container">
         <div class="lp-trust__head">
           <span class="eyebrow">${esc(o.eyebrow)}</span>
           <h2 id="${esc(o.id)}" class="lp-h2-compact">${esc(o.h2)}</h2>
-        </div>
+        </div>${overview}
         <ul class="lp-trust__tiles">
           ${o.tiles.map((t) => cbox({ cls: "lp-trust__tile", lead: icon(t.icon), title: t.text, titleTag: "p", act: t.act, cue: t.cue, future: t.future })).join("\n          ")}
         </ul>
