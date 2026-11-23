@@ -127,6 +127,24 @@ export function normalizeLead(d) {
 const escHtml = (s) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+/** "2026-11-28" → "28 November 2026" (falls back to the raw value). */
+function fmtDate(d) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(d ?? "").trim());
+  if (!m) return String(d ?? "").trim();
+  const name = MONTHS[Number(m[2]) - 1];
+  return name ? `${Number(m[3])} ${name} ${m[1]}` : String(d);
+}
+/** "00:15" → "12:15 am" (24h → 12h; falls back to the raw value). */
+function fmtTime(t) {
+  const m = /^(\d{1,2}):(\d{2})/.exec(String(t ?? "").trim());
+  if (!m) return String(t ?? "").trim();
+  let h = Number(m[1]);
+  const ampm = h < 12 ? "am" : "pm";
+  h = h % 12 || 12;
+  return `${h}:${m[2]} ${ampm}`;
+}
+
 /** Lead-notification email. Sent as plain text (see sendResend) so it lands in
  *  the Primary tab and reads like a normal message, not a marketing campaign. */
 function renderEmail(lead) {
@@ -185,11 +203,10 @@ function renderEmail(lead) {
     isPartner ? null : `Trip:       ${trip}`,
     isPartner ? null : `Pickup:     ${lead.pickup}`,
     isPartner ? null : `Drop-off:   ${lead.dropoff}`,
-    isPartner ? null : `Date/Time:  ${`${lead.date} ${lead.time}`.trim()}`,
+    isPartner ? null : `Date/Time:  ${[fmtDate(lead.date), fmtTime(lead.time)].filter(Boolean).join(", ")}`,
     isPartner ? null : `Vehicle:    ${lead.vehicle}`,
     ret ? `Return:     ${ret}` : null,
     lead.message ? `Notes:      ${lead.message}` : null,
-    `SMS opt-in: ${lead.smsConsent ? "Yes" : "No"}`,
     `Source:     ${src}`,
     t.page_url ? `Page:       ${t.page_url}` : null,
     lead.email ? `` : null,
@@ -252,7 +269,7 @@ async function sendResend(env, lead) {
   const ownerBody = {
     from,
     to,
-    subject: `New quote: ${lead.name || "website"}${lead.vehicle ? ` · ${lead.vehicle}` : ""}`,
+    subject: `Inquiry at ${SITE.company}${lead.name ? ` — ${lead.name}` : ""}`,
     text, // plain text only → lands in Primary, not Promotions
   };
   // Owner hits Reply → goes straight to the customer.
