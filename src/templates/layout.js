@@ -11,7 +11,7 @@ import { esc, header, footer, floatingCta, preFooterCta, scrollTop, quoteModal }
 const OG_IMAGE = "/assets/img/brand/landio-og.jpg";
 
 export function renderPage(page, assets) {
-  const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId, ga4Id, mapsKey } = assets;
+  const { cssHref, jsHref, siteUrl, year, noindexAll, gtmId, ga4Id, mapsKey, adsId, adsLead, adsCall } = assets;
 
   // GTM only when GTM_ID is set (validated in build.js). dataLayer events
   // (form_submit_success, click_to_call) are pushed by client/main.js.
@@ -25,6 +25,12 @@ export function renderPage(page, assets) {
   // (generate_lead, contact) are fired from client/main.js.
   const ga4Head = ga4Id
     ? `  <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4Id}"></script>\n  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}');</script>\n`
+    : "";
+  // Google Ads tag — shares the gtag.js that GA4 loads. Configures the AW- id
+  // and exposes the per-action send_to values to client/main.js, which fires
+  // the lead conversion on /thankyou/ and the call conversion on a tel: tap.
+  const adsHead = adsId
+    ? `  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('config','${adsId}');window.__ADS={lead:${JSON.stringify(adsLead)},call:${JSON.stringify(adsCall)}};</script>\n`
     : "";
   // Google Maps JS API (Places New) — powers live pickup/drop-off autocomplete
   // in client/main.js. Loaded async; fields fall back to the built-in DMV list
@@ -65,7 +71,7 @@ export function renderPage(page, assets) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-${gtmHead}${ga4Head}${mapsHead}
+${gtmHead}${ga4Head}${adsHead}${mapsHead}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.classList.add("js")</script>
   <title>${esc(title)}</title>

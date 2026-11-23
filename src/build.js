@@ -90,6 +90,16 @@ const MAPS_KEY = /^AIza[0-9A-Za-z_-]{20,}$/.test(process.env.PUBLIC_GOOGLE_MAPS_
   ? process.env.PUBLIC_GOOGLE_MAPS_API_KEY
   : "";
 
+/**
+ * Google Ads conversion tracking. ADS_ID is the account's Google tag (AW-…);
+ * ADS_LEAD / ADS_CALL are the per-action send_to values. The lead conversion
+ * fires on the /thankyou/ page load (reached only on a delivered lead); the
+ * call conversion fires on a tel: tap. All env-overridable.
+ */
+const ADS_ID = /^AW-[0-9]+$/.test(process.env.ADS_ID || "") ? process.env.ADS_ID : "AW-18590779348";
+const ADS_LEAD = process.env.ADS_LEAD_SENDTO || "AW-18590779348/juykCMi01b0dENSP46BF";
+const ADS_CALL = process.env.ADS_CALL_SENDTO || "AW-18590779348/-NrPCMu01b0dENSP46BF";
+
 /** Short content hash for cache-busting hashed asset filenames. */
 const hash = (buf) => createHash("sha256").update(buf).digest("hex").slice(0, 10);
 
@@ -327,6 +337,9 @@ function build() {
     gtmId: GTM_ID,
     ga4Id: GA4_ID,
     mapsKey: MAPS_KEY,
+    adsId: ADS_ID,
+    adsLead: ADS_LEAD,
+    adsCall: ADS_CALL,
   };
 
   const pages = loadPages();

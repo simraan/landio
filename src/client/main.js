@@ -798,7 +798,17 @@ document.addEventListener("click", (e) => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: "click_to_call", page_path: location.pathname });
   if (window.gtag) window.gtag("event", "contact", { method: "phone" });
+  // Google Ads phone-lead conversion (click to call).
+  if (window.gtag && window.__ADS) window.gtag("event", "conversion", { send_to: window.__ADS.call, value: 10.0, currency: "USD" });
 });
+
+/* ---- Google Ads: lead conversion on the /thankyou/ page load. That page is
+ *  reached only after a delivered lead (200 accepted), so a page-load
+ *  conversion here is clean and can't false-fire on an ordinary page view. ---- */
+(function adsLeadConversion() {
+  if (!/\/thankyou\/?$/.test(location.pathname)) return;
+  if (window.gtag && window.__ADS) window.gtag("event", "conversion", { send_to: window.__ADS.lead });
+})();
 
 /* ---- ARIA tabs (landing template): [data-tabs] → role=tablist/tab/tabpanel.
  *  Panels are server-rendered; CSS shows only .is-active once html.js is set
