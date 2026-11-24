@@ -19,7 +19,7 @@ import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
 import { HERO_IMG, serviceNode, abs } from "./_kit.js";
-import { fleetCards, googleReviews, eventCta, photoMarquee, airportGlance } from "./_sections.js";
+import { fleetCards, googleReviews, eventCta, photoMarquee, airportGlance, airportExplore } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
@@ -236,20 +236,23 @@ function terminalPage(t) {
 
       ["faq", { heading: `${t.code} Airport Car Service FAQ`, eyebrow: "Good to Know" }],
 
-      // Bottom flow: cleaned "Plan the Rest of Your Trip" (sibling airports +
-      // airport services — destinations already live in Popular Routes) then a
-      // dedicated final booking CTA. Contact + shared footer follow.
-      ["links", {
-        id: `explore-${t.key}`,
-        eyebrow: "Keep Exploring",
-        h2: "Plan the Rest of Your Trip",
-        lede: `The other airports we serve and the services that round out your ${nick} transfer.`,
-        items: [
-          ...others.map((o) => ({ href: airportPath(o.key), icon: "plane", title: `${o.code} airport car service`, text: o.x.blurb, cta: "View airport" })),
-          { href: ATL_HUB_PATH, icon: "route", title: "DC Airport Car Service", text: "The full hub for IAD, DCA, and BWI transfers.", cta: "Open hub" },
-          { href: "/private-jet-fbo-transfers/", icon: "plane", title: "Private jet & FBO transfers", text: `Flying private? Signature ${nick} and the region's FBOs.`, cta: "View FBOs" },
-          { href: "/services/meet-and-greet/", icon: "sign", title: "Meet & greet service", text: "In-terminal greeting with a name sign and bag help.", cta: "How it works" },
-        ],
+      // "Plan the Rest of Your Trip" — premium editorial split (framed image +
+      // linked list), reusing the service-spoke "Our Commitment" composition.
+      // Same airport-specific navigation links as before, just re-presented.
+      ["html", {
+        render: (alt) => airportExplore({
+          id: `explore-${t.key}`,
+          eyebrow: "Keep Exploring",
+          heading: "Plan the Rest of Your Trip",
+          lede: `The other DC-area airports we serve and the full airport hub — everything you need to plan the rest of your ${nick} journey across the DMV.`,
+          imageAlt: "Landio Limo Services luxury chauffeured SUV in the Washington, DC metro",
+          items: [
+            ...others.map((o) => ({ href: airportPath(o.key), icon: "plane", title: `${o.code} airport car service`, desc: o.x.blurb, cta: "View airport" })),
+            { href: ATL_HUB_PATH, icon: "route", title: "DC Airport Car Service", desc: "The full hub for IAD, DCA, and BWI transfers.", cta: "Open hub" },
+          ],
+          cta: { pickup, label: `Book Your ${t.code} Ride` },
+          alt,
+        }),
       }],
 
       // Dedicated final booking CTA — reuses the homepage event-cta band (same

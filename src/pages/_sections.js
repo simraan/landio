@@ -939,3 +939,53 @@ export function airportGlance({ id, title, stats, cards, summary, alt = false })
       </div>
     </section>`;
 }
+
+/**
+ * "Plan the Rest of Your Trip" — a premium editorial split (reuses the gt-split
+ * composition from the service spokes' "Our Commitment" section): a framed image
+ * with gold corner accents on one side, and eyebrow + heading + lede + a list of
+ * clickable navigation links on the other. Each item is a real link with a gold
+ * icon badge, title, description and arrow cue. Airport pages only.
+ *
+ *   items: [{ href, icon, title, desc, cta }]
+ */
+export function airportExplore({ id, eyebrow, heading, lede, items, cta, image = "/assets/img/hero/dc-limo-hero", imageAlt, alt = false }) {
+  const widths = [640, 1024, 1500];
+  const set = (ext) => widths.map((w) => `${image}-${w}.${ext} ${w}w`).join(", ");
+  const pic = `<picture>
+              <source type="image/webp" srcset="${set("webp")}" sizes="(min-width: 861px) 48vw, 92vw">
+              <img src="${image}-1024.jpg" srcset="${set("jpg")}" sizes="(min-width: 861px) 48vw, 92vw" alt="${esc(imageAlt)}" width="1500" height="1000" loading="lazy" decoding="async">
+            </picture>`;
+  const list = items.map((it) => `
+            <li>
+              <a class="lp-explore__item" href="${esc(it.href)}">
+                <span class="gt-panel__ico" aria-hidden="true">${icon(it.icon, { size: 20 })}</span>
+                <span class="lp-explore__text">
+                  <span class="gt-panel__t">${esc(it.title)}</span>
+                  <span class="gt-panel__d">${esc(it.desc)}</span>
+                </span>
+                <span class="lp-explore__cue">${esc(it.cta)}<span class="lp-explore__arrow" aria-hidden="true">${icon("arrow", { size: 14 })}</span></span>
+              </a>
+            </li>`).join("");
+  return `
+    <section class="${alt ? "section section--alt" : "section"} gt-split-sec lp-explore" aria-labelledby="${esc(id)}">
+      <div class="container gt-split gt-split--media-left">
+        <figure class="gt-split__media">
+          <span class="gt-split__accent" aria-hidden="true"></span>
+          <span class="gt-split__accent gt-split__accent--br" aria-hidden="true"></span>
+          ${pic}
+        </figure>
+        <div class="gt-split__content">
+          <span class="eyebrow">${esc(eyebrow)}</span>
+          <h2 id="${esc(id)}">${esc(heading)}</h2>
+          <p class="gt-panel__lede">${esc(lede)}</p>
+          <ul class="lp-explore__list">${list}
+          </ul>
+          ${cta ? `<div class="gt-split__cta lp-explore__cta">
+            <button type="button" class="btn btn-primary" data-open-quote${cta.pickup ? ` data-prefill-pickup="${esc(cta.pickup)}"` : ""}>${btnIcon("calendar")}${esc(cta.label || "Reserve Your Ride")}</button>
+            <a class="btn btn-ghost" href="tel:${esc(SITE.phone.e164)}">${btnIcon("phone")}Call ${esc(SITE.phone.display)}</a>
+          </div>` : ""}
+        </div>
+      </div>
+    </section>`;
+}
