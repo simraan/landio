@@ -19,7 +19,7 @@ import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
 import { HERO_IMG, serviceNode, abs } from "./_kit.js";
-import { fleetCards, googleReviews, eventCta, photoMarquee } from "./_sections.js";
+import { fleetCards, googleReviews, eventCta, photoMarquee, airportGlance } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
@@ -136,21 +136,31 @@ function terminalPage(t) {
       // Fleet moved up to sit right after the showcase.
       ["html", { render: fleetSection(t) }],
 
-      // At a Glance — four premium "jump" cards that navigate to the page's key
-      // sections (no dead links), above the preserved airport facts strip.
-      ["trust", {
-        id: `glance-${t.key}`,
-        eyebrow: "At a Glance",
-        h2: `${t.code} Airport Car Service at a Glance`,
-        tilesVariant: "jump",
-        tiles: [
-          { icon: "car", text: "Choose Your Vehicle", desc: "Six luxury classes for any party size.", act: { href: `#${t.key}-fleet-title`, cue: "View the fleet" } },
-          { icon: "sign", text: "Pickup & Drop-off", desc: "Meet & greet or curbside, flight-tracked.", act: { href: `#pd-${t.key}`, cue: "How pickup works" } },
-          { icon: "route", text: "How It Works", desc: "Your airport ride, step by step.", act: { href: `#flow-${t.key}`, cue: "See the steps" } },
-          { icon: "pin", text: "Popular Routes", desc: "Top destinations from the airport.", act: { href: `#routes-${t.key}`, cue: "Browse routes" } },
-        ],
-        factsLabel: t.x.factsLabel,
-        facts: t.x.facts,
+      // At a Glance — premium panel: airport-specific heading + key-stat row, a
+      // 3×2 grid of six information cards, and a summary with a gold left border.
+      // Every stat and card links to a real on-page section or existing page
+      // (no dead links). Numbers come from the CAPACITY / fleet SSOT.
+      ["html", {
+        render: (alt) => airportGlance({
+          id: `glance-${t.key}`,
+          title: `${t.code} Airport Car Service at a Glance`,
+          stats: [
+            { num: "56", label: "Max Passengers", href: `#${t.key}-fleet-title` },
+            { num: "6", label: "Vehicle Classes", href: "/fleet/" },
+            { num: "3", label: "DC Airports", href: ATL_HUB_PATH },
+            { num: "24/7", label: "Dispatch", href: "/contact/" },
+          ],
+          cards: [
+            { icon: "plane", title: "Airport Transfers", desc: `Flight-tracked transfers to and from ${t.code}, door to door across the DC metro.`, href: `#pd-${t.key}` },
+            { icon: "users", title: "Capacity", desc: "From an Executive Sedan up to a 56-passenger Charter Bus, sized to your party and luggage.", href: `#${t.key}-fleet-title` },
+            { icon: "radar", title: "Flight Tracking", desc: "Share your airline and flight number; your pickup adjusts to your actual landing, delayed or early.", href: `#flow-${t.key}` },
+            { icon: "pin", title: "Service Area", desc: "Washington, DC, Maryland and Northern Virginia, plus the Northeast corridor.", href: `#routes-${t.key}` },
+            { icon: "calendar", title: "Weddings & Events", desc: "Flight-tracked group airport transfers for arriving wedding and event guests.", href: "/events/" },
+            { icon: "van", title: "Group Vehicles", desc: "Sprinter Vans, Mini Buses and Charter Buses for arriving groups and families.", href: "/fleet/" },
+          ],
+          summary: `Landio Limo Services provides flight-tracked, door-to-door airport car service between ${t.x.midName} (${t.code}) and anywhere across Washington, DC, Maryland, and Northern Virginia. Meet & greet inside the terminal is available on request, with 24/7 dispatch, including holidays.`,
+          alt,
+        }),
       }],
 
       ["intro", {
