@@ -6753,3 +6753,48 @@ h1 .gold {
 @media (prefers-reduced-motion: reduce) {
   .page-terminal .lp-glance__card, .page-terminal .lp-glance__stat, .page-terminal .lp-glance__arrow { transition: none; }
 }
+
+/* ---- Plan the Rest of Your Trip — editorial split (framed image + linked
+   list), reusing the gt-split composition. Each item is a clickable link. ---- */
+.page-terminal .lp-explore__list { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(0.55rem, 1.2vw, 0.8rem); }
+.page-terminal .lp-explore__item {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: 0.9rem;
+  padding: clamp(0.85rem, 1.5vw, 1.1rem); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: linear-gradient(165deg, var(--bg-3), var(--bg-2)); text-decoration: none; color: inherit;
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.page-terminal .lp-explore__item:hover {
+  transform: translateY(-2px); border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.3), 0 10px 24px rgba(0, 0, 0, 0.32);
+}
+.page-terminal .lp-explore__item:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.page-terminal .lp-explore__item .gt-panel__ico { grid-row: auto; align-self: center; }
+.page-terminal .lp-explore__text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.page-terminal .lp-explore__item .gt-panel__t { align-self: auto; font-size: 0.98rem; }
+.page-terminal .lp-explore__item .gt-panel__d { align-self: auto; }
+.page-terminal .lp-explore__cue {
+  display: inline-flex; align-items: center; gap: 0.32rem; color: var(--gold);
+  font-size: 0.76rem; font-weight: 600; white-space: nowrap; opacity: 0.85;
+}
+.page-terminal .lp-explore__arrow { display: inline-flex; transition: transform 0.2s var(--ease); }
+.page-terminal .lp-explore__item:hover .lp-explore__cue { opacity: 1; }
+.page-terminal .lp-explore__item:hover .lp-explore__arrow { transform: translateX(3px); }
+/* Image hover lift (the base lift rule is .page-group-transfers-scoped) + a
+   focal point that keeps the vehicle centred and clearly in frame. */
+.page-terminal .lp-explore .gt-split__media img { transition: transform 0.5s var(--ease); object-position: 62% 48%; }
+.page-terminal .lp-explore .gt-split__media:hover img { transform: scale(1.04); }
+/* Taller image so the vehicle reads clearly (desktop/tablet split only; mobile
+   keeps the base full-width ratio). Top-align so the taller image and the
+   content line up cleanly. */
+@media (min-width: 861px) {
+  .page-terminal .lp-explore .gt-split { align-items: start; }
+  .page-terminal .lp-explore .gt-split__media img { aspect-ratio: 1 / 1; }
+}
+.page-terminal .lp-explore__cta { margin-top: clamp(1.1rem, 2vw, 1.6rem); }
+@media (max-width: 480px) {
+  .page-terminal .lp-explore__item { grid-template-columns: auto 1fr; row-gap: 0.25rem; }
+  .page-terminal .lp-explore__cue { grid-column: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-terminal .lp-explore__item, .page-terminal .lp-explore__arrow, .page-terminal .lp-explore .gt-split__media img { transition: none; }
+}
