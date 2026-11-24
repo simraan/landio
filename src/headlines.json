@@ -101,6 +101,10 @@
     "note": "Quote-flow landing (noindex)."
   },
   {
+    "template": "feedback",
+    "note": "Feedback / review-gating funnel (noindex)."
+  },
+  {
     "template": "notFound",
     "note": "404 (noindex)."
   }

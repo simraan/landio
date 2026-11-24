@@ -44,6 +44,7 @@ import { venuesPage, venuePages } from "./pages/venues.js";
 import { eventsPage, eventPages } from "./pages/events.js";
 import { legalPages } from "./pages/legal.js";
 import { thankyou } from "./pages/thankyou.js";
+import { feedback } from "./pages/feedback.js";
 import { notFound } from "./pages/notfound.js";
 import { renderRedirectsFile, renderHeadersFile } from "./redirects.js";
 import { renderLlmsTxt } from "./llms.js";
@@ -135,6 +136,7 @@ const TEMPLATES = {
   guidePages, // → DC travel guides
   legalPages, // → array of 2
   thankyou,
+  feedback,
   notFound,
 };
 

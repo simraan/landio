@@ -321,6 +321,47 @@ svg {
   box-shadow: 0 0 0 3px var(--gold-dim);
 }
 
+/* ---- Feedback / review-gating page (/feedback/) ---- */
+.feedback__inner { max-width: 760px; }
+.feedback__head { text-align: center; margin-bottom: 1.8rem; }
+.feedback__card { padding: 1.7rem 1.5rem; }
+.fb-q { font-size: 1.18rem; margin: 0 0 1rem; color: var(--text); }
+.fb-req { color: var(--gold); }
+.fb-sub { color: var(--text-muted); margin: -0.45rem 0 1.25rem; font-size: 0.95rem; }
+.fb-ratings { display: grid; gap: 0.7rem; }
+.fb-rate {
+  display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-start;
+  width: 100%; text-align: left; cursor: pointer;
+  padding: 0.95rem 1.1rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: border-color 0.18s var(--ease), transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+.fb-rate:hover, .fb-rate:focus-visible {
+  outline: none;
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+.fb-stars { font-size: 1.3rem; letter-spacing: 3px; line-height: 1; color: var(--border); }
+.fb-stars .fb-on { color: var(--gold); }
+.fb-label { font-size: 0.95rem; color: var(--text-muted); }
+.fb-rate:hover .fb-label, .fb-rate:focus-visible .fb-label { color: var(--text); }
+.fb-form { display: grid; gap: 0.95rem; }
+.fb-field { display: grid; gap: 0.4rem; font-size: 0.9rem; color: var(--text-muted); }
+.fb-field textarea.bf-input { resize: vertical; min-height: 96px; }
+.fb-submit { width: 100%; margin-top: 0.2rem; }
+.fb-call { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
+.fb-call a { color: var(--gold); }
+.fb-done { text-align: center; }
+.fb-done h2 { color: var(--gold); }
+@media (prefers-reduced-motion: reduce) {
+  .fb-rate { transition: border-color 0.18s, box-shadow 0.18s; }
+  .fb-rate:hover, .fb-rate:focus-visible { transform: none; }
+}
+
 .card-surface {
   background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
   border: 1px solid var(--border-gold);
