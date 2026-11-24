@@ -550,17 +550,8 @@ export function trustStrip(o, { alt } = {}) {
           <span class="eyebrow">${esc(o.eyebrow)}</span>
           <h2 id="${esc(o.id)}" class="lp-h2-compact">${esc(o.h2)}</h2>
         </div>${overview}
-        <ul class="lp-trust__tiles${o.tilesVariant === "jump" ? " lp-trust__tiles--jump" : ""}">
-          ${o.tiles.map((t) => cbox({
-            cls: "lp-trust__tile" + (t.desc ? " lp-trust__tile--jump" : ""),
-            // Icon gets a badge wrapper only on the richer jump cards; plain tiles
-            // keep the bare icon so every other page that uses trustStrip is
-            // byte-identical.
-            lead: t.desc ? `<span class="lp-trust__ico">${icon(t.icon)}</span>` : icon(t.icon),
-            title: t.text, titleTag: "p",
-            act: t.act, cue: t.cue, future: t.future,
-            bodyHtml: t.desc ? `<span class="lp-trust__desc">${esc(t.desc)}</span>` : "",
-          })).join("\n          ")}
+        <ul class="lp-trust__tiles">
+          ${o.tiles.map((t) => cbox({ cls: "lp-trust__tile", lead: icon(t.icon), title: t.text, titleTag: "p", act: t.act, cue: t.cue, future: t.future })).join("\n          ")}
         </ul>
       </div>
     </section>`;
@@ -903,4 +894,48 @@ export function photoMarquee(images) {
             <ul class="ig-track ig-track--marquee">${slides}
             </ul>
           </div>`;
+}
+
+/**
+ * Airport "At a Glance" panel — a premium dark panel with a heading + key-stat
+ * row, a 3×2 grid of information cards, and an airport-specific summary with a
+ * gold left border. Every stat and every card is a real link (on-page anchor or
+ * existing page) — no dead links. Used by the three airport pages.
+ *
+ *   stats: [{ num, label, href }]
+ *   cards: [{ icon, title, desc, href }]
+ */
+export function airportGlance({ id, title, stats, cards, summary, alt = false }) {
+  const stat = (s) => `
+              <li><a class="lp-glance__stat" href="${esc(s.href)}">
+                <span class="lp-glance__num">${esc(s.num)}</span>
+                <span class="lp-glance__stat-label">${esc(s.label)}</span>
+              </a></li>`;
+  const card = (c) => `
+            <li><a class="lp-glance__card" href="${esc(c.href)}">
+              <span class="lp-glance__badge" aria-hidden="true">${icon(c.icon)}</span>
+              <span class="lp-glance__card-body">
+                <span class="lp-glance__card-title">${esc(c.title)}</span>
+                <span class="lp-glance__card-desc">${esc(c.desc)}</span>
+              </span>
+              <span class="lp-glance__arrow" aria-hidden="true">${icon("arrow", { size: 16 })}</span>
+            </a></li>`;
+  return `
+    <section class="${alt ? "section section--alt" : "section"} lp-glance" aria-labelledby="${esc(id)}">
+      <div class="container">
+        <div class="lp-glance__panel">
+          <div class="lp-glance__top">
+            <div class="lp-glance__intro">
+              <span class="eyebrow">At a Glance</span>
+              <h2 id="${esc(id)}" class="lp-glance__title">${esc(title)}</h2>
+            </div>
+            <ul class="lp-glance__stats">${stats.map(stat).join("")}
+            </ul>
+          </div>
+          <ul class="lp-glance__cards">${cards.map(card).join("")}
+          </ul>
+          <p class="lp-glance__summary">${esc(summary)}</p>
+        </div>
+      </div>
+    </section>`;
 }
