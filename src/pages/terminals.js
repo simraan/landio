@@ -19,10 +19,36 @@ import { esc } from "../templates/partials.js";
 import { landingPage } from "../templates/landing.js";
 import { TERMINALS } from "../content/terminals.js";
 import { HERO_IMG, serviceNode, abs } from "./_kit.js";
-import { fleetCards, googleReviews, eventCta } from "./_sections.js";
+import { fleetCards, googleReviews, eventCta, photoMarquee } from "./_sections.js";
 
 const airportPath = (key) => `/dc-airport-car-service/${key}/`;
 const toStep = ([icon, title, text]) => ({ icon, title, text });
+
+// Google Reviews is temporarily hidden on the airport pages (client request).
+// The section, component and data are preserved — flip this to true (or delete
+// the guard) to restore it on all three pages. Homepage reviews are unaffected.
+const SHOW_AIRPORT_REVIEWS = false;
+
+/* Fleet showcase strip shown right after the hero — reuses the homepage photo
+   marquee (photoMarquee) with real fleet/vehicle imagery, no Instagram branding.
+   Identical on all three airports so they stay visually consistent. */
+const SHOWCASE_IMAGES = [
+  { webp: "/assets/img/instagram/ig-1.webp", jpg: "/assets/img/instagram/ig-1.jpg", alt: "Landio Limo Services luxury van" },
+  { webp: "/assets/img/instagram/ig-3.webp", jpg: "/assets/img/instagram/ig-3.jpg", alt: "Landio Limo Services luxury SUV" },
+  { webp: "/assets/img/instagram/ig-4.webp", jpg: "/assets/img/instagram/ig-4.jpg", alt: "Landio Limo Services luxury sedan and SUV" },
+  { webp: "/assets/img/instagram/ig-6.webp", jpg: "/assets/img/instagram/ig-6.jpg", alt: "Landio Limo Services luxury van interior with LED lighting" },
+  { webp: "/assets/img/instagram/ig-7.webp", jpg: "/assets/img/instagram/ig-7.jpg", alt: "Landio Limo Services luxury van interiors" },
+  { webp: "/assets/img/instagram/ig-8.webp", jpg: "/assets/img/instagram/ig-8.jpg", alt: "Landio Limo Services luxury SUV" },
+];
+const showcaseSection = (alt) => `
+    <section class="${alt ? "section section--alt" : "section"} lp-showcase" aria-labelledby="fleet-showcase-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Our Luxury Fleet</span>
+          <h2 id="fleet-showcase-title" class="lp-h2-compact">Arrive in Signature Style</h2>
+        </div>
+      </div>${photoMarquee(SHOWCASE_IMAGES)}
+    </section>`;
 
 // "Dulles (IAD)" for IAD/DCA, "BWI" for BWI (avoids a redundant "BWI (BWI)").
 const fromLabel = (t) => (t.h1short === t.code ? t.code : `${t.h1short} (${t.code})`);
@@ -103,16 +129,25 @@ function terminalPage(t) {
         formLocation: path,
       }],
 
+      // Fleet showcase slider — immediately after the hero (reuses the homepage
+      // photo marquee; no Instagram branding). Identical on all three airports.
+      ["html", { render: showcaseSection }],
+
+      // Fleet moved up to sit right after the showcase.
+      ["html", { render: fleetSection(t) }],
+
+      // At a Glance — four premium "jump" cards that navigate to the page's key
+      // sections (no dead links), above the preserved airport facts strip.
       ["trust", {
         id: `glance-${t.key}`,
         eyebrow: "At a Glance",
         h2: `${t.code} Airport Car Service at a Glance`,
+        tilesVariant: "jump",
         tiles: [
-          { icon: "clock", text: "24/7, including holidays", act: arriveAct },
-          { icon: "tag", text: "No surge pricing", act: arriveAct },
-          { icon: "refresh", text: "Free cancellation up to 24h", act: { href: "/terms-of-service/#cancellation", cue: "Read the policy" } },
-          { icon: "message", text: "Response within 1 hour", act: { href: "/contact/", cue: "Contact us" } },
-          { icon: "userCheck", text: "Chauffeur details before pickup", act: arriveAct },
+          { icon: "car", text: "Choose Your Vehicle", desc: "Six luxury classes for any party size.", act: { href: `#${t.key}-fleet-title`, cue: "View the fleet" } },
+          { icon: "sign", text: "Pickup & Drop-off", desc: "Meet & greet or curbside, flight-tracked.", act: { href: `#pd-${t.key}`, cue: "How pickup works" } },
+          { icon: "route", text: "How It Works", desc: "Your airport ride, step by step.", act: { href: `#flow-${t.key}`, cue: "See the steps" } },
+          { icon: "pin", text: "Popular Routes", desc: "Top destinations from the airport.", act: { href: `#routes-${t.key}`, cue: "Browse routes" } },
         ],
         factsLabel: t.x.factsLabel,
         facts: t.x.facts,
@@ -144,10 +179,7 @@ function terminalPage(t) {
         footHtml: "We confirm your exact meeting point when you book.",
       }],
 
-      // Homepage-style fleet band + "Why Choose Landio" benefits (replaces the
-      // generic "Three Steps" section on every airport page).
-      ["html", { render: fleetSection(t) }],
-
+      // "Why Choose Landio" benefits grid.
       ["why", {
         id: `why-${t.key}`,
         eyebrow: "Why Landio",
@@ -163,17 +195,19 @@ function terminalPage(t) {
         ],
       }],
 
-      // Google Reviews — reuses the homepage renderer. No reviews are invented;
-      // the shared component shows the Google badge + "Read More Google Reviews"
-      // CTA until genuine reviews are pasted into it.
-      ["html", {
-        render: (alt) => googleReviews({
-          id: `reviews-${t.key}`,
-          h2: `What ${nick} Travelers Say`,
-          lede: `Travelers to and from ${t.x.midName} (${t.code}) share their Landio Limo Services experience on Google. Read their reviews — and leave your own.`,
-          alt,
-        }),
-      }],
+      // Google Reviews — temporarily hidden on the airport pages per client
+      // request (SHOW_AIRPORT_REVIEWS). The component and review data are
+      // preserved and reused from the homepage; flip the flag to restore here.
+      ...(SHOW_AIRPORT_REVIEWS
+        ? [["html", {
+            render: (alt) => googleReviews({
+              id: `reviews-${t.key}`,
+              h2: `What ${nick} Travelers Say`,
+              lede: `Travelers to and from ${t.x.midName} (${t.code}) share their Landio Limo Services experience on Google. Read their reviews — and leave your own.`,
+              alt,
+            }),
+          }]]
+        : []),
 
       // Popular Routes — the landing template's native `routes` section
       // (tabbedRoutes/rideTable): a link to each destination's area page plus a
@@ -222,7 +256,9 @@ function terminalPage(t) {
         }),
       }],
 
-      ["contact"],
+      // Contact — Instagram CTA suppressed on airport pages (client request);
+      // the homepage and every other page keep theirs.
+      ["contact", { hideSocial: true }],
     ],
   });
 }

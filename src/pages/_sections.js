@@ -394,10 +394,12 @@ export function eventCta(opts = {}) {
 }
 
 /** Contact section (uses the provided original icons). Hamptons service area. */
-export function contactSection({ alt = true, variant = "default" } = {}) {
+export function contactSection({ alt = true, variant = "default", hideSocial = false } = {}) {
   const a = SITE.address;
   const addr = `${a.street}, ${a.city}, ${a.region} ${a.postalCode}`;
-  const ig = (SITE.sameAs || []).find((u) => /instagram\.com/i.test(u));
+  // `hideSocial` drops the "Follow us on Instagram" chip (airport pages only);
+  // default false, so every other page keeps it.
+  const ig = hideSocial ? null : (SITE.sameAs || []).find((u) => /instagram\.com/i.test(u));
   const igSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>`;
   const tel = { href: `tel:${SITE.phone.e164}`, cue: "Call now" };
   const mail = { href: `mailto:${SITE.email}`, cue: "Email us" };
@@ -548,8 +550,17 @@ export function trustStrip(o, { alt } = {}) {
           <span class="eyebrow">${esc(o.eyebrow)}</span>
           <h2 id="${esc(o.id)}" class="lp-h2-compact">${esc(o.h2)}</h2>
         </div>${overview}
-        <ul class="lp-trust__tiles">
-          ${o.tiles.map((t) => cbox({ cls: "lp-trust__tile", lead: icon(t.icon), title: t.text, titleTag: "p", act: t.act, cue: t.cue, future: t.future })).join("\n          ")}
+        <ul class="lp-trust__tiles${o.tilesVariant === "jump" ? " lp-trust__tiles--jump" : ""}">
+          ${o.tiles.map((t) => cbox({
+            cls: "lp-trust__tile" + (t.desc ? " lp-trust__tile--jump" : ""),
+            // Icon gets a badge wrapper only on the richer jump cards; plain tiles
+            // keep the bare icon so every other page that uses trustStrip is
+            // byte-identical.
+            lead: t.desc ? `<span class="lp-trust__ico">${icon(t.icon)}</span>` : icon(t.icon),
+            title: t.text, titleTag: "p",
+            act: t.act, cue: t.cue, future: t.future,
+            bodyHtml: t.desc ? `<span class="lp-trust__desc">${esc(t.desc)}</span>` : "",
+          })).join("\n          ")}
         </ul>
       </div>
     </section>`;
@@ -867,4 +878,29 @@ export function googleReviews({
         </div>
       </div>
     </section>`;
+}
+
+/**
+ * Reusable auto-scrolling photo strip — the exact homepage Instagram marquee
+ * mechanism (.ig-slider / .ig-track--marquee: seamless CSS loop, pauses on
+ * hover/focus, static under prefers-reduced-motion), but without any Instagram
+ * branding or links. Pass a list of { webp, jpg, alt } images. Slides render
+ * twice so the -50% loop is seamless. Used for the airport-page fleet showcase.
+ */
+export function photoMarquee(images) {
+  const slide = (g, dup) => `
+            <li class="ig-slide"${dup ? ' aria-hidden="true"' : ""}>
+              <div class="ig-slide__link">
+                <picture>
+                  <source type="image/webp" srcset="${g.webp}">
+                  <img class="ig-slide__img" src="${g.jpg}" alt="${dup ? "" : esc(g.alt)}" loading="lazy" decoding="async" width="500" height="625">
+                </picture>
+              </div>
+            </li>`;
+  const slides = images.map((g) => slide(g, false)).join("") + images.map((g) => slide(g, true)).join("");
+  return `
+          <div class="ig-slider">
+            <ul class="ig-track ig-track--marquee">${slides}
+            </ul>
+          </div>`;
 }

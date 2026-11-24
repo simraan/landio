@@ -6669,3 +6669,43 @@ h1 .gold {
 /* ---- Why Choose Landio: gold icons in the badges (the base .lp-icon-badge
    leaves the icon inheriting), matching the IAD gold-dim badge treatment. ---- */
 .page-terminal .lp-icon-badge { color: var(--gold); }
+
+/* ---- Fleet showcase slider (right after the hero). Reuses the homepage photo
+   marquee; full-bleed strip with a matching dark backdrop so the reused fade
+   edges blend. ---- */
+.page-terminal .lp-showcase { background: #151412; padding-block: clamp(1.9rem, 3.6vw, 3rem); }
+.page-terminal .lp-showcase .section-head { margin-bottom: clamp(1.1rem, 2.4vw, 1.6rem); }
+
+/* ---- At a Glance: four premium "jump" cards that link to key page sections.
+   Left-aligned card with an icon badge, title, description and a gold cue. ---- */
+.page-terminal .lp-trust__tiles--jump { grid-template-columns: 1fr; gap: clamp(0.75rem, 1.5vw, 1.1rem); }
+@media (min-width: 620px) { .page-terminal .lp-trust__tiles--jump { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .page-terminal .lp-trust__tiles--jump { grid-template-columns: repeat(4, 1fr); } }
+.page-terminal .lp-trust__tile--jump {
+  flex-direction: column; align-items: flex-start; justify-content: flex-start;
+  text-align: left; gap: 0.6rem; min-height: 0;
+  padding: clamp(1.15rem, 2vw, 1.6rem); font-weight: 400;
+  background: linear-gradient(165deg, var(--bg-3), var(--bg-2));
+}
+.page-terminal .lp-trust__tile--jump .lp-trust__ico {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 13px;
+  background: var(--gold-dim); border: 1px solid var(--border-gold); color: var(--gold);
+}
+.page-terminal .lp-trust__tile--jump .lp-trust__ico svg { width: 23px; height: 23px; }
+.page-terminal .lp-trust__tile--jump .cbox__title { margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text-1); line-height: 1.3; }
+.page-terminal .lp-trust__tile--jump .lp-trust__desc { display: block; font-size: 0.9rem; font-weight: 400; color: var(--text-2); line-height: 1.45; }
+.page-terminal .lp-trust__tile--jump .cbox__cue { margin: auto 0 0; padding-top: 0.35rem; color: var(--gold); font-size: 0.82rem; font-weight: 600; opacity: 0.9; }
+
+/* Anchor offset so a jump card lands the section below the sticky header. */
+.page-terminal [id$="-fleet-title"], .page-terminal [id^="pd-"],
+.page-terminal [id^="flow-"], .page-terminal [id^="routes-"] { scroll-margin-top: clamp(84px, 11vh, 110px); }
+
+/* ---- Pickup & Drop-off: a touch more presence on the two cards (gradient,
+   stronger border, roomier padding) to match the surrounding premium cards. ---- */
+.page-terminal .lp-intro__cols { gap: clamp(1.1rem, 2.4vw, 1.75rem); }
+.page-terminal .lp-intro__col {
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  background: linear-gradient(165deg, var(--bg-3), var(--bg-2));
+  border-color: var(--border-gold);
+}
